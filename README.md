@@ -1,7 +1,9 @@
 # Many-Body dynamics in Floquet-driven systems
 
 **MSc thesis repository (9th semester progress)**
+
 **Student**: Rishi Paresh Joshi (5th Year Integrated M.Sc., NISER Bhubaneswar)
+
 **Supervisor**: Dr. Tapan Mishra, Associate professor, NISER
 
 ---
