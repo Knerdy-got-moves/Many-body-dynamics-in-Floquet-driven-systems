@@ -10,7 +10,7 @@ The core report (10 pages) investigates non-ergodic dynamics in a Floquet-driven
 
 ## Contents
 
-- **Rishi_Paresh_Joshi_report-1.pdf**: Full thesis (main report + appendices).
+- **Rishi_Paresh_Joshi_report.pdf**: Full thesis (main report + appendices).
     - **Main Report (Pages 1-13)**: Introduction to Floquet ETH/HSF, model (H(t) = J_t ∑ z_i z_{i+1} + h_t ∑ z_i + g ∑ x_i), perturbation theory, numerics (entanglement S_A(t), C_j(t)), results, conclusions.
     - **Appendices (A-E)**: ETH proofs, basis conventions, Floquet derivations, numerics details, extended data (e.g., detunings for L=3, T/J_0 patterns).
 - **Figures**: Embedded plots of S_A(t)/S_Page (Fig. 1.1), autocorrelations C_j(t) vs. steps/T (Figs. 1.2-1.4).
