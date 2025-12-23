@@ -25,7 +25,7 @@ The core report (10 pages) investigates non-ergodic dynamics in a Floquet-driven
 
 ## Usage
 
-Download `Rishi_Paresh_Joshi_report-1.pdf` (1.9 MB) for full details—GitHub rendering may fail for large PDFs. Codes use QuSpin/SciPy for Floquet operator U_F = exp(-i ∫ H(t) dt), eigen-decomp, SVD for S_A, trace for C(t).
+Download `Rishi_Paresh_Joshi_report.pdf` (1.9 MB) for full details—GitHub rendering may fail for large PDFs. Codes use QuSpin/SciPy for Floquet operator U_F = exp(-i ∫ H(t) dt), eigen-decomp, SVD for S_A, trace for C(t).
 
 ## References
 
