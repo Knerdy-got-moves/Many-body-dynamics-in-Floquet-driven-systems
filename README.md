@@ -10,7 +10,7 @@
 
 ## Overview
 
-This repository contains the work on my MSc thesis (part 1) on investigating **Hilbert space fragmentation (HSF)** and **eigenstate thermalization hypothesis (ETH) violation** in periodically driven (Floquet) quantum Ising chains. The research combines analytical Floquet perturbation theory with numerical exact diagonalization to demonstrate prethermal non-ergodic dynamics in non-integrable many-body systems without disorder.
+This repository contains the work on my MSc thesis (part 1) on investigating **Hilbert space fragmentation (HSF)** and **eigenstate thermalization hypothesis (ETH) violation** in periodically driven (Floquet) quantum Ising chains. The research combines analytical Floquet perturbation theory with numerical probes like entanglement entropy and autocorrelation evolution to demonstrate prethermal non-ergodic dynamics in non-integrable many-body systems without disorder.
 
 ## Recent accomplishments
 
