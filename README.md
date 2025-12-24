@@ -176,7 +176,7 @@ Unlike many-body localization, the system exhibits:
 ## Methodology
 
 ### Analytical
-- **Floquet perturbation theory**: Derives effective Hamiltonian $H_F = H_F^{(0)} + H_F^{(1)} + \mathcal{O}(g^2)$ via Magnus expansion
+- **Floquet perturbation theory**: Derives effective Hamiltonian $H_F = H_F^{(1)} + \mathcal{O}(g^3)$ via cumulant expansion
 - **Detuning analysis**: Spin-flip amplitudes scale as $\text{sinc}(\Delta P T/4)$ where $\Delta P$ is the energy mismatch in the classical diagonal basis
 
 ### Numerical
