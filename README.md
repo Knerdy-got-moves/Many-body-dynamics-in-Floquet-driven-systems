@@ -194,7 +194,7 @@ Unlike many-body localization, the system exhibits:
 | **Observable** | **Diagnostic** | **ETH prediction** | **Our result** | **Interpretation** |
 |----------------|----------------|--------------------|-----------------|--------------------|
 | Entanglement $S_A(t)$ | Time evolution | $S_A^{\text{sat}} = S_{\text{Page}}^{\text{system}}$ | $S_A^{\text{sat}} = S_{\text{Page}}^{\text{fragment}} < S_{\text{Page}}^{\text{system}}$ | Fragment-limited thermalization |
-| Autocorrelation $C_j(t)$ | Infinite-T ensemble | $C_j(t) = 0$ rapidly | $T_{decay}\approx e^{J_0}$ | Memory of initial conditions |
+| Autocorrelation $C_j(t)$ | Infinite-T ensemble | $C_j(t) = 0$ rapidly | $T_{decay}\tilde e^{J_0}$ | Memory of initial conditions |
 | Edge magnetization | Open boundaries | Decays rapidly | Persists $\sim 300$ steps | Prethermal edge modes |
 | Hilbert space | Connectivity | Fully connected | Exponentially many fragments | HSF |
 
