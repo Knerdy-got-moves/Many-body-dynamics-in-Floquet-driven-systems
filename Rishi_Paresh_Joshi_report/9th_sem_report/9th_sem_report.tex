@@ -1,0 +1,2556 @@
+\documentclass[10pt]{report}
+\usepackage{multicol} %multicolumns
+\usepackage{siunitx} %log table stuff
+\usepackage{flafter}
+\usepackage{graphicx} %including photos
+\usepackage{wrapfig} %for wrapping figure
+%\graphicspath{{./Report For Titanium Doping/}} %path of folder from where photo needs to be extracted, NOT NECESSARY AT ALL TIMES
+\usepackage[utf8]{inputenc}
+\usepackage{float} %Using [H] command to stop picturefloating around
+\usepackage{enumerate} %changing labels of lists
+%\usepackage{fancyhdr}
+\usepackage{dsfont} %for set notations and other fancy letters
+\usepackage{mathrsfs}
+\newtheorem{prop}{Proposition}
+\usepackage{geometry}
+\geometry{
+a4paper,
+total={170mm,257mm},
+top=20mm,
+}
+\usepackage{array}
+\setlength\extrarowheight{4pt}
+%\usepackage[dvipsnames]{xcolor} %for using coloured text
+\usepackage{longtable,pdflscape,booktabs} % long table stuff
+\usepackage{lscape} 
+\usepackage{url}
+
+\usepackage{caption}
+%\captionsetup{labelformat=empty}
+\renewcommand{\figurename}{Fig.} %redefining how figures are labelled
+\usepackage{ragged2e}     % for ragged or justified alignment commands like 
+\usepackage{setspace} %for desired spacing between lines
+\usepackage{blindtext} % for blind text in contents page
+\usepackage[normalem]{ulem} %dash and dotted underline
+\usepackage{bm} % for bold math symbols- using command \boldsymbol
+\usepackage{hyperref} %for hyperlinks
+\usepackage{romannum} %for Roman Numerals
+\usepackage[makeroom]{cancel} % for striked out or other stuff in math environment
+\usepackage{tikz}
+\usepackage{empheq} %  fancy math stuff
+\usepackage{xfrac}
+\usepackage{fancybox} %for fancy boxes
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{autobreak}
+\usepackage{wrapfig}
+\usepackage[sorting=none]{biblatex}
+\addbibresource{Rishi_Paresh_Joshi_report/references.bib}
+%%%%%%%% colored cancelto command
+\usepackage{cancel}
+\usepackage{etoolbox}
+% Math packages
+\usepackage{amsmath}    % advanced math environments
+\usepackage{amssymb}    % extra math symbols
+\usepackage{amsfonts}   % \mathbb etc.
+\usepackage{amsthm}     % theorem / lemma environments
+\usepackage{mathtools}  % small math improvements (optional but nice)
+\usepackage{caption}
+\usepackage{subcaption}
+% For itemize/enum with custom margins/options
+\usepackage{enumitem}   % used for [leftmargin=2.0em] etc.
+
+% For nicer tables (p-columns etc.)
+\usepackage{array}      % extended tabular support
+%\usepackage{booktabs}  % OPTIONAL: nicer \toprule,\midrule,\bottomrule
+
+% (Optional but common in reports)
+%\usepackage{hyperref}  % hyperlinks, if not already in class/template
+\usepackage{indentfirst}
+
+\setlength{\parindent}{20pt}  % or any length you prefer like 1cm
+
+
+% ============================
+% Theorem-like environments
+% ============================
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+
+% ============================
+% User-defined math commands
+% ============================
+
+% Script / blackboard macros
+\newcommand{\mc}[1]{\mathcal{#1}}   % calligraphic, e.g. \mc{H}
+\newcommand{\bb}[1]{\mathbb{#1}}    % blackboard, e.g. \bb{R}
+
+% Big-O notation
+\newcommand{\OO}{\mathcal{O}}
+
+% Long-time / Cesàro average
+\newcommand{\avg}[1]{\left\langle #1 \right\rangle}
+
+% Dirac notation (if you don't already have them from your class file)
+\newcommand{\ket}[1]{\left| #1 \right\rangle}
+\newcommand{\bra}[1]{\left\langle #1 \right|}
+\newcommand{\braket}[1]{\left\langle #1 \right\rangle}
+\newcommand{\dyad}[1]{\ket{#1}\bra{#1}}
+
+% Trace operator
+\DeclareMathOperator{\Tr}{Tr}
+\let\cancelorigcolor\CancelColor% Just for conveniency...
+
+\newcommand{\CancelTo}[3][]{%
+  \ifblank{#1}{}{%
+    \renewcommand{\CancelColor}{#1}%
+  }
+  \cancelto{#2}{#3}% 
+}
+
+\allowdisplaybreaks
+\colorlet{linkequation}{blue} %making coloured equation refernces
+
+\usetikzlibrary{shadows} %defines shadows
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{tcolorbox} %coloured boxes
+\usepackage{xcolor} % include this in your preamble
+\tikzset{rndblock/.style={rounded corners,rectangle,draw,outer sep=1pt,inner sep=5pt,line width=1pt}}
+
+% Command Definition
+% 1 optional to customize the aspect, 2 mandatory: text to be framed
+\newcommand{\mybox}[2][]{\tikz[baseline=(h.base)]\node[rndblock,#1] (h) {#2};}
+
+%definining new command to make coloured equation references
+\newcommand*{\myref}[1]{%
+  \begingroup
+    \hypersetup{
+      linkcolor=linkequation,
+      linkbordercolor=linkequation,
+    }%
+    \ref{#1}%
+  \endgroup
+}
+\usepackage{braket} % gives \bra, \ket, \braket, etc.
+
+% Expectation value
+\newcommand{\ev}[1]{\left\langle #1 \right\rangle}
+
+% Matrix element: \matrixel{a}{O}{b} -> <a|O|b>
+\newcommand{\matrixel}[3]{\left\langle #1 \middle| #2 \middle| #3 \right\rangle}
+
+%Setting equations a particular colour
+\hypersetup{
+colorlinks=true,
+linkcolor=black,
+filecolor=magenta,
+urlcolor=blue,
+citecolor=blue,
+}
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, positioning, decorations.pathreplacing}
+
+\tikzset{
+  spin/.style={circle,draw,inner sep=1pt,minimum size=7mm,font=\small},
+  fliparrow/.style={->, thick, color=blue}
+}
+\parskip 1ex
+
+%For circled numbers
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+            
+%% customising captions
+\DeclareCaptionFormat{custom}
+{%
+   \textbf{#1#2}\textsf{#3}
+}
+\captionsetup[figure]{format=custom,justification=raggedright}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DOCUMENT BEGINS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\pagestyle{fancy}
+%\fancyhf{}
+%\fancyhead[LO]{\rightmark}
+%\fancyhead[RE]{\leftmark}
+%\rfoot{\centering \thepage}
+
+\begin{document}
+\doublespace
+%making the title page
+\pagenumbering{gobble}
+\begin{titlepage}
+	\begin{center}
+		\vspace*{0.2cm}
+		\textbf{\large{Hilbert space fragmentation in Floquet-driven systems}}\linebreak
+		\vspace{1cm} \linebreak
+		\textit{Submitted By} \linebreak \textbf{Rishi Paresh Joshi} \linebreak 
+		School of Physical Sciences \linebreak National Institute of Science, Education and Research (NISER), Bhubaneswar \linebreak
+		%Date of Submission : 12\textsuperscript{th} July, 2022
+	\end{center}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.17\textwidth]{niser logo}
+	\end{figure}
+    \begin{center}
+        \vspace*{0.2cm}
+        \textit{Under the Guidance of} \linebreak         \textbf{Dr. Tapan Mishra} \linebreak
+        \textbf{Associate professor}\linebreak
+        School of Physical Sciences \linebreak
+        National Institute of Science, Education and Research (NISER), Bhubaneswar
+    \end{center}
+\end{titlepage}
+
+\justifying
+\newpage
+\pagenumbering{roman}
+%acknowledgement
+\chapter*{\begin{center} \uline{Acknowledgement} \end{center}}
+\addcontentsline{toc}{chapter}{\protect{} Acknowledgement}
+
+I would like to express my deep and sincere gratitude to my supervisor, Prof. Tapan Mishra, for his patient guidance, constant encouragement, and many insightful suggestions throughout the course of this work. I am extremely grateful to Biswajit Paul for numerous stimulating discussions on the project and for his generous help in clarifying both conceptual and technical points. Their support has been invaluable at every stage of this thesis.
+ 
+
+\begin{flushright}
+	Rishi Paresh Joshi \linebreak
+	5th Year Integrated M.Sc. \linebreak
+	School of Physical Sciences \linebreak
+	NISER, Bhubaneswar
+\end{flushright}
+
+%\onehalfspace
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% ABSTRACT %%%%%%%%%%%%%%%%%%%%%
+\chapter*{\begin{center} \uline{Abstract} \end{center}}
+\addcontentsline{toc}{chapter}{\protect{} Abstract}
+
+
+
+Most many-body interacting nonintegrable closed systems are believed to be ergodic and behave as if they reach thermal equilibrium, i.e., their time average of few-body observables is equal to their ensemble average, and the eigenstate thermalisation hypothesis (ETH) explains why they relax to thermal values. In this project, we move beyond time-independent Hamiltonians and study a periodically driven (Floquet) spin-$\tfrac{1}{2}$ Ising chain with both transverse and longitudinal fields as a controlled out-of-equilibrium setting. The corresponding static model is nonintegrable and satisfies ETH, but when we apply a symmetric square-wave drive to the interaction and longitudinal field, the matrix elements of the leading-order Floquet Hamiltonian are proportional to the transverse field term. The single-spin-flip matrix elements are strongly filtered by the discrete set of driving frequencies, creating selection rules for the type of local spin flip, indicating nontrivial dynamical constraints. On the analytical side, we use interaction–picture Floquet perturbation theory around this unperturbed time-dependent term to derive the first-order Floquet Hamiltonian. We classify the allowed single-spin-flip detunings for both open and periodic boundary conditions. On the numerical side, we construct the one-period Floquet operator in the $\sigma^z$ product basis and evolve random pure states using the QuSpin and SciPy libraries. We then analysed the long-standing behaviour using two probes. First, the bipartite entanglement entropy saturates to values that are below the Page value for the full Hilbert space. This signals a breakdown of ETH at the level of the full Hilbert space, consistent with Hilbert space fragmentation into many disconnected sectors that are individually large. Second, on-site spin autocorrelation functions do not decay to zero. For open boundary conditions, the autocorrelation function shows a clear dependence on the drive period and on whether the site lies in the bulk or at the edge, reflecting the selective blocking of spin flips implied by the detuning structure. Together, these results demonstrate that suitably designed Floquet driving can suppress Floquet heating and generate long-lived nonthermal dynamics, and they motivate a more systematic future analysis of the emergent conserved quantities and any underlying symmetry-protected  structure of the fragmented sectors.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+\singlespacing
+%Table of Contents
+\tableofcontents
+\addtocontents{toc}{~ \hfill \textbf{Page} \par}
+\pagenumbering{arabic}
+
+
+\newcommand{\AddR}[1]{\textcolor{blue}{#1}}
+
+\chapter{Report}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%% chapter1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction to out-of-equilibrium physics}
+\label{chap:intro}
+
+Closed quantum many-body systems are ideal systems to test the foundations of statistical mechanics. 
+Globally, the state evolves unitarily and retains complete information about the initial condition, yet thermodynamics predicts that few-body observables relax to simple equilibrium values. 
+The eigenstate thermalisation hypothesis (ETH) explains how this can happen in generic ``quantum chaotic'' systems~\cite{deutsch_quantum_1991,srednicki_chaos_1994,dalessio_quantum_2016} as individual many-body eigenstates reproduce thermal expectation values of local observables.
+
+In this thesis we move away from static Hamiltonians and study a periodically driven (Floquet) spin-$1/2$ Ising chain with both transverse and longitudinal fields. 
+Generic interacting Floquet systems at finite energy density tend to heat up towards an effective infinite-temperature state, in which local observables become featureless~\cite{dalessio_long-time_2014}. 
+Our aim is to show that, for suitable drive parameters, the Floquet dynamics of an otherwise chaotic Ising chain are strongly constrained by Hilbert space fragmentation (HSF), leading to robust non-thermal behaviour without needing disorder~\cite{ghosh_prethermal_2023,paul_floquet_2025}. 
+We will diagnose this using (i) entanglement entropies of Floquet eigenstates and (ii) infinite-temperature autocorrelation functions.
+
+\subsection{From equilibrium to quenches and Floquet driving}
+\label{sec:eq-vs-noneq}
+
+In equilibrium statistical mechanics, macroscopic properties are described by ensembles that encode conserved quantities such as energy, particle number, or magnetisation. For an isolated quantum system with a time–independent Hamiltonian $H$, the microcanonical ensemble at fixed energy is the natural equilibrium description. The underlying assumption is that the dynamics are effectively ergodic on the energy shell: for a large nonintegrable system, long–time averages of few–body observables coincide with ensemble averages for typical initial states with a narrow energy distribution, a statement formalised by the eigenstate thermalisation hypothesis (ETH) in the quantum picture.
+
+Once we introduce explicit time dependence in the Hamiltonian, several qualitatively different nonequilibrium protocols appear. A quantum quench is the simplest case: the system is prepared in an eigenstate (often the ground state) of some initial Hamiltonian $H_{\mathrm{i}}$, and at $t=0$ the Hamiltonian is suddenly changed to $H_{\mathrm{f}}$, after which it evolves unitarily with $H_{\mathrm{f}}$ for all later times. More general ramps or slow quenches interpolate between $H_{\mathrm{i}}$ and $H_{\mathrm{f}}$ over a finite time interval with a time-dependent control parameter $\lambda(t)$, so that $H(t)=H[\lambda(t)]$. One can also consider arbitrary driving protocols, where external fields or couplings are changed according to some prescribed function of time that is not necessarily slow or periodic.
+
+In this work we focus on the particularly important case of periodically driven (Floquet) systems, where
+\begin{equation}
+  H(t+T) = H(t),
+\end{equation}
+with drive period $T$. The stroboscopic dynamics at times $t=nT$ are generated by the one-period evolution operator
+\begin{equation}
+  U_F := \mathcal{T}\exp\!\Big(-i\int_0^T H(t)\,dt\Big)
+  = e^{-iH_F T},
+\end{equation}
+which defines the \emph{Floquet Hamiltonian} $H_F$. All observables measured stroboscopically can be described as if the system were evolving under the effective time-independent Hamiltonian $H_F$. By tailoring the time dependence of the couplings, one can engineer interaction terms, effective constraints, or emergent symmetries in $H_F$ that are absent in the original static Hamiltonian and often highly tunable in terms of the drive parameters (amplitude, frequency, duty cycle, phase)~\cite{sen_analytic_2021}.
+
+However, periodic driving also generically pumps energy into an interacting many–body system. In the absence of special mechanisms, a strongly interacting, nonintegrable Floquet system is expected to \emph{Floquet heat} to an effective infinite–temperature state within each symmetry sector, in the sense that local observables approach values consistent with a maximally mixed density matrix constrained only by exact conserved quantities~\cite{dalessio_long-time_2014}. The central question then becomes: under what conditions does a periodically driven system \emph{avoid} this featureless infinite-temperature fate and instead exhibit long-lived or asymptotic nonthermal behaviour?
+
+In the rest of this work we address this question for a one–dimensional spin–$\tfrac{1}{2}$ Ising chain with both transverse and longitudinal fields~\cite{kim_ballistic_2013,mbeng_quantum_2024,lami_beginners_2025}, when the interacting and longitudinal term is driven by a symmetric sign–flip protocol. The static chain is nonintegrable and obeys ETH~\cite{kim_ballistic_2013}, so its eigenstates at finite energy density resemble thermal states. When subjected to the symmetric Floquet drive, the system develops strong constraints in its Floquet dynamics that manifest as suppressed transitions between large sets of basis states. Using the analytical Floquet–perturbation framework and the numerical methods introduced in the coming chapters and explained in detail in the appendices, we interpret these constraints in terms of Hilbert–space fragmentation and diagnose the resulting violation of ETH via entanglement entropy and autocorrelation functions.
+
+\subsection{ETH and its violations}
+\label{sec:ETH}
+
+We briefly recall the ETH framework and refer to Appendix A (Chapter~\ref{app:ETH}) for details. 
+Let $H$ be a self-adjoint Hamiltonian on a finite-dimensional Hilbert space with eigenstates $\{\ket{E_n}\}$, and let $A$ be a few-body observable. 
+Under unitary time evolution, the expectation value $\braket{A}_t$ can be expressed in terms of matrix elements $A_{mn}=\bra{E_m}A\ket{E_n}$ and the initial amplitudes $c_n$. 
+If the spectrum is nondegenerate, the oscillatory off-diagonal contributions dephase at long times, and the long-time average depends only on the diagonal elements $A_{nn}$ and the populations $p_n=|c_n|^2$, defining the diagonal ensemble.
+
+To compare with equilibrium ensembles, one considers a microcanonical shell around a mean energy $\bar E$ and the corresponding microcanonical expectation value $\langle A\rangle_{\mathrm{mc}}(\bar E,\Delta)$, as defined and analysed in Appendix A (Chapter~\ref{app:ETH}). 
+The ETH ansatz~\cite{srednicki_chaos_1994,dalessio_quantum_2016} generalises the non-degenerate notion to degenerate and states that for few-body observables of a non-integrable, chaotic Hamiltonian, the diagonal matrix elements $A_{nn}$ vary smoothly with energy on the scale of the many-body level spacing, while the off-diagonal elements $A_{mn}$ with $m\neq n$ are exponentially small in system size, in Appendix A (Section. ~\ref{appa:Kinematics and microcanonical ensemble}). 
+For initial states with a narrow energy distribution, this implies that the long-time average of $\braket{A}_t$ equals the microcanonical expectation up to corrections vanishing with system size, and that time-averaged fluctuations are exponentially small. The ETH ansatz for a local operator $A$ in the energy eigenbasis
+$\{\ket{E_n}\}$ of $H$ is
+\begin{equation}
+A_{mn} \equiv \matrixel{E_m}{A}{E_n}
+= A(E)\,\delta_{mn}
++ e^{-S(E)/2}\,f(E,\omega)\,R_{mn},
+\end{equation}
+where $E = (E_m + E_n)/2$, $\omega = E_m - E_n$, $S(E)$ is the thermodynamic
+entropy at energy $E$, $f(E,\omega)$ is a smooth function, and $R_{mn}$ are
+random numbers with zero mean and unit variance.
+
+Expanding the initial state in the energy basis,
+\begin{equation}
+\ket{\psi(0)} = \sum_n c_n \ket{E_n},
+\end{equation}
+its time evolution gives
+\begin{equation}
+\ev{A(t)} = \sum_{m,n} c_m^\ast c_n
+\,e^{i(E_m - E_n)t}\,A_{mn}.
+\end{equation}
+The long-time average kills the oscillatory off-diagonal terms:
+\begin{equation}
+\overline{\ev{A(t)}} :=
+\lim_{T\to\infty}\frac{1}{T}\int_0^T dt\,\ev{A(t)}
+= \sum_n |c_n|^2 A_{nn}.
+\end{equation}
+If the energy distribution $|c_n|^2$ is narrow around some $E_0$, the ETH
+diagonal form implies $A_{nn} = A(E_n) \approx A(E_0)$, so
+\begin{equation}
+\overline{\ev{A(t)}} \approx A(E_0)
+= \ev{A}_{\text{micro}}(E_0),
+\end{equation}
+up to corrections that vanish with system size.
+
+For fluctuations, define
+\begin{equation}
+\delta A(t) := \ev{A(t)} - \overline{\ev{A(t)}} \simeq
+\sum_{m\neq n} c_m^\ast c_n e^{i(E_m - E_n)t}\,
+e^{-S(E)/2} f(E,\omega) R_{mn}.
+\end{equation}
+Using the ETH off-diagonal scaling, the time-averaged variance behaves as
+\begin{equation}
+\overline{|\delta A(t)|^2}
+\sim e^{-S(E_0)} \sum_{m\neq n}
+|c_m|^2 |c_n|^2 |f(E_0,\omega)|^2
+\propto e^{-S(E_0)} \sim e^{-cL},
+\end{equation}
+so fluctuations of few-body observables are exponentially small in system size.
+
+Thus, ETH is a statement about two objects: the diagonal ensemble and the appropriate microcanonical ensemble. In particular, it clarifies that what ``thermalisation'' means operationally is that time-averaged observables at long times are indistinguishable, for local probes, from those computed in a Gibbs or microcanonical state at the energy fixed by the initial condition.
+
+In the Floquet setting relevant here, the same logic applies with energy replaced by quasienergy and Hamiltonian eigenstates replaced by Floquet eigenstates of $U_F$. A ``Floquet ETH'' ansatz postulates that few-body operators are smooth functions of quasienergy on the diagonal and random-looking off the diagonal, within each symmetry sector. In that case, stroboscopic long-time averages of local observables coincide with infinite-temperature values (or with generalized Gibbs ensembles if additional conserved quantities exist), and the driven system is said to Floquet-thermalize. Our numerical diagnostics in later chapters are set up exactly to test deviations from this Floquet-ETH expectation.
+
+ETH is not universal. 
+Closed quantum systems can evade thermalisation through integrability, many-body localization, quantum many-body scars, or Hilbert space fragmentation~\cite{nandkishore_many-body_2015,abanin_colloquium_2019,sala_ergodicity_2020,yang_hilbert-space_2020,ganguli_aspects_2025}. 
+These mechanisms constrain dynamics by supplying additional conserved quantities or by restricting the connectivity of the Hilbert space.
+
+\subsection{Hilbert space fragmentation}
+\label{sec:HSF-Floquet-motivation}
+One regards the Hamiltonian or Floquet Hamiltonian operator as defining a graph on the set of basis configurations, with edges connecting configurations that are mixed by the dynamics. 
+If this connectivity graph decomposes into many disconnected components, the Hilbert space splits into invariant Krylov subspaces, and time evolution from a given initial configuration explores only its component. 
+In strongly fragmented models the number of components grows exponentially with system size and many of them have small dimensions~\cite{khemani_localization_2020,sala_ergodicity_2020,}. Mathematically, consider a family of finite-dimensional Hilbert spaces 
+$\mathcal{H}(L)$ for system size $L$, with $\dim \mathcal{H}(L) \sim e^{cL}$, 
+and a family of linear operators $X(L)$ (Hamiltonians or Floquet operators) 
+acting on $\mathcal{H}(L)$. 
+
+We say that the dynamics generated by $X(L)$ exhibit \emph{Hilbert space
+fragmentation} if, for each $L$, there exists a decomposition~\cite{moudgalya_hilbert_2022},
+\begin{equation}
+  \mathcal{H}(L) \;=\; \bigoplus_{\alpha=1}^{N_{\mathrm{frag}}(L)}
+  \mathcal{K}_\alpha(L),
+\end{equation}
+such that each subspace $\mathcal{K}_\alpha(L)$ is dynamically invariant,
+\begin{equation}
+  X(L)\,\mathcal{K}_\alpha(L) \subseteq \mathcal{K}_\alpha(L)
+  \qquad \forall\,\alpha,
+\end{equation}
+and this decomposition is finer than the one implied by conventional conserved
+quantities (at least one symmetry sector splits into several $\mathcal{K}_\alpha$).
+
+We will refer to \emph{strong} fragmentation when, in addition,
+\begin{equation}
+  N_{\mathrm{frag}}(L) \sim e^{s_{\mathrm{frag}} L}, \qquad s_{\mathrm{frag}}>0,
+\end{equation}
+while a typical Krylov subspace has dimension much smaller than the total
+Hilbert space dimension, for example
+\begin{equation}
+  \dim \mathcal{K}_\alpha(L) = \mathcal{O}(L^p)
+  \quad \text{for typical } \alpha,
+\end{equation}
+whereas
+\begin{equation}
+  \dim \mathcal{H}(L) \sim e^{cL}.
+\end{equation}
+In this regime there are exponentially many dynamically disconnected components,
+but each component explores only a tiny fraction of the full Hilbert space.
+
+
+
+The driven model studied in this thesis is a non-integrable spin-$1/2$ Ising chain with both transverse and longitudinal fields, subjected to a symmetric sign-flip drive in the interaction and longitudinal field. 
+To leading order in Floquet perturbation theory, the resulting Floquet Hamiltonian $H_F$ acquires local kinetic constraints in the $\sigma^z$ basis that fragment Hilbert space and suppress Floquet heating. 
+The derivation of $H_F$ and its matrix elements is given in Appendix C (Chapter~\ref{app:floquet-perturbation}), and the basis construction and numerical methods are detailed in Appendices B and C (Chapters~\ref{app:spinhalf-basis} and~\ref{app:numerics}).
+
+To demonstrate ETH violation and Hilbert space fragmentation we will use two diagnostics in later chapters. 
+First, we examine the bipartite entanglement entropy of Floquet eigenstates and compare it to Page values appropriate to the relevant Hilbert-space sectors. 
+Second, we study infinite-temperature autocorrelation functions of local spins,
+\begin{equation}
+  C_i(t) := \frac{1}{2^L}\Tr\big[\sigma_i^z(t)\,\sigma_i^z(0)\big],
+\end{equation}
+and show that in the fragmented regime they saturate to nonzero late-time values. 
+Chapter~\ref{chap:theory_methods} introduces the model, Floquet perturbation theory, and numerical routines; Chapter~\ref{chap: results} presents the entanglement and autocorrelation data and interprets them in terms of Hilbert space fragmentation.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% chapter 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Theory and methods}
+\label{chap:theory_methods}
+
+This section introduces the microscopic model and the analytical and numerical tools used in this thesis.  
+We first state the spin-$1/2$ Ising chain underlying the periodically driven dynamics.  
+We then summarise the Floquet perturbative construction of an effective stroboscopic Hamiltonian for the symmetric sign–flip protocol of Section~\ref{chap:intro}.  
+Finally, we outline the exact-diagonalisation framework and the two diagnostics used later: bipartite entanglement entropy and local autocorrelation functions.  
+Spin–chain conventions are collected in Appendix B (Chapter~\ref{app:spinhalf-basis}), Floquet perturbation theory in Appendix C (Chapter~\ref{app:floquet-perturbation}), and numerical details in Appendix D (Chapter~\ref{app:numerics}).
+
+\subsection{Ising model}
+\label{sec:Ising_model}
+The quantum Ising model is a minimal lattice model of interacting spins used to describe quantum phase transitions, magnetism, and effective two-level degrees of freedom in condensed matter systems. 
+Depending on parameters and dimensionality, it captures rich phenomena such as ordered and disordered phases, critical behaviour, and non-equilibrium dynamics, while remaining simple enough to simulate numerically and realise in quantum simulators.
+\subsubsection{Spin-$1/2$ chains}
+\label{subsec:spin_half_chains}
+
+We consider a one–dimensional chain of $L$ spin-$1/2$ degrees of freedom with local Hilbert space
+\(
+\mathcal{H}_i \cong \mathbb{C}^2
+\)
+at each site.  
+The total Hilbert space is
+\begin{equation}
+\mathcal{H} = \bigotimes_{i=1}^L \mathcal{H}_i,\qquad \dim\mathcal{H}=2^L,
+\end{equation}
+and we use the $\sigma^z$ eigenbasis
+\(
+\{\ket{\uparrow}_i,\ket{\downarrow}_i\}
+\)
+to form the computational basis
+\begin{equation}
+\ket{s_1 s_2 \dots s_L}
+=\ket{s_1}_1\otimes\ket{s_2}_2\otimes\cdots\otimes\ket{s_L}_L,
+\qquad s_i\in\{\uparrow,\downarrow\}.
+\end{equation}
+Local operators are built from Pauli matrices $\sigma^{x,y,z}$ on a single site and identities elsewhere: $\sigma_i^x$ flips the spin at site $i$ in the $\sigma^z$ basis, while $\sigma_i^z$ measures the local magnetization.  
+Matrix representations and bitstring conventions are given in Appendix B (Chapter~\ref{app:spinhalf-basis}).
+
+\subsubsection{Static transverse and longitudinal field Ising model}
+\label{subsec:static_Ising}
+
+The static reference model is the one-dimensional Ising chain with nearest-neighbor interactions, a longitudinal field along $z$, and a transverse field along $x$:
+\begin{equation}
+H_{\mathrm{stat}}
+=
+- J_0 \sum_{i=1}^{L-1} \sigma_i^z \sigma_{i+1}^z
+- h_0 \sum_{i=1}^{L} \sigma_i^z
+- g \sum_{i=1}^L \sigma_i^x,
+\qquad |g|\ll |J_0|,|h_0|.
+\label{eq:static_Ising}
+\end{equation}
+The first term, with coupling $J_0$, favours parallel ($\sigma_i^z=\sigma_{i+1}^z$) or antiparallel spins depending on the sign of $J_0$ and represents an Ising exchange interaction between neighbours. 
+The second term, proportional to $h_0$, is a longitudinal Zeeman field that biases spins to point up or down along $z$, while the third term, proportional to $g$, is a transverse field that induces coherent spin flips and generates quantum fluctuations.
+
+For $h_0=0$, this reduces to the integrable transverse-field Ising chain.  
+A finite longitudinal field $h_0\neq 0$ breaks integrability and yields a generic nonintegrable (chaotic) spin chain with Wigner–Dyson level statistics and ballistic entanglement growth~\cite{kim_ballistic_2013}.  
+In this static setting, eigenstate thermalisation holds for local observables for generic parameters~\cite{deutsch_quantum_1991,srednicki_chaos_1994,dalessio_quantum_2016}.  
+The periodically driven model studied below is obtained by making $J_0$ and $h_0$ time dependent in a symmetric square–wave fashion, while keeping the transverse field static and weak.
+
+\subsection{Floquet longitudinal field Ising model with transverse static perturbation}
+\label{sec:Floquet_PT}
+
+\subsubsection{Driven model}
+\label{subsec:model_protocol}
+
+The time-dependent Hamiltonian used for the Floquet protocol is
+\begin{align}
+H(t) &= H_0(t) + H_1, \label{eq:Ht_full}, \quad
+H_0(t) = -J(t)\sum_{i=1}^{L-1}\sigma_i^z\sigma_{i+1}^z 
+         -h(t)\sum_{i=1}^{L}\sigma_i^z, \quad
+H_1   = -g\sum_{i=1}^{L}\sigma_i^x,\qquad |g|\ll |J_0|,|h_0|,\\
+J(t)&=\begin{cases} +J_0,& 0\le t\le T/2,\\ -J_0,& T/2<t\le T, \end{cases}
+\qquad
+h(t)=\begin{cases} +h_0,& 0\le t\le T/2,\\ -h_0,& T/2<t\le T. \end{cases}
+\label{eq:H0H1_def}
+\end{align}
+Both $J(t)$ and $h(t)$ follow the same symmetric square wave of period $T$,
+introducing
+\begin{equation}
+\mathcal{O}_{zz}:=\sum_{i=1}^{L-1}\sigma_i^z\sigma_{i+1}^z,
+\qquad
+\mathcal{O}_z:=\sum_{i=1}^{L}\sigma_i^z,
+\qquad
+\mathcal{O}:=J_0\mathcal{O}_{zz}+h_0\mathcal{O}_z,
+\label{eq:Ozz_Oz_def}
+\end{equation}
+Since $\mathcal{O}_{zz}$ and $\mathcal{O}_z$ commute, $[H_0(t),H_0(t')]=0$ for all $t,t'$, so the unperturbed propagator $U_0(t,0)$ is diagonal in the computational basis.  
+Also the unperturbed time evolution operator, $U_0(T,0)= I$, so the stroboscopic dynamics are controlled predominantly by the weak transverse perturbation $H_1$.  
+Further discussion is given in Appendices B and C (Chapters.~\ref{app:spinhalf-basis} and~\ref{app:floquet-perturbation}).
+
+\subsubsection{First–order effective Floquet Hamiltonian}
+\label{subsec:HF_first}
+
+For a $T$-periodic Hamiltonian $H(t+T)=H(t)$, the evolution operator admits a Floquet decomposition, as in Appendix C (Chapter~\ref{app:floquet-perturbation}):
+\begin{equation}
+U(t) = P(t)\, e^{-\,\frac{i}{\hbar}H_F t},\qquad
+P(t+T)=P(t),
+\end{equation}
+with $H_F$ the time–independent Floquet Hamiltonian and $P(t)$ a $T$–periodic micromotion operator.  
+The one–period evolution is
+\(
+U(T) = e^{-\,\frac{i}{\hbar}H_F T}
+\),
+whose eigenvalues and eigenvectors define quasienergies and Floquet eigenstates~\cite{sen_analytic_2021}. We split $H(t)=H_0(t)+H_1$ and move to the interaction picture with respect to $H_0(t)$.  
+The interaction–picture evolution $U^I(t)$ satisfies
+\begin{equation}
+i\hbar \partial_t U^I(t) = V_I(t) U^I(t),\qquad
+V_I(t)=U_0(0,t)\,H_1\,U_0(t,0),
+\end{equation}
+and $H_F$ can be obtained from the logarithm of $U^I(T,0)$ when $U_0(T,0)=I$.  
+Treating $H_1$ as a small perturbation, the leading term is with higher–order commutators collected in Appendix C (Chapter~\ref{app:floquet-perturbation})
+\begin{equation}
+H_F^{(1)}=\frac{1}{T}\int_0^T dt\, V_I(t).
+\label{eq:HF1_general}
+\end{equation}
+
+
+In the eigenbasis $\{\ket{m}\}$ of $\mathcal{O}$, with $\mathcal{O}\ket{m}=P_m\ket{m}$ and $P_{nm}:=P_n-P_m$, one finds
+\begin{equation}
+(H_F^{(1)})_{nm}
+=-\Big\langle n\big|g\sum_{i=1}^{L}\sigma_i^x\big|m\Big\rangle\,\left[
+\delta_{P_{nm},0}+(1-\delta_{P_{nm},0})
+\operatorname{sinc}\!\Big(\frac{P_{nm}T}{4\hbar}\Big)e^{-\,\tfrac{i}{\hbar}P_{nm}\tfrac{T}{4}}\right].
+\label{eq:HF1_sinc_maintext}
+\end{equation}
+where $\operatorname{sinc}(x)=\sin x/x$, and $\Big\langle n\big|g\sum_{i=1}^{L}\sigma_i^x\big|m\Big\rangle$ flips a single spin in the computational basis.  
+The discrete values taken by $P_{nm}$ are determined by local spin environments.  
+By tuning $h_0/J_0$ and $T$, one can make the $\operatorname{sinc}$ factor vanish for large classes of local processes while remaining finite for others.  
+At special commensurate choices the leading–order Floquet Hamiltonian becomes a constrained kinetic model in which only a subset of spin flips are allowed.  
+This constrained connectivity in the many–body basis is the microscopic origin of the Hilbert space fragmentation studied in Chapter~\ref{chap: results}.
+
+\section{Numerical methods}
+\label{sec:numerical_methods}
+
+\subsection{Exact diagonalisation}
+\label{subsec:ED}
+
+We use exact diagonalisation in the computational basis to access the full quantum dynamics at finite sizes.  
+Basis states are labelled by bitstrings of length $L$, identified with $\sigma^z$ eigenvalues.   
+Details of the bit-operator representation and matrix construction are summarised in Appendices B and D (Chapters~\ref{app:spinhalf-basis} and~\ref{app:numerics}). We have used the library QuSpin for the numerical codes.
+
+For the driven problem we can adopt two strategies:
+\begin{enumerate}
+\item Constructing the one-period Floquet operator $U(T,0)$ by time-ordered exponentiation of $H(t)$ over a period.
+\item  Constructing the single-period time evolution operator by diagonalising $H(t)$ to obtain quasienergies and Floquet eigenstates.
+\end{enumerate}
+The first strategy provides better results due to the more accurate algorithms for exponentiating a matrix in SciPy.    
+
+\subsection{Bipartite entanglement entropy}
+\label{subsec:EE_method}
+
+The first diagnostic is the bipartite von Neumann entanglement entropy.  
+For a pure state $\ket{\psi}$ on $\mathcal{H}=\mathcal{H}_A\otimes\mathcal{H}_B$, the reduced density matrix on subsystem $A$ is
+\begin{equation}
+\rho_A := \Tr_B \dyad{\psi},
+\end{equation}
+and the entanglement entropy is
+\begin{equation}
+S_A(\psi) := -\Tr\!\big(\rho_A \ln \rho_A\big).
+\label{eq:SA_def}
+\end{equation}
+We take $A$ to be a contiguous block of $\ell=L/2$ spins (for even $L$) and compute $S_A$ for Floquet eigenstates and for time–evolved states starting from product states.
+
+In a chaotic system at finite energy density, typical eigenstates in a given symmetry sector have entanglement close to the Page value~\cite{page_average_1993,foong_proof_1994}.  
+In a fragmented system, dynamics starting from a product state are confined to a proper subspace (fragment) of the full Hilbert space.  
+Saturation to the fragment Page value but below the full Page value is taken as the entanglement signature of Hilbert space fragmentation.  
+The routines used to construct $\rho_A$ and extract Page values are described in Appendix D (Chapter~\ref{app:numerics}).
+
+\subsection{Autocorrelation functions}
+\label{subsec:autocorr_method}
+
+The second diagnostic is a local autocorrelation function.  
+For a local operator $O_i$ (here $O_i=\sigma_i^z$) and a Floquet unitary $U\equiv U(T,0)$, we define the infinite–temperature autocorrelation at stroboscopic times $t=nT$ as
+\begin{equation}
+C_i(nT)
+=
+\frac{1}{2^L}\Tr\big( O_i(nT) O_i(0)\big),
+\qquad
+O_i(nT) = U^{-n} O_i(0) U^{n}.
+\label{eq:C_infT}
+\end{equation}
+In an ergodic, ETH–satisfying system, $C_i(nT)$ decays to zero at long times.  
+A nonzero long–time limit indicates that a part of $O_i$ overlaps with conserved or quasi–conserved quantities and is bounded from below by a Mazur–type inequality~\cite{mazur_non-ergodicity_1969}.  
+In fragmented or prethermal systems this residual plateau can be substantial~\cite{ghosh_prethermal_2023}.  
+In practice we compute $C_i(nT)$ using the spectral decomposition of $U$ or of $H_F^{(1)}$ and monitor its late–time behaviour; implementation details are given in Appendix D (Chapter~\ref{app:numerics}).
+
+
+\section{Results, conclusion, discussion and future works}
+\label{chap: results}
+
+In this chapter we put together the analytical tools developed in Chapters~\ref{chap:intro}--\ref{chap:theory_methods} and the constructions in Appendices B--D (Chapters~\ref{app:spinhalf-basis}--\ref{app:numerics}) to analyse the dynamics of the driven transverse and longitudinal field Ising chain. Our aim is to understand how Floquet control of the interaction and longitudinal field can be used to engineer non-thermal long-time behaviour, in particular eigenstate thermalisation hypothesis (ETH) violation and signatures of Hilbert space fragmentation.
+
+The starting point is the first-order Floquet Hamiltonian derived in Appendix C (Chapter~\ref{app:floquet-perturbation}), evaluated for the symmetric square-wave protocol with $h_0=2J_0$. In this regime the single-spin flip processes generated by the transverse field $H_1=-g\sum_i\sigma_i^x$ connect eigenstates of the diagonal operator $\mathcal{O}$ with a discrete set of detunings $P_{nm}$. The Sinc filter in the matrix elements of $H_F^{(1)}$ then allows us to selectively suppress or retain specific flip channels by tuning the driving period $T$. We first summarise the resulting connectivity at first order and then present numerical results for entanglement entropy and autocorrelation functions which support a fragmented, non-ergodic picture. Technical derivations and detailed connectivity tables are collected in Appendix E (Chapter. ~\ref{app:results-supp}).
+
+\subsection{Single-spin flips and allowed detunings}
+\label{sec:single-flip-detunings}
+
+The constrained structure of the first-order Floquet Hamiltonian is most transparent in the eigenbasis of the diagonal operator
+\[
+\mathcal{O}
+=J_0\sum_{i=1}^{L-1}\sigma_i^z\sigma_{i+1}^z
++h_0\sum_{i=1}^{L}\sigma_i^z,
+\]
+for which $\mathcal{O}\ket{m}=P_m\ket{m}$ and $P_{nm}=P_n-P_m$. At the special point $h_0=2J_0$ the detunings $P_{nm}$ generated by a single spin flip take only a small discrete set of values determined by the local spin environment. For bulk flips in a periodic chain one finds
+\[
+P_{nm}\in\{\,0,\ \pm 4J_0,\ \pm 8J_0\,\},
+\]
+corresponding respectively to flipping a spin with two neighbours down, mixed neighbours, or two neighbours up. For open chains additional edge processes appear with $|P_{nm}|=2J_0$ and $|P_{nm}|=6J_0$ when only one neighbour is present.
+
+The first-order matrix elements of the Floquet Hamiltonian in the eigenbasis of $\mathcal{O}$ are
+\begin{equation}
+(H_F^{(1)})_{nm}
+=-\Big\langle n\big|g\sum_{i=1}^{L}\sigma_i^x\big|m\Big\rangle\,\left[
+\delta_{P_{nm},0}+(1-\delta_{P_{nm},0})
+\operatorname{sinc}\!\Big(\frac{P_{nm}T}{4\hbar}\Big)e^{-\,\tfrac{i}{\hbar}P_{nm}\tfrac{T}{4}}\right],
+\label{eq:HF1-sinc-results}
+\end{equation}
+with $(H_1)_{nm}$ generated by a single spin flip. By choosing $T=n\pi/J_0$ with integer or half-integer $n$, we can place selected values of $P_{nm}$ at zeros of the Sinc function and thus switch off the corresponding flip processes at first order, while others remain active. For instance, at $T=\pi/J_0$ all channels with $|P_{nm}|=4J_0$ and $|P_{nm}|=8J_0$ are suppressed, whereas $P_{nm}=0$ and the edge processes with $|P_{nm}|=2J_0,6J_0$ remain active. At $T=2\pi/J_0$ all nonzero detunings $P_{nm}$ are killed at first order, leaving only resonant processes with $P_{nm}=0$.
+
+A complete enumeration of the detunings for $L=3$, the classification of bulk and edge processes for open and periodic boundary conditions, and the corresponding ``on/off'' patterns as a function of $T$ are given in Appendix E (Chapter~\ref{app:results-supp}). In the main text we simply use these patterns as guidance when choosing drive periods for the numerical study of constrained dynamics.
+
+\subsection{Entanglement entropy and autocorrelation: numerical signatures}
+\label{sec:results-numerics}
+
+We now summarise the numerical evidence for constrained dynamics obtained from entanglement entropy and local autocorrelation functions. Throughout this section we set $h_0=2J_0$, use a small transverse field $g/J_0\ll 1$, and consider drive periods $T=n\pi/J_0$ with $n\in\{0.5,1,2,3\}$, motivated by the structure of Eq.~\eqref{eq:HF1-sinc-results}. All results shown are for chains of length $L=8$ with either open or periodic boundary conditions and random initial product states in the computational basis. Further details of the numerical implementation are collected in Appendix D (Chapter~\ref{app:numerics}), while extended plots and discussion appear in Appendix E (Chapter~\ref{app:results-supp}).
+
+\subsubsection*{Entanglement entropy}
+
+Figures~\ref{fig: EEopenTP} and \ref{fig: EEperiodicTP} show the bipartite entanglement entropy $S_A(t)$ of a half-chain cut as a function of stroboscopic time $t=mT$ for open and periodic boundary conditions. The maximum entropy the Page value,
+\[
+S_{\mathrm{Page}}(L/2) \simeq \frac{L}{2}\log 2 - \frac{1}{2},
+\]
+and it corresponds to typical states in systems that thermalise in the full Hilbert space of dimension $2^L$.
+
+For all periods and boundary conditions considered, it $S_A(t)$ grows from its initial product-state value and then saturates to a plateau \emph{strictly below} the full Page value. The saturation height depends on $T$: periods for which more flip channels are suppressed at first order (for example $T=2\pi/J_0$) show slower growth and lower plateaus than periods with fewer constraints (such as $T=\pi/(2J_0)$). Open and periodic boundary conditions differ quantitatively but not qualitatively: both display robust subthermal entanglement saturation.
+
+From the perspective of ETH, these results indicate that typical states reached under the Floquet dynamics do not explore the full Hilbert space compatible with the microscopic symmetries but are effectively confined to smaller dynamically accessible subspaces. A systematic comparison to the Page value of individual dynamically connected components of $H_F$ would sharpen this statement into a direct entanglement-based diagnosis of Hilbert space fragmentation; we return to this point below and in Appendix E (Chapter~\ref{app:results-supp}).
+
+\begin{figure}[!htb]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[height=5.5cm]{Rishi_Paresh_Joshi_report/Figures/EEopenTP.png}
+    \caption{}
+    \label{fig: EEopenTP}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[height=5.5cm]{Rishi_Paresh_Joshi_report/Figures/EEperiodicTP.png}
+    \caption{}
+    \label{fig: EEperiodicTP}
+  \end{subfigure}
+  \caption{Entanglement entropy $S_A(t)$ compared to $S_{Page}$ for different driving periods $T=N \pi/J_0$, where $N\in\{0.5,1,2,3\}$, for (a) open and (b) periodic boundary conditions. Parameters: $J_0=8=h_0/2$, $g=1$, $L=8$ and random tensor product initial states (pure states).}
+  \label{fig: EE fig}
+\end{figure}
+
+\subsubsection{Local autocorrelation functions}
+
+As a complementary probe we compute the longitudinal autocorrelation
+\[
+C_j(t) \;=\; \langle \psi_0 | \sigma_j^z(t) \sigma_j^z(0) | \psi_0 \rangle
+\]
+at stroboscopic times $t=mT$, again for random product initial states $|\psi_0\rangle$. Figures~\ref{fig: AutoopensiteTP1} and \ref{fig: AutoopensiteTP2} show $C_j(t)$ for different sites $j$ at fixed $T=\pi/J_0$ and $T=2\pi/J_0$ with open boundaries, while Figs.~\ref{fig: AutoTPopen} and \ref{fig: AutoTPsitesperiodic} summarise the dependence on $T$ and on $j$ for open and periodic cases.
+
+In all cases, $C_j(t)$ decays from its initial value but does not relax to zero: it approaches a nonzero plateau at late times. This late-time memory is incompatible with ETH for a non-conserved local operator in a fully ergodic Floquet phase, and instead points to the presence of conserved or quasi-conserved structures with finite overlap with $\sigma_j^z$. The plateau height depends on $T$ and on boundary conditions. For periodic chains bulk and edge sites behave identically, while in open chains edge and bulk show clearly distinct behaviour. The strong $T$-dependence of the open-chain autocorrelations mirrors the “on/off’’ pattern of single-spin flips obtained from the first-order Floquet analysis.
+
+These observations are consistent with a fragmented dynamics in which local degrees of freedom only explore a restricted subset of configurations allowed by the microscopic Hilbert space and retain a finite fraction of their initial orientation even at long times.
+\begin{figure}[!htb]
+  \centering
+  \begin{subfigure}[b]{0.5\textwidth}
+    \includegraphics[height=6cm]{Rishi_Paresh_Joshi_report/Figures/AutoopenJ0.png}
+    \caption{}
+    \label{fig: AutoopenTP}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[height=6cm]{Rishi_Paresh_Joshi_report/Figures/AutoopenTP.png}
+    \caption{}
+    \label{fig: AutoopenTPedge}
+  \end{subfigure}
+  \caption{Autocorrelation $C_{j}$ vs. the number of Floquet steps. The simulation is for $L=8$ sites in open boundaries; (a) shows autocorrelation with different values of $J_0$ at $T=\pi/J_0$, (b) shows autocorrelation at the bulk for different periods $T=N \pi/J_0$, where $N\in\{0.5,1,2,3\}$ . We start evolving the states from random initial states.}
+  \label{fig: AutoTPopen}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[height=6cm]{Rishi_Paresh_Joshi_report/Figures/AutoopensiteTP1.png}
+    \caption{}
+    \label{fig: AutoopensiteTP1}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[height=6cm]{Rishi_Paresh_Joshi_report/Figures/AutoopensiteTP2.png}
+    \caption{}
+    \label{fig: AutoopensiteTP2}
+  \end{subfigure}
+  \caption{Autocorrelation $C_{j}$ vs. the number of Floquet steps for different sites $j$ with drive periods (a)  $T=\pi/J_0$ and (b) $T=2 \pi/J_0$ in open boundary conditions. Parameters: $J_0=10=h_0/2$, $g=1$, $L=8$. We start evolving the states from random initial states.}
+  \label{fig: Auto open sites}
+\end{figure}
+\newpage
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[height=6cm]{Rishi_Paresh_Joshi_report/Figures/AutoperiodicTP.png}
+    \caption{}
+    \label{fig: AutoperiodicTP}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[height=6cm]{Rishi_Paresh_Joshi_report/Figures/Autoperiodicsite.png}
+    \caption{}
+    \label{fig: Autoperiodicsite}
+  \end{subfigure}
+  \caption{Autocorrelation $C_{j}$ vs. the number of Floquet steps in periodic boundary conditions. Parameters are the same as in Fig. \ref{fig: Auto open sites}. In (a) we plot for different values of the time period, $T$ for $j=4$. In (b) we plot for different sites at $T= \pi/J_0$.  We start evolving the states from random initial states.}
+  \label{fig: AutoTPsitesperiodic}
+\end{figure}
+
+\subsection{Conclusion and future directions}
+\label{sec:results-conclusion}
+
+The combination of analytic and numerical results in this chapter supports the following picture for the driven transverse and longitudinal Ising chain at $h_0=2J_0$ and weak transverse field:
+
+\begin{itemize}
+  \item First-order Floquet perturbation theory produces a constrained kinetic model whose allowed local processes can be tuned by the drive period $T$ through the discrete detunings $P_{nm}$ and the Sinc filter in Eq.~\eqref{eq:HF1-sinc-results}. For suitable choices of $T$, large classes of spin flips are suppressed already at first order.
+  \item Under such constrained dynamics, bipartite entanglement entropy grows from product-state initial conditions but saturates to values systematically below the Page limit of the full Hilbert space, for both open and periodic boundary conditions.
+  \item Local longitudinal autocorrelations decay from their initial value but approach nonzero plateaus that depend on $T$ and on boundary conditions, signalling persistent local memory and a clear violation of ETH expectations for a non-conserved local observable.
+\end{itemize}
+
+These signatures are consistent with Hilbert space fragmentation: the Floquet dynamics appears to be confined to dynamically invariant subspaces that occupy only a small fraction of the full Hilbert space, and within which the entanglement structure and local relaxation differ sharply from those in an ergodic phase. However, within the scope of this thesis we have not constructed the exact projectors onto these subspaces nor fully characterised their scaling with system size.
+
+Several concrete extensions suggest themselves:
+
+\begin{itemize}
+  \item A graph-theoretic analysis of the connectivity defined by $H_F$ as a function of $T$, $g/J_0$ and $L$, with explicit identification of dynamically invariant components and their dimensions.
+  \item A refined entanglement analysis comparing saturation values to Page values computed within individual components, which would provide a direct entanglement-based confirmation of fragmentation.
+  \item A study of the symmetry structure and possible edge modes of the Floquet spectrum, in particular in regimes where open and periodic boundary conditions display strongly different autocorrelation plateaus at the edge and bulk sites.
+  \item An exploration of higher-order Floquet corrections and larger system sizes, to distinguish genuine fragmentation from long-lived prethermal effects and to assess the robustness of the observed behaviour in the thermodynamic limit.
+\end{itemize}
+
+These directions, together with a more systematic search for explicit emergent conserved quantities, form a natural continuation of the work presented here and could lead to a more complete understanding of how Floquet control can be used to engineer Hilbert space fragmentation and constrained non-thermal dynamics in simple spin chains.
+
+
+
+\printbibliography
+
+
+
+\chapter{Appendix A}
+\label{app:ETH}
+
+In this appendix we collect the proofs underlying the ETH statements used in Chapter~\ref{chap:intro}. 
+We work entirely in a finite-dimensional Hilbert space and make the standard ETH assumptions on the structure of few-body observables in the energy eigenbasis~\cite{deutsch_quantum_1991,srednicki_chaos_1994,dalessio_quantum_2016}.
+\section{Conceptual background: ETH and non-equilibrium dynamics}
+\label{app:ETH-conceptual}
+
+For completeness we collect here some intuitive background on ETH and out-of-equilibrium dynamics that complements the formal statements in this appendix and the brief summary in Chapter~\ref{chap:intro}.
+
+\subsection{thermalisation in closed quantum systems}
+
+In classical equilibrium statistical mechanics, macroscopic properties are obtained by averaging over an ensemble of microstates constrained by conserved quantities such as energy. 
+For an isolated system with Hamiltonian $H$, the appropriate equilibrium description at fixed energy is the microcanonical ensemble. 
+The central assumption is that the dynamics are effectively ergodic on the corresponding energy shell: long-time averages of few-body observables agree with ensemble averages, and details of the initial state become irrelevant beyond its conserved densities.
+
+In a closed quantum system, the global state $\ket{\psi(t)}$ evolves unitarily according to
+\begin{equation}
+  \ket{\psi(t)} = e^{-iHt}\ket{\psi(0)},
+\end{equation}
+and retains complete information about the initial condition. 
+thermalisation therefore cannot be understood as a loss of information at the level of the pure state, but rather as a statement about the reduced description provided by few-body observables. 
+One says that the system thermalizes (with respect to a class of observables) if, for typical initial states with a narrow energy distribution,
+\begin{enumerate}
+  \item the expectation value $\braket{A}_t$ relaxes to a stationary value $\braket{A}_{\mathrm{stat}}$ at long times,
+  \item $\braket{A}_{\mathrm{stat}}$ coincides with the prediction of an equilibrium ensemble (microcanonical or canonical) at the corresponding energy density,
+  \item temporal fluctuations of $\braket{A}_t$ around $\braket{A}_{\mathrm{stat}}$ are small in large systems.
+\end{enumerate}
+ETH provides a microscopic mechanism for this behaviour in nonintegrable systems: individual many-body eigenstates become locally indistinguishable from equilibrium ensembles at the same energy density.
+\section{Kinematics and microcanonical ensemble}\label{appa:Kinematics and microcanonical ensemble}
+
+Let $\mc H$ be a complex Hilbert space of dimension $D<\infty$, and let $\mc B(\mc H)$ denote the space of linear operators on $\mc H$. 
+Consider a self-adjoint Hamiltonian $H\in\mc B(\mc H)$ with eigenpairs
+\begin{equation}
+  H\ket{E_n} = E_n\ket{E_n},\qquad n=1,\dots,D,
+\end{equation}
+where the eigenstates form an orthonormal basis. 
+Let $A\in\mc B(\mc H)$ be a few-body observable with matrix elements $A_{mn}:=\bra{E_m}A\ket{E_n}$. 
+An arbitrary initial state can be written as $\ket{\psi(0)} = \sum_n c_n\ket{E_n}$ with $\sum_n |c_n|^2=1$, and time evolution gives
+\begin{equation}
+  \ket{\psi(t)} = \sum_n c_n e^{-iE_n t}\ket{E_n}.
+\end{equation}
+The expectation value of $A$ at time $t$ is
+\begin{align}
+  \braket{A}_t
+  &= \bra{\psi(t)}A\ket{\psi(t)} \nonumber\\
+  &= \sum_{m,n} c_m^\ast c_n e^{i(E_m-E_n)t} A_{mn} \nonumber\\
+  &= \sum_n p_n A_{nn}
+   + \sum_{m\neq n} c_m^\ast c_n e^{i(E_m-E_n)t}A_{mn},
+  \label{eq:At-app}
+\end{align}
+where $p_n:=|c_n|^2$.
+
+We define the microcanonical shell around mean energy $\bar E$ with width $\Delta$ as
+\begin{equation}
+  \mc W_\Delta(\bar E)
+  := \left\{\, n:\ |E_n-\bar E|\le\Delta\,\right\},\qquad
+  N_\Delta := |\mc W_\Delta(\bar E)|.
+\end{equation}
+The microcanonical density operator is
+\begin{equation}
+  \rho_{\mathrm{mc}}
+  := \frac{1}{N_\Delta}\sum_{n\in\mc W_\Delta(\bar E)}\dyad{E_n}.
+\end{equation}
+
+\begin{lemma}
+\label{lem:rho-mc}
+The operator $\rho_{\mathrm{mc}}$ is a valid density matrix: it is positive semidefinite and has unit trace. 
+Moreover, for any observable $A$,
+\begin{equation}
+  \Tr(\rho_{\mathrm{mc}}A)
+  = \frac{1}{N_\Delta}\sum_{n\in\mc W_\Delta(\bar E)} \bra{E_n}A\ket{E_n}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Each rank-one projector $\dyad{E_n}$ is positive semidefinite, and convex combinations of positive operators are positive, so $\rho_{\mathrm{mc}}\succeq 0$. 
+Using orthonormality and $\Tr(\dyad{E_n})=1$,
+\begin{equation}
+  \Tr(\rho_{\mathrm{mc}})
+  = \frac{1}{N_\Delta}\sum_{n\in\mc W_\Delta}\Tr(\dyad{E_n})
+  = \frac{1}{N_\Delta}\sum_{n\in\mc W_\Delta}1 = 1.
+\end{equation}
+For the expectation value,
+\begin{align}
+  \Tr(\rho_{\mathrm{mc}}A)
+  &= \frac{1}{N_\Delta}\sum_{n\in\mc W_\Delta}\Tr(\dyad{E_n}A)
+   = \frac{1}{N_\Delta}\sum_{n\in\mc W_\Delta}\Tr(A\dyad{E_n}) \nonumber\\
+  &= \frac{1}{N_\Delta}\sum_{n\in\mc W_\Delta} \bra{E_n}A\ket{E_n},
+\end{align}
+where we used the cyclicity of the trace and the fact that in the energy basis the trace is the sum of diagonal elements.
+\end{proof}
+
+\section{ETH assumptions}\label{appa:ETH assumptions}
+
+We now state the ETH assumptions used in the proofs below.
+
+\begin{itemize}
+  \item \textbf{Smooth diagonals.}
+    There exists a smooth function $A(E)$ such that $A_{nn}=A(E_n)$ and, within a microcanonical window around $\bar E$, $A_{nn}$ varies slowly with $E_n$.
+  \item \textbf{Suppressed off-diagonals.}
+    For $m\neq n$, the off-diagonal elements satisfy
+    \begin{equation}
+      A_{mn} = e^{-S(E)/2} f(E,\omega) R_{mn},
+      \qquad E:=\frac{E_m+E_n}{2},\ \omega:=E_m-E_n,
+    \end{equation}
+    where $S(E)$ is the thermodynamic entropy, $f(E,\omega)$ is a smooth envelope, and $R_{mn}$ are zero-mean, unit-variance random-like numbers.
+  \item \textbf{Narrow energy distribution.}
+    The initial state populations $p_n$ are concentrated in a microcanonical window around $\bar E$, with negligible weight outside that window.
+  \item \textbf{Nondegeneracy/nonresonance.}
+    The energy levels are nondegenerate, and energy differences $E_m-E_n$ are nonresonant, so that distinct Bohr frequencies do not coincide systematically.
+\end{itemize}
+
+\section{Long-time averages and diagonal ensemble}\label{appa:Long-time averages and diagonal ensemble}
+
+We define the long-time (Ces\`aro) average of a bounded function $g:\bb R_{\ge 0}\to\bb C$ as
+\begin{equation}
+  \avg{g}
+  := \lim_{T\to\infty}\frac{1}{T}\int_0^T g(t)\,dt,
+\end{equation}
+whenever the limit exists.
+
+\begin{lemma}
+\label{lem:dephasing-app}
+Assume nondegenerate energy levels $E_n$. 
+Then the long-time average of $\braket{A}_t$ in \eqref{eq:At-app} is
+\begin{equation}
+  \braket{A} = \sum_n p_n A_{nn}
+  = \Tr(\rho_{\mathrm{diag}}A),\qquad
+  \rho_{\mathrm{diag}} := \sum_n p_n\dyad{E_n}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Using \eqref{eq:At-app},
+\begin{equation}
+  \braket{A}_t
+  = D + O(t),\qquad
+  D:=\sum_n p_n A_{nn},
+\end{equation}
+where $D$ is time independent and
+\begin{equation}
+  O(t) := \sum_{m\neq n} c_m^\ast c_n e^{i(E_m-E_n)t} A_{mn}.
+\end{equation}
+The long-time average of $D$ is $D$. 
+For $O(t)$, linearity allows us to average term by term:
+\begin{equation}
+  \avg{O}
+  = \sum_{m\neq n} c_m^\ast c_n A_{mn}
+    \avg{ e^{i(E_m-E_n)t} }.
+\end{equation}
+For $m\neq n$, set $\Omega:=E_m-E_n\neq 0$; then
+\begin{equation}
+  \frac{1}{T}\int_0^T e^{i\Omega t}\,dt
+  = \frac{1}{i\Omega T}\big(e^{i\Omega T}-1\big)\xrightarrow[T\to\infty]{}0.
+\end{equation}
+Hence $\avg{e^{i(E_m-E_n)t}}=0$ for $m\neq n$, and thus $\avg{O}=0$. 
+Therefore $\avg{A}=D=\sum_n p_n A_{nn}$. 
+The representation as a trace with $\rho_{\mathrm{diag}}$ follows directly from the definition of $p_n$.
+\end{proof}
+
+\section{Diagonal ensemble versus microcanonical ensemble}\label{Diagonal ensemble versus microcanonical ensemble}
+
+We assume that the initial state has a narrow energy distribution centered at $\bar E$, with negligible total population $\eta_L$ outside the microcanonical window, and that $A_{nn}$ varies slowly within that window.
+
+\begin{lemma}
+\label{lem:diag-mc-app}
+Under the ETH assumptions stated above,
+\begin{equation}
+  \sum_n p_n A_{nn}
+  = \langle A\rangle_{\mathrm{mc}}(\bar E,\Delta)
+    + \varepsilon_L,
+\end{equation}
+where $\varepsilon_L\xrightarrow[L\to\infty]{}0$.
+\end{lemma}
+
+\begin{proof}
+Split the sum into contributions inside and outside the microcanonical window:
+\begin{equation}
+  \sum_n p_n A_{nn}
+  = \sum_{n\in\mc W} p_n A_{nn}
+    + \sum_{n\notin\mc W} p_n A_{nn}.
+\end{equation}
+The total weight outside the window is $\eta_L:=\sum_{n\notin\mc W}p_n\to 0$. 
+Since $A$ is bounded, the second term is of order $\eta_L$ and vanishes with $L$.
+
+Inside the window we add and subtract $A(\bar E)$:
+\begin{equation}
+  \sum_{n\in\mc W} p_n A_{nn}
+  = A(\bar E)\sum_{n\in\mc W}p_n
+    + \sum_{n\in\mc W}p_n(A_{nn}-A(\bar E)).
+\end{equation}
+Smoothness of $A_{nn}$ in the window implies that
+\begin{equation}
+  |A_{nn}-A(\bar E)| \le \delta_L,\qquad n\in\mc W,
+\end{equation}
+with $\delta_L\to 0$ as $L\to\infty$. 
+Hence the second term is bounded in magnitude by $\delta_L$, and $\sum_{n\in\mc W}p_n=1-\eta_L\to 1$. 
+Thus
+\begin{equation}
+  \sum_n p_n A_{nn}
+  = A(\bar E) + \mathcal{O}(\eta_L) + \mathcal{O}(\delta_L).
+\end{equation}
+On the other hand, the microcanonical average is
+\begin{equation}
+  \langle A\rangle_{\mathrm{mc}}(\bar E,\Delta)
+  = \frac{1}{N_\Delta}\sum_{n\in\mc W} A_{nn}
+  = A(\bar E) + \mathcal{O}(\delta_L),
+\end{equation}
+because $A_{nn}$ deviates from $A(\bar E)$ by at most $\delta_L$ in the window. 
+\end{proof}
+
+\section{Fluctuations and exponential suppression}
+\label{sec:fluctuations}
+
+We define the time-averaged variance of $\braket{A}_t$ around its long-time average as
+\begin{equation}
+  \overline{\delta A^2}
+  := \lim_{T\to\infty}\frac{1}{T}\int_0^T
+      \big(\braket{A}_t - \overline{\braket{A}}\big)^2\,dt,
+\end{equation}
+where
+\begin{equation}
+  \braket{A}_t = \bra{\psi(t)}A\ket{\psi(t)},\qquad
+  \overline{\braket{A}} =
+  \lim_{T\to\infty}\frac{1}{T}\int_0^T \braket{A}_t\,dt.
+\end{equation}
+
+Assume again a nondegenerate spectrum and a nonresonant set of energy gaps, i.e.
+\begin{equation}
+  E_m - E_n = E_k - E_l,\quad m\neq n,\ k\neq l
+  \quad\Longrightarrow\quad m=k,\ n=l.
+\end{equation}
+
+\begin{lemma}
+\label{lem:variance-app}
+Under these assumptions,
+\begin{equation}
+  \overline{\delta A^2} = \sum_{m\neq n} p_m p_n |A_{mn}|^2,
+\end{equation}
+with $p_m = |c_m|^2$ and $A_{mn}=\matrixel{m}{A}{n}$.
+\end{lemma}
+
+\begin{proof}
+From the spectral decomposition,
+\begin{equation}
+  \ket{\psi(t)} = \sum_m c_m e^{-iE_m t}\ket{m},
+\end{equation}
+we obtain
+\begin{equation}
+  \braket{A}_t
+  = \sum_{m,n} c_m^\ast c_n e^{i(E_m-E_n)t}A_{mn}.
+\end{equation}
+Using the result for the long-time average,
+\begin{equation}
+  \overline{\braket{A}}
+  = \sum_m |c_m|^2 A_{mm}
+  = \sum_m p_m A_{mm},
+\end{equation}
+we can write the fluctuation as
+\begin{equation}
+  \delta A(t)
+  := \braket{A}_t - \overline{\braket{A}}
+  = \sum_{m\neq n} c_m^\ast c_n e^{i(E_m-E_n)t}A_{mn}.
+\end{equation}
+Then
+\begin{equation}
+  |\delta A(t)|^2
+  = \delta A(t)\,\delta A(t)^\ast
+  = \sum_{m\neq n}\sum_{k\neq l}
+    c_m^\ast c_n c_k c_l^\ast\,
+    A_{mn} A_{kl}^\ast\,
+    e^{i[(E_m-E_n)-(E_k-E_l)]t}.
+\end{equation}
+Time-averaging term by term gives
+\begin{equation}
+  \overline{\delta A^2}
+  = \lim_{T\to\infty}\frac{1}{T}\int_0^T |\delta A(t)|^2 dt
+  = \sum_{m\neq n}\sum_{k\neq l}
+    c_m^\ast c_n c_k c_l^\ast\,
+    A_{mn} A_{kl}^\ast\,
+    \overline{e^{i[(E_m-E_n)-(E_k-E_l)]t}}.
+\end{equation}
+By the nonresonance assumption on energy gaps,
+\begin{equation}
+  \overline{e^{i[(E_m-E_n)-(E_k-E_l)]t}}
+  = \delta_{mk}\delta_{nl},
+\end{equation}
+so only terms with $m=k$ and $n=l$ survive:
+\begin{equation}
+  \overline{\delta A^2}
+  = \sum_{m\neq n}
+    |c_m|^2 |c_n|^2 |A_{mn}|^2
+  = \sum_{m\neq n} p_m p_n |A_{mn}|^2.
+\end{equation}
+This proves the lemma.
+\end{proof}
+
+
+Under the ETH off-diagonal scaling and narrow-shell assumptions,
+\begin{equation}
+  \avg{\delta A^2}
+  = \mathcal{O}\big(e^{-S(\bar E)}\big)
+  = \mathcal{O}(e^{-cL}),
+\end{equation}
+where $S(\bar E)\sim L$ is the thermodynamic entropy at energy $\bar E$.
+
+
+\begin{proof}
+Using Lemma~\ref{lem:variance-app} and the ETH form of $A_{mn}$,
+\begin{equation}
+  \avg{\delta A^2}
+  = \sum_{m\neq n} p_m p_n e^{-S(E)} |f(E,\omega)|^2 |R_{mn}|^2.
+\end{equation}
+Within the narrow energy shell, we can set $E\approx\bar E$ and bound the smooth envelope and random factors by constants, $|f(E,\omega)|\le F$ and $|R_{mn}|^2\le C_R$ for typical matrix elements. 
+Then
+\begin{equation}
+  \avg{\delta A^2}
+  \le e^{-S(\bar E)} F^2 C_R
+      \sum_{m\neq n} p_m p_n.
+\end{equation}
+Since $\sum_n p_n = 1$, we have $\sum_{m\neq n} p_m p_n = 1 - \sum_n p_n^2\le 1$, so
+\begin{equation}
+  \avg{\delta A^2}
+  \le e^{-S(\bar E)} F^2 C_R,
+\end{equation}
+which is exponentially small in system size because $S(\bar E)\sim L$.
+\end{proof}
+
+
+
+\section{Floquet dynamics and heating}
+
+Non-equilibrium physics is concerned with the dynamics of systems that are prepared out of equilibrium or driven in time. 
+Examples include quenches (sudden parameter changes), ramps, and transport setups with imposed gradients. 
+A particularly versatile class of protocols involves periodic driving, where the Hamiltonian obeys
+\begin{equation}
+  H(t+T) = H(t)
+\end{equation}
+with drive period $T$.
+
+In this setting it is natural to look at the dynamics stroboscopically at times $t = nT$, $n\in\mathbb{Z}$. 
+The one-period evolution operator
+\begin{equation}
+  U_F = \mathcal{T}\exp\Big(-i\int_0^T H(t)\,dt\Big)
+\end{equation}
+defines the Floquet dynamics, and it is convenient to write
+\begin{equation}
+  U_F = e^{-i H_F T}
+\end{equation}
+in terms of an effective Floquet Hamiltonian $H_F$ that generates the stroboscopic evolution. 
+Floquet theory thus brings driven systems back into the realm of time-independent dynamics, at the cost of introducing quasienergies and a multi-valued logarithm.
+
+Periodic driving offers a powerful way to engineer effective Hamiltonians: by tailoring the time dependence of the couplings, one can generate interaction terms and constraints that are absent in the static model~\cite{sen_analytic_2021}. 
+However, repeated driving also tends to pump energy into the system. 
+For a generic interacting system at finite energy density, this leads to Floquet heating: under iterated application of $U_F$, a generic initial state approaches an effective infinite-temperature ensemble within each symmetry sector, and local observables relax to featureless values.
+
+Avoiding or delaying Floquet heating is crucial if one wishes to use periodic driving to stabilize non-trivial many-body phases. 
+Mechanisms that suppress thermalisation in static systems, such as many-body localization, quantum scars, or Hilbert space fragmentation, play an analogous role in the driven setting by restricting the dynamically accessible part of Hilbert space or by generating approximate integrals of motion.
+
+\section{ETH-violating mechanisms}
+
+ETH is expected to hold for broad classes of nonintegrable, ``quantum chaotic'' Hamiltonians, but it is not universal. 
+Several well-established mechanisms are known by which closed quantum systems avoid thermalisation:
+\begin{itemize}
+  \item \textit{Integrability:} an extensive set of conserved quantities constrains the dynamics and leads to relaxation towards a generalized Gibbs ensemble rather than a Gibbs ensemble.
+  \item \textit{Many-body localization (MBL):} quenched disorder and interactions can generate emergent quasi-local integrals of motion and a complete breakdown of thermalisation, with area-law eigenstate entanglement and non-decaying local memory~\cite{nandkishore_many-body_2015}.
+  \item \textit{Quantum many-body scars:} a small subset of non-thermal eigenstates coexists with an otherwise thermal spectrum and produces long-lived oscillations for special initial states, as in constrained spin models and PXP-type Hamiltonians~\cite{turner_quantum_2018,mukherjee_collapse_2020}.
+  \item \textit{Hilbert space fragmentation:} local constraints or conserved quantities shatter the many-body Hilbert space into dynamically disconnected sectors (Krylov subspaces), leading to strong ergodicity breaking even in clean, translationally invariant systems~\cite{khemani_localization_2020,sala_ergodicity_2020,yang_hilbert-space_2020,ganguli_aspects_2025}.
+\end{itemize}
+
+In periodically driven systems, these mechanisms can mitigate Floquet heating by limiting the part of Hilbert space explored under the dynamics. 
+In particular, Hilbert space fragmentation provides a purely kinematic route to constrained dynamics: the structure of the Hamiltonian or Floquet operator in a simple product basis leads to a connectivity graph that decomposes into many disconnected components, so that time evolution from a given initial configuration explores only a small fragment of the full Hilbert space.
+
+
+
+
+
+\section{Diagnostics used in the main text}
+
+Two diagnostics of ETH violation and Hilbert space fragmentation are used throughout the thesis.
+
+First, for a Floquet eigenstate $\ket{\phi_\alpha}$ we consider a bipartition of the chain into subsystems $A$ and $B$ and define the von Neumann entanglement entropy
+\begin{equation}
+  S_A(\phi_\alpha) := -\Tr(\rho_A \log \rho_A),\qquad
+  \rho_A := \Tr_B \dyad{\phi_\alpha}.
+\end{equation}
+In an ETH-satisfying Floquet system at infinite temperature, typical eigenstates in a given symmetry sector exhibit volume-law entanglement close to the Page value for that sector~\cite{page_average_1993,foong_proof_1994}. 
+In fragmented systems, many eigenstates reside in small Krylov sectors and have entanglement entropies that systematically lie below the corresponding Page values. 
+The numerical procedures for computing $S_A$ are described in Appendix D (Chapter~\ref{app:numerics}).
+
+Second, we study infinite-temperature autocorrelation functions of local spin operators, in particular
+\begin{equation}
+  C_i(t) := \frac{1}{2^L}\Tr\big[\sigma_i^z(t)\,\sigma_i^z(0)\big],
+\end{equation}
+where $\sigma_i^z(t)$ is evolved in the Heisenberg picture under the Floquet dynamics. 
+In an ergodic Floquet system at infinite temperature, $C_i(t)$ decays to zero at long times. 
+In the presence of conserved quantities or fragmented sectors, a finite late-time value can persist. 
+Mazur-type inequalities~\cite{ghosh_prethermal_2023,mazur_non-ergodicity_1969,} relate this non-decaying component to overlaps of the operator with conserved quantities, including projectors onto disconnected dynamical sectors in a fragmented system. 
+The numerical evaluation of $C_i(t)$ and its long-time behaviour is outlined in Appendix D (Chapter~\ref{app:numerics}).
+
+
+
+
+
+\chapter{Appendix B}
+\label{app:spinhalf-basis}
+
+\section{Local Hilbert space and spin eigenbasis}\label{appb:Local Hilbert space and spin eigenbasis}
+
+We consider a chain of length $L\in\mathbb{N}$. At each site $i\in\{1,2,\dots,L\}$ there is a single spin-$\tfrac{1}{2}$ degree of freedom with local Hilbert space
+\[
+\mathcal{H}_{\mathrm{loc}}\cong\mathbb{C}^2.
+\]
+Let $S^z$ denote the $z$-component of spin with eigenpairs
+\[
+S^z\ket{\uparrow}=+\tfrac{1}{2}\ket{\uparrow},\qquad 
+S^z\ket{\downarrow}=-\tfrac{1}{2}\ket{\downarrow}.
+\]
+The pair
+\[
+\mathcal{B}_{\mathrm{loc}}:=\{\ket{\uparrow},\ket{\downarrow}\}
+\]
+is an orthonormal basis of $\mathcal{H}_{\mathrm{loc}}$.
+
+In the rest of the thesis we mostly work with Pauli matrices $\sigma^{x,y,z}$, whose eigenvalues are $\pm 1$. They are related to the spin operators by
+\[
+\sigma^z = 2 S^z,\qquad
+\sigma^x = 2 S^x,\qquad
+\sigma^y = 2 S^y.
+\]
+Thus
+\[
+\sigma^z\ket{\uparrow} = +\ket{\uparrow},\qquad
+\sigma^z\ket{\downarrow} = -\ket{\downarrow}.
+\]
+
+\section{Many–body Hilbert space and product states}\label{appb: Many–body Hilbert space and product states}
+
+The Hilbert space of the $L$–site chain is the tensor product
+\[
+\mathcal{H}_L \;:=\; \bigotimes_{i=1}^{L}\mathcal{H}_{\mathrm{loc}}
+\;\cong\; \underbrace{\mathbb{C}^2\otimes\cdots\otimes \mathbb{C}^2}_{L\ \text{factors}}.
+\]
+
+For a spin configuration $\mathbf{s}=(s_1,s_2,\dots,s_L)$ with each $s_i\in\{\uparrow,\downarrow\}$, define the product state
+\[
+\ket{\mathbf{s}} \;:=\; \ket{s_1}\otimes\ket{s_2}\otimes\cdots\otimes\ket{s_L} \;\in\; \mathcal{H}_L.
+\]
+The set of all such product states is
+\[
+\mathcal{B}_L \;:=\; \Big\{\,\ket{\mathbf{s}}:\ \mathbf{s}\in\{\uparrow,\downarrow\}^L\,\Big\}.
+\]
+
+\begin{theorem}[Product eigenstates form an orthonormal basis]
+\label{thm:product-basis-spinhalf}
+The set $\mathcal{B}_L$ is an orthonormal basis of $\mathcal{H}_L$. In particular, $|\mathcal{B}_L|=2^L$ and any $\ket{\psi}\in\mathcal{H}_L$ has a unique expansion
+\[
+\ket{\psi}=\sum_{\mathbf{s}\in\{\uparrow,\downarrow\}^L} c_{\mathbf{s}}\,\ket{\mathbf{s}},\qquad c_{\mathbf{s}}\in\mathbb{C}.
+\]
+\end{theorem}
+
+\begin{proof}
+Orthonormality follows from the tensor–product structure. The local basis is orthonormal,
+$\braket{\sigma}{\sigma'}=\delta_{\sigma,\sigma'}$ for $\sigma,\sigma'\in\{\uparrow,\downarrow\}$. Hence
+\[
+\braket{\mathbf{s}}{\mathbf{s}'}
+=\prod_{i=1}^{L} \braket{s_i}{s_i'}
+=\prod_{i=1}^{L}\delta_{s_i,s_i'}
+=\delta_{\mathbf{s},\mathbf{s}'},
+\]
+so the $\ket{\mathbf{s}}$ are mutually orthonormal.
+
+Spanning follows by expanding any simple tensor in the local basis and distributing products. The dimension of $\mathcal{H}_L$ is $(\dim\mathcal{H}_{\mathrm{loc}})^L=2^L$, and $|\mathcal{B}_L|=2^L$. An orthonormal set in a finite–dimensional space with as many vectors as the dimension is a basis. 
+\end{proof}
+
+
+
+\section{Canonical ordering and binary indices}\label{appb:Canonical ordering and binary indices}
+
+For exact diagonalisation we need a fixed ordering of the basis states. A convenient choice is to map each configuration $\mathbf{s}$ to an integer in $\{0,\dots,2^L-1\}$ using binary digits.
+
+Define 
+\[
+d:\{\uparrow,\downarrow\}\to\{0,1\},\qquad d(\uparrow)=0,\quad d(\downarrow)=1.
+\]
+Given $\mathbf{s}=(s_1,\dots,s_L)$, define its base–2 index by
+\begin{equation}
+\label{eq:index-map-spinhalf}
+\mathrm{ind}(\mathbf{s}) \;:=\; \sum_{i=1}^{L} d(s_i)\,2^{\,L-i}\ \in\ \{0,1,\dots,2^L-1\}.
+\end{equation}
+We then order $\mathcal{B}_L$ by increasing $\mathrm{ind}(\mathbf{s})$.
+
+
+The map $\mathrm{ind}:\{\uparrow,\downarrow\}^L\to\{0,1,\dots,2^L-1\}$ in \eqref{eq:index-map-spinhalf} is a bijection. Its inverse is obtained by writing $n$ in base $2$ with $L$ digits,
+\[
+n=\sum_{i=1}^{L} \delta_i\,2^{\,L-i},\qquad \delta_i\in\{0,1\},
+\]
+and setting $s_i=d^{-1}(\delta_i)$.
+
+
+\begin{proof}
+Every integer $n\in\{0,\dots,2^L-1\}$ has a unique binary expansion with $L$ digits, which gives surjectivity. Injectivity follows because equal indices have identical binary digits and therefore identical spin configuration.
+\end{proof}
+
+\begin{definition}[Matrix entries in the ordered basis]
+\label{def:matrix-entries-spinhalf}
+Let $\mathbf{s}^{(\alpha)}$ denote the unique configuration with $\mathrm{ind}(\mathbf{s}^{(\alpha)})=\alpha$.
+In the ordered basis $\{\ket{\mathbf{s}^{(\alpha)}}\}_{\alpha=0}^{2^L-1}$, the matrix of an operator $O$ on $\mathcal{H}_L$ is
+\[
+O_{\alpha\beta} \;=\; \bra{\mathbf{s}^{(\alpha)}}\,O\,\ket{\mathbf{s}^{(\beta)}}.
+\]
+This is the matrix we pass to the exact-diagonalisation routines.
+\end{definition}
+
+\section{Matrix form of the transverse and longitudinal field Ising chain}\label{appb:Matrix form of the transverse and longitudinal field Ising chain}
+
+The driven model used in the main text is the spin-$\tfrac{1}{2}$ Ising chain with longitudinal and transverse fields,
+\begin{eqnarray}
+H(t) &=& H_0(t)+H_1,
+\label{eq:Ising-spinhalf-appendix}\\ \nonumber
+H_0(t) &=& -J(t)\sum_{i=1}^{L-1}\sigma_i^z\sigma_{i+1}^z\;-\;h(t)\sum_{i=1}^{L}\sigma_i^z,\\ \nonumber
+H_1 &=& -g\sum_{i=1}^{L}\sigma_i^x,\qquad |g|\ll \{|J_0|,|h_0|\},
+\end{eqnarray}
+where $J(t)$ and $h(t)$ are possibly time-dependent couplings and $g$ is a small transverse field. 
+
+We now spell out how $H_0(t)$ and $H_1$ act in the product basis $\mathcal{B}_L$.
+
+\subsection{Diagonal part $H_0(t)$}\label{appb: Diagonal part $H_0(t)$}
+
+For a configuration $\mathbf{s}=(s_1,\dots,s_L)$, let $s_i=\pm 1$ denote the eigenvalue of $\sigma_i^z$ at site $i$, so that
+\[
+\sigma_i^z\ket{\mathbf{s}} = s_i\,\ket{\mathbf{s}},\qquad
+\sigma_i^z\sigma_{i+1}^z\ket{\mathbf{s}} = s_i s_{i+1}\,\ket{\mathbf{s}}.
+\]
+Then $H_0(t)$ is diagonal in the $\ket{\mathbf{s}}$ basis:
+\[
+H_0(t)\ket{\mathbf{s}}
+=E_0(\mathbf{s};t)\ket{\mathbf{s}},
+\]
+with
+\begin{equation}
+E_0(\mathbf{s};t)
+= -J(t)\sum_{i=1}^{L-1} s_i s_{i+1}
+\;-\;h(t)\sum_{i=1}^{L} s_i.
+\end{equation}
+In the ordered basis, the matrix elements are
+\[
+\big[H_0(t)\big]_{\alpha\alpha}
+= E_0\big(\mathbf{s}^{(\alpha)};t\big),\qquad
+\big[H_0(t)\big]_{\alpha\beta}=0\ \text{ for }\ \alpha\neq\beta.
+\]
+This makes $H_0(t)$ cheap to construct numerically: only the diagonal entries have to be filled.
+
+\subsection{Transverse field term $H_1$}\label{appb:Transverse field term $H_1$}
+
+The transverse field flips individual spins. At a single site,
+\[
+\sigma^x\ket{\uparrow}=\ket{\downarrow},\qquad
+\sigma^x\ket{\downarrow}=\ket{\uparrow}.
+\]
+For the chain, the operator that flips only site $i$ is
+\[
+\sigma_i^x
+=\mathbb{I}^{\otimes (i-1)}\otimes \sigma^x \otimes \mathbb{I}^{\otimes (L-i)}.
+\]
+Acting on a product state,
+\[
+\sigma_i^x\,\ket{s_1\cdots s_i\cdots s_L}
+=\ket{s_1\cdots \bar s_i\cdots s_L},
+\]
+where $\bar s_i$ denotes the flipped spin ($\uparrow\leftrightarrow\downarrow$). All other sites are unchanged.
+
+Therefore, the transverse term
+\[
+H_1=-g\sum_{i=1}^{L}\sigma_i^x
+\]
+is purely off-diagonal in the $\ket{\mathbf{s}}$ basis. It connects configurations that differ at exactly one site:
+\[
+\bra{\mathbf{s}'}H_1\ket{\mathbf{s}}=
+\begin{cases}
+-g,& \text{if $\mathbf{s}'$ and $\mathbf{s}$ differ at exactly one site},\\[4pt]
+0,& \text{otherwise}.
+\end{cases}
+\]
+
+In the ordered basis $\{\ket{\mathbf{s}^{(\alpha)}}\}$, the matrix of $H_1$ is therefore a sparse matrix with at most $L$ nonzero off-diagonal entries in each row, each equal to $-g$, and zero diagonal entries.
+
+\section{Additional details on spin chains and the static Ising model}
+\label{appb:static-details}
+
+In the main text we used the computational basis to represent the spin-$1/2$ chain. 
+Here we add some comments that are useful for interpreting the model and for numerical implementation.
+
+\subsection{Computational basis and local operators}
+
+Given the local Hilbert space $\mathcal{H}_{\mathrm{loc}}\cong\mathbb{C}^2$ with basis vectors
+\(
+\ket{\uparrow},\ket{\downarrow}
+\),
+the many–body basis
+\(
+\mathcal{B}_L=\{\ket{\mathbf{s}}:\mathbf{s}\in\{\uparrow,\downarrow\}^L\}
+\)
+introduced in Appendix B (Chapter~\ref{app:spinhalf-basis}) has a simple interpretation as classical Ising configurations of up and down spins. 
+The Pauli operator $\sigma_i^z$ acts diagonally on this basis and returns the local magnetization eigenvalue $s_i=\pm 1$ at site $i$, while $\sigma_i^x$ flips that spin:
+\begin{equation}
+\sigma_i^z\ket{s_1\cdots s_i\cdots s_L}
+= s_i \ket{s_1\cdots s_i\cdots s_L},\qquad
+\sigma_i^x\ket{s_1\cdots s_i\cdots s_L}
+= \ket{s_1\cdots \bar s_i\cdots s_L}.
+\end{equation}
+These simple rules are exploited heavily in the construction of sparse matrices for exact diagonalisation.
+
+\subsection{Time–independent transverse and longitudinal field Ising chain}
+
+The static Hamiltonian used as a reference in Chapter~\ref{chap:theory_methods} is
+\begin{equation}
+H_{\mathrm{stat}}
+=
+- J_0 \sum_{i=1}^{L-1} \sigma_i^z \sigma_{i+1}^z
+- h_0 \sum_{i=1}^{L} \sigma_i^z
+- g \sum_{i=1}^L \sigma_i^x.
+\end{equation}
+The first term penalizes domain walls between neighboring spins when $J_0>0$, and the second term acts as a uniform longitudinal field. 
+In the absence of the transverse field ($g=0$), the eigenstates are product states and the model is trivially classical. 
+Turning on a finite $g$ introduces quantum fluctuations and entanglement through spin flips.
+
+When $h_0=0$, the model reduces to the transverse-field Ising chain, which is exactly solvable via a Jordan–Wigner transformation to free fermions. 
+In that case the many–body spectrum can be obtained analytically, and the dynamics are constrained by an extensive family of conserved mode occupations. 
+A nonzero longitudinal field $h_0$ breaks this free–fermion structure and produces a generic nonintegrable spin chain with level statistics and entanglement growth characteristic of quantum chaos. 
+In this static setting and for generic choices of $(J_0,h_0,g)$, local observables satisfy the ETH conditions reviewed in Appendix A (Chapter~\ref{app:ETH}).
+
+\section{Driven model and commuting structure}
+\label{appb:driven-details}
+
+The driven Hamiltonian
+\begin{equation}
+H(t) = -J(t)\sum_{i=1}^{L-1}\sigma_i^z\sigma_{i+1}^z
+       -h(t)\sum_{i=1}^{L}\sigma_i^z
+       -g\sum_{i=1}^{L}\sigma_i^x
+\end{equation}
+uses a symmetric square–wave modulation of the interaction and longitudinal field:
+\begin{equation}
+J(t)=\begin{cases} +J_0,& 0\le t\le T/2,\\ -J_0,& T/2<t\le T, \end{cases}
+\qquad
+h(t)=\begin{cases} +h_0,& 0\le t\le T/2,\\ -h_0,& T/2<t\le T. \end{cases}
+\end{equation}
+It is convenient to introduce
+\begin{equation}
+\mathcal{O}_{zz}:=\sum_{i=1}^{L-1}\sigma_i^z\sigma_{i+1}^z,
+\qquad
+\mathcal{O}_z:=\sum_{i=1}^{L}\sigma_i^z,
+\qquad
+\mathcal{O}:=J_0\mathcal{O}_{zz}+h_0\mathcal{O}_z,
+\end{equation}
+so that
+\begin{equation}
+H_0(t)=
+\begin{cases}
+-\mathcal{O},& 0\le t\le T/2,\\
++\mathcal{O},& T/2<t\le T,
+\end{cases}
+\qquad
+H_1=-g\sum_{i=1}^{L}\sigma_i^x.
+\end{equation}
+Since $\mathcal{O}_{zz}$ and $\mathcal{O}_z$ commute, $H_0(t)$ commutes with itself at different times,
+\begin{equation}
+U_0(t,0)=\exp\!\left[-\frac{i}{\hbar}\int_0^t H_0(t')\,dt'\right]
+=\exp\!\left[\frac{i}{\hbar}\left(J^{\!\int}(t)\,\mathcal{O}_{zz}+h^{\!\int}(t)\,\mathcal{O}_{z}\right)\right],
+\end{equation}
+with
+\begin{eqnarray}
+J^{\!\int}(t)=\int_0^t\!J(t')\,dt'=\begin{cases}J_0\,t,& 0\le t\le T/2,\\ J_0\,(T-t),& T/2<t\le T,\end{cases}
+\\ \nonumber
+h^{\!\int}(t)=\int_0^t\!h(t')\,dt'=\begin{cases}h_0\,t,& 0\le t\le T/2,\\ h_0\,(T-t),& T/2<t\le T.\end{cases}
+\end{eqnarray}
+In the above step, note that for the $T/2<t\le T$ case, the propagator is evaluated by breaking it into $0<t\le T/2$ and $T/2<t\le T$.
+Over one cycle, $\int_0^T J(t)\,dt=\int_0^T h(t)\,dt=0$, hence
+\begin{equation}
+U_0(T,0)=I.
+\end{equation}
+Therefore, the Floquet operator equals the interaction-picture propagator,
+\begin{equation}
+U(T,0)=U^I(T,0),\qquad e^{-\,\frac{i}{\hbar}H_F T}=U^I(T,0),
+\end{equation}
+and the micromotion $H_0(t)$ closes exactly after one period.
+In that regime the transverse term $H_1$ dominates the stroboscopic dynamics and Floquet perturbation theory becomes particularly simple, as discussed in Appendix C (Chapter~\ref{app:floquet-perturbation}).
+
+\section{More on Floquet perturbation and constrained dynamics}
+\label{appb:floquet-details}
+
+For completeness we sketch the logic behind Eq.~\eqref{eq:HF1_sinc_maintext} in the main text. 
+A full derivation is given in Appendix C (Chapter~\ref{app:floquet-perturbation}).
+
+Working in the interaction picture with respect to $H_0(t)$, the effective Floquet Hamiltonian to first order in $H_1$ is
+\begin{equation}
+H_F^{(1)}=\frac{1}{T}\int_0^T dt\, V_I(t),\qquad
+V_I(t)=U_0(0,t)\,H_1\,U_0(t,0).
+\end{equation}
+In the eigenbasis $\{\ket{m}\}$ of $\mathcal{O}$, the unperturbed dynamics simply dress matrix elements of $H_1$ by phase factors, and one finds
+\begin{equation}
+\big(H_F^{(1)}\big)_{nm}
+=(H_1)_{nm}
+\operatorname{sinc}\!\Big(\frac{P_{nm}T}{4\hbar}\Big)
+e^{-\,\tfrac{i}{\hbar}P_{nm}\tfrac{T}{4}},
+\qquad P_{nm}:=P_n-P_m,
+\end{equation}
+with $\mathcal{O}\ket{m}=P_m\ket{m}$ and $\operatorname{sinc}(x)=\sin x/x$. 
+The operator $H_1=-g\sum_i\sigma_i^x$ flips a single spin and therefore changes $P_m$ by a discrete amount that depends only on the neighbouring spins. 
+By tuning $h_0/J_0$ and $T$ one can force the argument of the sinc function to coincide with zeros for certain flip processes while leaving others active.
+
+The effective Hamiltonian $H_F^{(1)}$ is then a constrained kinetic model: certain local moves in configuration space are allowed, while others are suppressed at leading order. 
+Viewed as a graph on the computational basis, the connectivity of $H_F^{(1)}$ decomposes into disconnected components. 
+Time evolution from an initial basis configuration explores only the component containing that configuration, giving rise to invariant Krylov subspaces and Hilbert space fragmentation.
+
+
+
+
+
+\chapter{Appendix C}
+\label{app:floquet-perturbation}
+
+In this appendix we collect the derivation of the first–order Floquet Hamiltonian
+for the symmetric sign–flip drive used in the main text.
+We first recall the general Floquet theorem and its quantum version,
+then derive the interaction–picture Dyson series and the cumulant (logarithm)
+expansion up to third order.
+Finally we specialise to the transverse–kicked Ising chain and work out
+the structure of the first–order Floquet Hamiltonian matrix elements,
+including the dependence on the drive period through sinc factors.
+
+
+\section{Floquet theorem and quantum corollary}\label{appc:Floquet theorem and quantum corollary}
+
+
+\begin{theorem}[Floquet theorem]
+If $\Phi(t)$ is a fundamental matrix solution of the periodic linear system
+\[
+\dot{x}(t)=A(t)x(t),\qquad A(t+p)=A(t),
+\]
+then so is $\Phi(t+p)$.
+Moreover, there exists an invertible $p$–periodic matrix $P(t)$
+and a constant matrix $B$ such that
+\[
+\Phi(t)=P(t)\,e^{Bt}.
+\]
+\end{theorem}
+
+\begin{proof}
+Let $\Psi(t)=\Phi(t+p)$. Since $\Phi'(t)=A(t)\Phi(t)$,
+\[
+\Psi'(t)=\Phi'(t+p)=A(t+p)\Phi(t+p)=A(t)\Psi(t),
+\]
+so $\Psi(t)$ is also a matrix solution. Since $\Phi(t)$ is invertible for all $t$,
+so is $\Phi(t+p)$, hence $\Psi(t)$ is a fundamental matrix solution.
+Therefore there exists an invertible matrix $C$ such that
+\[
+\Phi(t+p)=\Phi(t)\,C
+\quad\text{for all }t\in\mathbb{R}.
+\]
+Since $C$ is invertible, there exists a matrix $B$ with $e^{Bp}=C$.
+Define
+\[
+P(t):=\Phi(t)\,e^{-Bt},
+\]
+so that $\Phi(t)=P(t)e^{Bt}$. Then
+\[
+P(t+p)=\Phi(t+p)e^{-B(t+p)}=\Phi(t)Ce^{-B(t+p)}=\Phi(t)e^{-Bt}=P(t),
+\]
+hence $P(t)$ is $p$–periodic and invertible. This proves the claim.
+\end{proof}
+
+\begin{remark}
+The pair $(P,B)$ is not unique, since $B\to B+\tfrac{2\pi i}{p}K$
+with a suitable integer–spectrum matrix $K$ (commuting with $C$)
+leaves $e^{Bp}$ invariant while keeping $P(t)$ $p$–periodic.
+\end{remark}
+
+\subsection{Quantum Floquet form and quasienergies}\label{appc:Quantum Floquet form and quasienergies}
+
+Consider a time–evolution operator $U(t)$ solving the Schr\"odinger equation
+with $T$–periodic Hamiltonian $H(t+T)=H(t)$ on a finite–dimensional Hilbert space:
+\[
+i\hbar\,\partial_t U(t)=H(t)\,U(t),\qquad U(0)=I.
+\]
+Setting
+\[
+A(t)=-\frac{i}{\hbar}H(t)
+\]
+puts this in the Floquet form. By the above theorem there exist
+a $T$–periodic $P(t)$ and constant $B$ with
+\[
+U(t)=P(t)e^{Bt},\qquad U(T)=e^{BT}.
+\]
+Since $U(T)$ is unitary, the spectral theorem yields an orthonormal basis
+$\{\,\ket{\psi_n(0)}\,\}$ and real phases $\theta_n$ such that
+\begin{equation}
+\ket{\psi_n(T)}
+=U(T)\ket{\psi_n(0)}
+=e^{i\theta_n}\ket{\psi_n(0)}.
+\label{eq:floquet-eigenstate}
+\end{equation}
+Defining quasienergies
+\[
+\varepsilon_n:=\frac{\hbar\,\theta_n}{T},
+\]
+we see that $\varepsilon_n$ are defined modulo $\hbar\omega_D$
+with $\omega_D=2\pi/T$, reflecting the multi–valued logarithm.
+
+Choosing $B=-\tfrac{i}{\hbar}H_F$ gives
+\[
+U(T)=e^{BT}=e^{-\,\frac{i}{\hbar}H_F T},
+\]
+so \eqref{eq:floquet-eigenstate} is equivalent to
+\[
+e^{-\,\frac{i}{\hbar}H_FT}\ket{\psi_n(0)}
+=e^{-\,\frac{i}{\hbar}\varepsilon_nT}\ket{\psi_n(0)},
+\]
+hence $\ket{\psi_n(0)}$ is an eigenvector of the Floquet Hamiltonian $H_F$
+with eigenvalue $\varepsilon_n$ (chosen within some quasienergy Brillouin zone).
+Equivalently,
+\[
+\ket{\psi_n(T)}=e^{i\theta_n}\ket{\psi_n(0)},\qquad \theta_n\equiv\frac{\varepsilon_nT}{\hbar}\mod 2\pi.
+\]
+
+\section{Interaction picture and Dyson expansion}\label{appc:Interaction picture and Dyson expansion}
+
+
+We split the Hamiltonian into a dominant, possibly time–dependent part
+and a small perturbation:
+\[
+H(t)=H_0(t)+V.
+\]
+The ``free'' evolution operator satisfies
+\[
+i\hbar\,\partial_t U_0(t,0)=H_0(t)\,U_0(t,0),\qquad U_0(0,0)=I.
+\]
+The full evolution obeys
+\[
+i\hbar\,\partial_t U(t,0)=H(t)\,U(t,0),\qquad U(0,0)=I.
+\]
+
+\subsection{Definition of the interaction picture}\label{appc:Definition of the interaction picture}
+
+Define the interaction–picture evolution operator
+\[
+U^I(t,0):=U_0(0,t)\,U(t,0).
+\]
+Differentiating and using $U_0(0,t)U_0(t,0)=I$, we obtain
+\[
+\partial_t U_0(0,t)=-U_0(0,t)\,\partial_t U_0(t,0)\,U_0(0,t)
+=\frac{i}{\hbar}\,U_0(0,t)\,H_0(t).
+\]
+Inserting $i\hbar\,\partial_tU=(H_0+V)U$ gives
+\begin{align}
+i\hbar\,\partial_t U^I(t,0)
+&=i\hbar\,(\partial_t U_0(0,t))\,U(t,0)
++i\hbar\,U_0(0,t)\,\partial_t U(t,0)\nonumber\\
+&=-U_0(0,t)H_0(t)U(t,0)+U_0(0,t)\,[H_0(t)+V]\,U(t,0)\nonumber\\
+&=U_0(0,t)\,V\,U(t,0)
+=\underbrace{U_0(0,t)\,V\,U_0(t,0)}_{V_I(t)}\,U^I(t,0).
+\end{align}
+Thus
+\begin{equation}
+i\hbar\,\partial_t U^I(t,0)=V_I(t)\,U^I(t,0),\qquad U^I(0,0)=I.
+\label{eq:IP-ODE}
+\end{equation}
+This is the interaction–picture Schr\"odinger equation.
+
+\subsection{Dyson equation and Picard iteration}\label{appc:Dyson equation and Picard iteration}
+
+Integrating \eqref{eq:IP-ODE} from $0$ to $t$ gives the Dyson integral equation
+\begin{equation}
+U^I(t,0)
+=I-\frac{i}{\hbar}\int_0^t ds\,V_I(s)\,U^I(s,0).
+\label{eq:Dyson-int}
+\end{equation}
+Iterating this (Picard iteration) yields the Dyson series.
+
+Zeroth iterate:
+\[
+U^I_{(0)}(t,0)=I.
+\]
+
+First iterate:
+\[
+U^I_{(1)}(t,0)=I-\frac{i}{\hbar}\int_0^t dt_1\,V_I(t_1)
+=:I+U_1^I(t,0),
+\]
+with
+\begin{equation}
+U_1^I(t,0)=-\frac{i}{\hbar}\int_0^t dt_1\,V_I(t_1).
+\label{eq:U1I-def}
+\end{equation}
+
+Second iterate:
+\begin{align}
+U^I_{(2)}(t,0)
+&=I-\frac{i}{\hbar}\int_0^t ds\,V_I(s)\left[I-\frac{i}{\hbar}\int_0^{s}ds'\,V_I(s')\right]\nonumber\\
+&=I-\frac{i}{\hbar}\int_0^t ds\,V_I(s)
++\left(-\frac{i}{\hbar}\right)^2\int_0^t ds\int_0^{s}ds'\,V_I(s)V_I(s').
+\end{align}
+Hence
+\begin{equation}
+U_2^I(t,0)
+=\left(-\frac{i}{\hbar}\right)^2\int_0^t dt_1\int_0^{t_1}dt_2\,V_I(t_1)V_I(t_2).
+\end{equation}
+
+Continuing in this way we obtain
+\[
+U^I(t,0)=\sum_{n=0}^\infty U_n^I(t,0),
+\]
+with
+\begin{equation}
+U_n^I(t,0)=\left(-\frac{i}{\hbar}\right)^n
+\int_0^t dt_1\int_0^{t_1}dt_2\cdots\int_0^{t_{n-1}}dt_n\,
+V_I(t_1)\cdots V_I(t_n).
+\end{equation}
+Equivalently, using the time–ordering operator $\mathcal{T}$ and the fact that
+the simplex $t_1>\cdots>t_n$ occupies a $1/n!$ fraction of the $n$–cube $[0,t]^n$,
+\begin{equation}
+U_n^I(t,0)=\frac{1}{n!}\left(-\frac{i}{\hbar}\right)^n
+\int_0^t dt_1\cdots\int_0^t dt_n\,
+\mathcal{T}\!\left[V_I(t_1)\cdots V_I(t_n)\right].
+\end{equation}
+Summing all orders gives the compact time–ordered exponential
+\begin{equation}
+U^I(t,0)
+=\mathcal{T}\exp\!\left[-\frac{i}{\hbar}\int_0^t V_I(t_1)\,dt_1\right].
+\end{equation}
+
+\subsection{Floquet Hamiltonian as a cumulant (logarithm) expansion}\label{appc:Floquet Hamiltonian as a cumulant (logarithm) expansion}
+
+At one drive period $t=T$, the Floquet operator is
+\[
+U(T,0)=U_0(T,0)\,U^I(T,0).
+\]
+If $U_0(T,0)=I$ (closed micromotion from $H_0$),
+then $U(T,0)=U^I(T,0)$ and
+\[
+e^{-\,\frac{i}{\hbar}H_F T}=U^I(T,0).
+\]
+We then write
+\begin{equation}
+U^I(T,0)
+=I+U_1^I+U_2^I+U_3^I+\mathcal{O}(V^4),
+\qquad U_n^I:=U_n^I(T,0),
+\label{eq:U_series}
+\end{equation}
+and use the series $\ln(I+X)=X-\tfrac12 X^2+\tfrac13 X^3+\mathcal{O}(X^4)$ with
+$X=U_1^I+U_2^I+U_3^I+\mathcal{O}(V^4)$ to get
+\begin{equation}
+\ln U^I
+=U_1^I+\Big(U_2^I-\tfrac12(U_1^I)^2\Big)
++\Big(U_3^I-\tfrac12(U_1^IU_2^I+U_2^IU_1^I)+\tfrac13(U_1^I)^3\Big)
++\mathcal{O}(V^4).
+\label{eq:logU}
+\end{equation}
+Since $-\tfrac{i}{\hbar}H_FT=\ln U^I$, we can read off $H_F$ order by order.
+
+Using the Dyson terms at $t=T$,
+\[
+U_1^I=-\frac{i}{\hbar}\int_0^T dt_1\,V_I(t_1),
+\]
+\[
+U_2^I=\left(-\frac{i}{\hbar}\right)^2\int_0^T dt_1\int_0^{t_1}dt_2\,V_I(t_1)V_I(t_2),
+\]
+one finds the standard results
+\begin{equation}
+H_F^{(1)}=\frac{1}{T}\int_0^T dt\,V_I(t),
+\end{equation}
+\begin{equation}
+H_F^{(2)}=\frac{1}{2i\hbar\,T}\int_0^T dt_1\int_0^{t_1}dt_2\,[V_I(t_1),V_I(t_2)].
+\end{equation}
+The third–order contribution can also be written explicitly as nested commutators;
+one convenient form is
+\begin{equation}
+H_F^{(3)}
+=\frac{1}{6\,(i\hbar)^2\,T}
+\int_0^T\!dt_1\int_0^{t_1}\!dt_2\int_0^{t_2}\!dt_3\;
+\Big([V_I(t_1),[V_I(t_2),V_I(t_3)]]+[V_I(t_3),[V_I(t_2),V_I(t_1)]]\Big),
+\end{equation}
+so that, up to third order,
+\begin{align}
+H_F
+&=\frac{1}{T}\int_0^T dt\,V_I(t)
++\frac{1}{2i\hbar\,T}\int_0^T dt_1\int_0^{t_1}dt_2\,[V_I(t_1),V_I(t_2)]\nonumber\\
+&\quad+\frac{1}{6\,(i\hbar)^2\,T}
+\int_0^T\!dt_1\int_0^{t_1}\!dt_2\int_0^{t_2}\!dt_3\;
+\Big([V_I(t_1),[V_I(t_2),V_I(t_3)]]+[V_I(t_3),[V_I(t_2),V_I(t_1)]]\Big)
++\mathcal{O}(V^4).
+\label{eq:HF-up-to-third}
+\end{align}
+In the main text we only use the first–order term $H_F^{(1)}$ for our specific drive.
+
+
+\section{Application to the transverse–kicked Ising chain}\label{appc:Application to the transverse–kicked Ising chain}
+
+
+We now specialise the above framework to the periodically driven
+Ising chain introduced in the main text.
+
+\subsection{Model, protocol, and commuting structure}
+\label{appc:sec-Jh-flip}
+
+Consider an open Ising chain of length $L$ with Pauli operators
+$\{\sigma_i^{x,y,z}\}$ and a weak transverse perturbation:
+\begin{eqnarray}\label{eq:IsingH-appendix}
+H(t)&=&H_0(t)+H_1,\\ \nonumber
+H_0(t)&=&-J(t)\sum_{i=1}^{L-1}\sigma_i^z\sigma_{i+1}^z\;-\;h(t)\sum_{i=1}^{L}\sigma_i^z,\\\nonumber
+H_1&=&-g\sum_{i=1}^{L}\sigma_i^x,\qquad |g|\ll \{|J_0|,|h_0|\}.
+\end{eqnarray}
+Both couplings follow the same symmetric square–wave drive of period $T$:
+\begin{equation}
+J(t)=\begin{cases} +J_0,& 0\le t\le T/2,\\ -J_0,& T/2<t\le T,\end{cases}
+\qquad
+h(t)=\begin{cases} +h_0,& 0\le t\le T/2,\\ -h_0,& T/2<t\le T.\end{cases}
+\end{equation}
+Introduce the commuting operators
+\begin{equation}
+\mathcal{O}_{zz}:=\sum_{i=1}^{L-1}\sigma_i^z\sigma_{i+1}^z,\qquad
+\mathcal{O}_z:=\sum_{i=1}^{L}\sigma_i^z,
+\end{equation}
+so that
+\[
+H_0(t)=-J(t)\mathcal{O}_{zz}-h(t)\mathcal{O}_z,\qquad [\mathcal{O}_{zz},\mathcal{O}_z]=0.
+\]
+Hence, $[H_0(t),H_0(t')]=0$ for all $t,t'$.
+
+\subsection{Spin flips generated by $\sigma_i^x$}\label{appc:Spin flips generated by H1}
+
+The Pauli matrices are
+\[
+\sigma^x=\begin{pmatrix}0&1\\[2pt]1&0\end{pmatrix},\quad
+\sigma^y=\begin{pmatrix}0&-i\\[2pt]i&0\end{pmatrix},\quad
+\sigma^z=\begin{pmatrix}1&0\\[2pt]0&-1\end{pmatrix}.
+\]
+For a single spin, in the $\sigma^z$ eigenbasis
+$\{\ket{\uparrow},\ket{\downarrow}\}$ with
+\[
+\ket{\uparrow}=\begin{pmatrix}1\\[2pt]0\end{pmatrix},\qquad
+\ket{\downarrow}=\begin{pmatrix}0\\[2pt]1\end{pmatrix},
+\]
+we have
+\[
+\sigma^x\ket{\uparrow}=\ket{\downarrow},\qquad
+\sigma^x\ket{\downarrow}=\ket{\uparrow}.
+\]
+Thus $\sigma^x$ flips $\uparrow\leftrightarrow\downarrow$.
+
+For a chain of $L$ spins, the operator that flips only site $i$ is the Kronecker product
+\[
+\sigma_i^x
+=I^{\otimes(i-1)}\otimes \sigma^x \otimes I^{\otimes(L-i)}.
+\]
+Acting on a product state
+\[
+\ket{s_1 s_2\cdots s_i \cdots s_L}
+=\ket{s_1}\otimes\cdots\otimes\ket{s_i}\otimes\cdots\otimes\ket{s_L},
+\]
+we get
+\[
+\sigma_i^x\,\ket{s_1\cdots s_i\cdots s_L}
+=\ket{s_1\cdots \bar s_i\cdots s_L},
+\]
+with $\bar s_i$ the flipped spin.
+Equivalently, with ladder operators $\sigma_i^\pm=(\sigma_i^x\pm i\sigma_i^y)/2$,
+\[
+\sigma_i^x=\sigma_i^+ + \sigma_i^-,
+\]
+where $\sigma_i^+$ raises $\ket{\downarrow}_i\to\ket{\uparrow}_i$
+and $\sigma_i^-$ lowers $\ket{\uparrow}_i\to\ket{\downarrow}_i$.
+Thus $H_1$ generates single–spin flips.
+
+\subsection{Unperturbed propagator}\label{appc:Unperturbed propagator}
+
+Since $[H_0(t),H_0(t')]=0$, the unperturbed propagator can be written as
+\begin{equation}
+U_0(t,0)=\exp\!\left[-\frac{i}{\hbar}\int_0^t H_0(t')\,dt'\right]
+=\exp\!\left[\frac{i}{\hbar}\left(J^{\!\int}(t)\,\mathcal{O}_{zz}
++h^{\!\int}(t)\,\mathcal{O}_z\right)\right],
+\end{equation}
+with
+\begin{align}
+J^{\!\int}(t)&=\int_0^t J(t')\,dt'
+=\begin{cases}
+J_0\,t,& 0\le t\le T/2,\\
+J_0\,(T-t),& T/2<t\le T,
+\end{cases}\\[4pt]
+h^{\!\int}(t)&=\int_0^t h(t')\,dt'
+=\begin{cases}
+h_0\,t,& 0\le t\le T/2,\\
+h_0\,(T-t),& T/2<t\le T.
+\end{cases}
+\end{align}
+Over one period, $\int_0^T J(t)\,dt=\int_0^T h(t)\,dt=0$, so
+\begin{equation}
+U_0(T,0)=I.
+\end{equation}
+Thus in this drive the micromotion generated by $H_0$ closes exactly in one period,
+and the Floquet operator is simply the interaction–picture propagator,
+\begin{equation}
+U(T,0)=U^I(T,0),\qquad e^{-\,\frac{i}{\hbar}H_F T}=U^I(T,0).
+\end{equation}
+It is convenient to write
+\[
+U_0(t,0)=\exp\!\left[\frac{i}{\hbar}f(t)\,\mathcal{O}\right],
+\]
+with
+\[
+\mathcal{O}:=J_0\mathcal{O}_{zz}+h_0\mathcal{O}_z
+=J_0\sum_{i=1}^{L-1}\sigma_i^z\sigma_{i+1}^z+h_0\sum_{i=1}^{L}\sigma_i^z,
+\]
+and
+\[
+f(t)=\begin{cases}t,& 0\le t\le T/2,\\ T-t,& T/2<t\le T.\end{cases}
+\]
+
+\subsection{First–order Floquet unitary for the symmetric sign–flip drive}
+\label{appc:subsec-U1I-symmetric}
+
+With $H(t)=H_0(t)+H_1$ and $U_0$ as above, the interaction–picture perturbation is
+\[
+V_I(t)=U_0(0,t)\,H_1\,U_0(t,0),
+\]
+which, using $H_0(t)=\mp\mathcal{O}$ on each half of the period, gives
+\[
+V_I(t)=
+\begin{cases}
+e^{-\,\tfrac{i}{\hbar}\mathcal{O} t}\,H_1\,e^{+\,\tfrac{i}{\hbar}\mathcal{O} t},
+& 0\le t\le T/2,\\[4pt]
+e^{-\,\tfrac{i}{\hbar}\mathcal{O} \tfrac{T}{2}}\,
+e^{+\,\tfrac{i}{\hbar}\mathcal{O} (t-\tfrac{T}{2})}\,H_1\,e^{-\,\tfrac{i}{\hbar}\mathcal{O} (t-\tfrac{T}{2})}\,
+e^{+\,\tfrac{i}{\hbar}\mathcal{O} \tfrac{T}{2}},
+& T/2<t\le T.
+\end{cases}
+\]
+
+The first–order interaction–picture contribution over one period is
+\[
+U_1^I(T,0)=-\frac{i}{\hbar}\int_0^T V_I(t)\,dt=:T_1+T_2,
+\]
+with
+\[
+T_1=-\frac{i}{\hbar}\int_0^{T/2}\!dt\,e^{-\,\tfrac{i}{\hbar}\mathcal{O} t}\,H_1\,e^{+\,\tfrac{i}{\hbar}\mathcal{O} t},
+\qquad
+T_2=-\frac{i}{\hbar}\int_{T/2}^{T}\!dt\;e^{-\,\tfrac{i}{\hbar}\mathcal{O} (T-t)}\,H_1\,e^{+\,\tfrac{i}{\hbar}\mathcal{O} (T-t)}.
+\]
+
+Let $\mathcal{O}\ket{m}=P_m\ket{m}$ and define $P_{nm}:=P_n-P_m$.
+In the $\mathcal{O}$–eigenbasis,
+\begin{align*}
+\langle n|T_1|m\rangle
+&=-\frac{i}{\hbar}\,(H_1)_{nm}\int_0^{T/2} e^{\,\tfrac{-i}{\hbar}P_{nm} t}\,dt
+=(H_1)_{nm}\,\frac{e^{-\,\tfrac{i}{\hbar}P_{nm}\tfrac{T}{2}}-1}{P_{nm}},\\[6pt]
+\langle n|T_2|m\rangle
+&=-\frac{i}{\hbar}\,(H_1)_{nm}\,
+\int_{T/2}^{T} e^{\,\tfrac{-i}{\hbar}P_{nm} (T-t)}\,dt
+=(H_1)_{nm}\,\frac{e^{-\,\tfrac{i}{\hbar}P_{nm}\tfrac{T}{2}}-1}{P_{nm}}.
+\end{align*}
+Therefore
+\begin{equation}
+\big(U_1^I(T,0)\big)_{nm}
+=\langle n|U_1^I|m\rangle
+=-2\,\frac{\left(\tfrac{T}{2}\right)\,(H_1)_{nm}}{\hbar\left(\tfrac{P_{nm}\tfrac{T}{2}}{\hbar}\right)}\,
+2i\sin\!\Big(\frac{P_{nm}T}{4\hbar}\Big)e^{-\,\tfrac{i}{\hbar}P_{nm}\tfrac{T}{4}}.
+\label{eq:U1I-final}
+\end{equation}
+Equivalently, writing $\operatorname{sinc}(x):=\sin x/x$ and $a_{nm}:=P_{nm}T/(4\hbar)$,
+\begin{equation}
+\big(U_1^I(T,0)\big)_{nm}
+=-\,i\,\frac{T}{\hbar}\,(H_1)_{nm}\,
+\operatorname{sinc}(a_{nm})e^{\,\tfrac{-i}{\hbar}P_{nm}\tfrac{T}{4}},
+\qquad
+\lim_{P_{nm}\to 0}\big(U_1^I\big)_{nm}=-\,i\,\frac{T}{\hbar}\,(H_1)_{nm}.
+\label{eq:U1I-sinc}
+\end{equation}
+
+Since $U_0(T,0)=I$, the Floquet Hamiltonian to first order is
+\[
+H_F^{(1)}=\frac{1}{T}\int_0^T V_I(t)\,dt
+=\frac{i\hbar}{T}\,U_1^I(T,0),
+\]
+so in the $\mathcal{O}$–eigenbasis
+\begin{equation}
+\big(H_F^{(1)}\big)_{nm}
+=(H_1)_{nm}\,
+\operatorname{sinc}\!\Big(\frac{P_{nm}T}{4\hbar}\Big)e^{-\,\tfrac{i}{\hbar}P_{nm}\tfrac{T}{4}},
+\label{eq:HF1-sinc}
+\end{equation}
+or, restoring $H_1=-g\sum_i\sigma_i^x$,
+\begin{equation}
+(H_F^{(1)})_{nm}
+=-\Big\langle n\big|g\sum_{i=1}^{L}\sigma_i^x\big|m\Big\rangle\,\left[
+\delta_{P_{nm},0}+(1-\delta_{P_{nm},0})
+\operatorname{sinc}\!\Big(\frac{P_{nm}T}{4\hbar}\Big)e^{-\,\tfrac{i}{\hbar}P_{nm}\tfrac{T}{4}}\right].
+\label{eq:HF1-operator-sinc}
+\end{equation}
+Thus the drive period $T$ appears only through the sinc–type dressing factors.
+
+\chapter{Appendix D}\label{app:numerics}
+
+\section{General Setup and Notation}
+
+We work with a finite spin-$\tfrac{1}{2}$ chain of length $L$ and Hilbert-space dimension
+\[
+\mathcal{D}=2^L.
+\]
+All operators are represented as $\mathcal{D}\times\mathcal{D}$ matrices in the ordered computational ($\sigma^z$-product) basis
+\[
+\mathcal{B}_L=\big\{\ket{\mathbf{s}}:\mathbf{s}=(s_1,\dots,s_L),\ s_i\in\{\uparrow,\downarrow\}\big\}.
+\]
+The Floquet unitary $U_F$ is the one-period evolution operator
+\[
+U_F = \mathcal{T}\exp\!\left[-\frac{i}{\hbar}\int_0^T H(t)\,dt\right],
+\]
+or, in our problem, equivalently $U_F = \exp\!\left(-\frac{i}{\hbar}H_F T\right)$ with $H_F$ obtained from Floquet perturbation theory.
+
+Given $U_F$, one can:
+
+\begin{itemize}
+    \item propagate states stroboscopically, $\ket{\psi(nT)} = U_F^n \ket{\psi_0}$,
+    \item or work in the Floquet eigenbasis, $U_F\ket{\phi_\alpha} = e^{-i\varepsilon_\alpha T/\hbar}\ket{\phi_\alpha}$.
+\end{itemize}
+
+We now describe the numerical algorithms used to compute:
+
+\begin{enumerate}
+    \item the infinite-time autocorrelation (and approximate Mazur bound) of suitable local observables;
+    \item the bipartite entanglement entropy of time-evolved states, as a function of time and system bipartition.
+\end{enumerate}
+
+Throughout, the notation is chosen so that it can be implemented directly using QuSpin. 
+
+
+\section{Autocorrelation Function and Mazur-Type Bounds}
+
+\subsection{Definition and physical role}
+
+Let $O$ be a Hermitian operator (typically a local or quasi-local observable such as a single-site magnetization, a domain-wall operator, or a block magnetization). We define the Heisenberg-picture evolution under the Floquet unitary as
+\[
+O(nT) := U_F^{-n}\,O\,U_F^{n},\qquad n\in\mathbb{Z}.
+\]
+Given an initial state $\ket{\psi_0}$, the time-dependent expectation value is
+\[
+\langle O\rangle(nT) := \bra{\psi_0}O(nT)\ket{\psi_0}.
+\]
+The (normalized) autocorrelation function is
+\[
+C_O(nT) := \frac{\bra{\psi_0}O(nT)O(0)\ket{\psi_0}}{\bra{\psi_0}O(0)^2\ket{\psi_0}}.
+\]
+In a thermalizing (ETH-satisfying) system, $C_O(nT)$ decays to zero at long times for generic initial states. A nonzero long-time limit, or a large plateau over a wide time window, signals non-ergodic behavior and (in our driven setting) the presence of robust memory of initial conditions.
+
+The \emph{infinite-time} limit
+\[
+C_O^\infty := \lim_{N\to\infty}\frac{1}{N}\sum_{n=0}^{N-1}C_O(nT)
+\]
+is particularly useful. A strictly positive $C_O^\infty$ implies a violation of ETH for the observable $O$.
+
+
+\subsection{Floquet eigenbasis formulation}
+
+Let $\{\ket{\phi_\alpha}\}_{\alpha=1}^{\mathcal{D}}$ be an orthonormal basis of Floquet eigenstates:
+\[
+U_F\ket{\phi_\alpha}=e^{-i\varepsilon_\alpha T/\hbar}\ket{\phi_\alpha},\qquad
+\varepsilon_\alpha\in(-\pi/T,\pi/T].
+\]
+Expand the initial state:
+\[
+\ket{\psi_0}=\sum_{\alpha} c_\alpha \ket{\phi_\alpha},\qquad
+c_\alpha:=\braket{\phi_\alpha}{\psi_0}.
+\]
+The Heisenberg evolution is
+\[
+O(nT)=\sum_{\alpha,\beta}e^{i(\varepsilon_\alpha-\varepsilon_\beta)nT/\hbar}\,
+\ket{\phi_\alpha}\bra{\phi_\alpha}O\ket{\phi_\beta}\bra{\phi_\beta}.
+\]
+Thus
+\begin{align}
+\bra{\psi_0}O(nT)O(0)\ket{\psi_0}
+&=\sum_{\alpha,\beta,\gamma,\delta}
+c_\alpha^*c_\delta
+e^{i(\varepsilon_\alpha-\varepsilon_\beta)nT/\hbar}\,
+\bra{\phi_\alpha}O\ket{\phi_\beta}
+\bra{\phi_\beta}O\ket{\phi_\gamma}
+\braket{\phi_\gamma}{\phi_\delta}\nonumber\\[4pt]
+&=\sum_{\alpha,\beta,\delta}
+c_\alpha^*c_\delta
+e^{i(\varepsilon_\alpha-\varepsilon_\beta)nT/\hbar}\,
+O_{\alpha\beta}O_{\beta\delta},
+\end{align}
+where $O_{\alpha\beta}:=\bra{\phi_\alpha}O\ket{\phi_\beta}$.
+
+Averaging over $n$ kills all off-resonant terms:
+\[
+\frac{1}{N}\sum_{n=0}^{N-1}e^{i(\varepsilon_\alpha-\varepsilon_\beta)nT/\hbar}
+\;\xrightarrow[N\to\infty]{}\;
+\delta_{\varepsilon_\alpha,\varepsilon_\beta}
+\]
+in the absence of degeneracies. In practice, small degeneracies can be resolved numerically (or left as is, giving an approximate bound). Thus the long-time average becomes
+\[
+\overline{\bra{\psi_0}O(nT)O(0)\ket{\psi_0}}
+\;\approx\;
+\sum_{\alpha,\delta}c_\alpha^*c_\delta\,O_{\alpha\alpha}O_{\alpha\delta}.
+\]
+
+For diagonal initial states in the Floquet basis (e.g.\ a typical state sampled from a narrow quasienergy window, or a fully mixed state on a sector), this simplifies considerably. In the most common numerical protocol, one uses an initial product state or a typical random state in the computational basis, and then estimates $C_O^\infty$ either from the time series $C_O(nT)$ or directly using overlaps in the eigenbasis.
+
+
+
+\subsection{Practical numerical algorithm}
+
+We now list a concrete numerical recipe for computing $C_O(nT)$ and its long-time behaviour.
+
+\medskip
+\noindent
+\textbf{Autocorrelation time series}
+
+\begin{enumerate}
+    \item \textbf{Diagonalize the Floquet unitary.}
+    \begin{enumerate}
+        \item Construct $U_F$ in the computational basis (e.g.\ via exact diagonalisation of $H_F$, or by multiplying short-time evolution operators over one period).
+        \item Diagonalize:
+        \[
+        U_F = V \Lambda V^\dagger,\qquad
+        \Lambda_{\alpha\alpha}=e^{-i\varepsilon_\alpha T/\hbar},\quad
+        V = \big(\ket{\phi_1},\dots,\ket{\phi_\mathcal{D}}\big).
+        \]
+    \end{enumerate}
+    \item \textbf{Prepare the initial state.}
+    \begin{enumerate}
+        \item Choose $\ket{\psi_0}$ (typically a product state in the $\sigma^z$ basis, or a simple low-entangled state).
+        \item Compute Floquet-basis coefficients $c_\alpha=\braket{\phi_\alpha}{\psi_0} =(V^\dagger \psi_0)_\alpha$.
+    \end{enumerate}
+    \item \textbf{Represent the observable.}
+    \begin{enumerate}
+        \item Build $O$ in the computational basis (e.g.\ $O = \sigma_j^z$, or a sum over local operators).
+        \item Transform to the Floquet eigenbasis if desired:
+        \[
+        O_F:=V^\dagger O V,\qquad (O_F)_{\alpha\beta} = O_{\alpha\beta}.
+        \]
+    \end{enumerate}
+    \item \textbf{Time evolution and autocorrelation.}
+    \begin{enumerate}
+        \item For each integer $n$ in the desired time window $0\le n\le n_{\max}$:
+        \begin{enumerate}
+            \item Evolve the state in the eigenbasis:
+            \[
+            \psi(n) := \{ \psi_\alpha(n)\}_{\alpha} = \{ c_\alpha\,e^{-i\varepsilon_\alpha nT/\hbar}\}_{\alpha}.
+            \]
+            \item Compute the expectation value
+            \[
+            \langle O\rangle(nT) = \sum_{\alpha,\beta}\psi_\alpha^*(n)\,O_{\alpha\beta}\,\psi_\beta(n)
+            = \psi(n)^\dagger O_F \psi(n).
+            \]
+            \item Compute the autocorrelation numerator
+            \[
+            N_O(nT) := \bra{\psi_0}O(nT)O(0)\ket{\psi_0}.
+            \]
+            This can be evaluated either by explicitly constructing $O(nT)$ in the Schr\"odinger picture,
+            \[
+            \ket{\psi(nT)} = U_F^n \ket{\psi_0},\qquad
+            N_O(nT)=\bra{\psi(nT)}O\ket{\psi_0},
+            \]
+            or directly in the Floquet basis using the expansion above.
+        \end{enumerate}
+        \item Normalize by $D_O:=\bra{\psi_0}O^2\ket{\psi_0}$:
+        \[
+        C_O(nT) = \frac{N_O(nT)}{D_O}.
+        \]
+    \end{enumerate}
+    \item \textbf{Infinite-time estimate.}
+    \begin{enumerate}
+        \item Compute the running average
+        \[
+        \overline{C_O}(N) := \frac{1}{N}\sum_{n=0}^{N-1}C_O(nT),
+        \]
+        and monitor its convergence as $N$ increases.
+        \item A stable nonzero limit $\overline{C_O}(N\to\infty)>0$ indicates robust memory and ETH violation for $O$.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection{Mazur-type lower bound}
+
+If the dynamics conserve a set of orthogonal conserved quantities $\{Q_k\}$, one can bound the long-time autocorrelation via a Mazur-type inequality. In the Floquet setting, the relevant conserved quantities are diagonal in the Floquet eigenbasis (or commute with $U_F$). Decomposing $O$ into components parallel and orthogonal to these $Q_k$ in operator space yields a lower bound on $C_O^\infty$ in terms of operator overlaps $\mathrm{Tr}\,(O Q_k)$ and $\mathrm{Tr}\,(Q_k Q_\ell)$.
+
+Operationally, we need to:
+
+\begin{itemize}
+    \item identify approximate local integrals of motion (for example, operators that are nearly conserved under the Floquet dynamics);
+    \item compute overlaps with $O$ to estimate a lower bound on $C_O^\infty$.
+\end{itemize}
+
+
+
+\section{Bipartite Entanglement Entropy}
+
+\subsection{Definition and bipartition}
+
+We now describe the algorithm for computing the bipartite entanglement entropy of a pure state $\ket{\psi}\in\mathcal{H}_L$.
+
+Partition the chain into a left block $A$ of $\ell$ sites and a right block $B$ of $L-\ell$ sites:
+\[
+\mathcal{H}_L = \mathcal{H}_A\otimes\mathcal{H}_B,\qquad
+\dim\mathcal{H}_A=2^\ell,\quad \dim\mathcal{H}_B=2^{L-\ell}.
+\]
+The reduced density matrix of $A$ is
+\[
+\rho_A = \mathrm{Tr}_B\ket{\psi}\bra{\psi},
+\]
+and the von Neumann entanglement entropy is
+\[
+S_A(\psi) = -\mathrm{Tr}_A\big(\rho_A\log \rho_A\big),
+\]
+with the logarithm taken in natural units (i.e.\ $\log\equiv\ln$), unless stated otherwise.
+
+For a pure state, $S_A(\psi)=S_B(\psi)$, so it suffices to compute entanglement for one side of the bipartition.
+
+
+\subsection{Constructing the reduced density matrix numerically}
+
+We work in the computational basis ordered so that
+\[
+\ket{\mathbf{s}} = \ket{\mathbf{s}_A}\otimes\ket{\mathbf{s}_B},
+\]
+with $\mathbf{s}_A$ denoting the spin configuration on $A$, and $\mathbf{s}_B$ on $B$. Any state can be written as
+\[
+\ket{\psi} = \sum_{\mathbf{s}_A,\mathbf{s}_B} \psi(\mathbf{s}_A,\mathbf{s}_B)
+\,\ket{\mathbf{s}_A}\otimes\ket{\mathbf{s}_B}.
+\]
+
+The reduced density matrix elements are
+\[
+(\rho_A)_{\mathbf{s}_A,\mathbf{s}_A'}
+= \sum_{\mathbf{s}_B}
+\psi(\mathbf{s}_A,\mathbf{s}_B)\,\psi^*(\mathbf{s}_A',\mathbf{s}_B).
+\]
+
+In matrix form, view $\psi$ as a rectangular matrix $\Psi$ of size $2^\ell \times 2^{L-\ell}$ by grouping indices:
+\[
+\Psi_{\alpha\beta} := \psi(\mathbf{s}_A^{(\alpha)},\mathbf{s}_B^{(\beta)}),
+\]
+with $\alpha=1,\dots,2^\ell$ indexing $\mathbf{s}_A$, and $\beta=1,\dots,2^{L-\ell}$ indexing $\mathbf{s}_B$. Then
+\[
+\rho_A = \Psi\,\Psi^\dagger.
+\]
+
+\subsection{Entanglement entropy via singular values}
+
+The most numerically stable and efficient route is to compute the singular values of $\Psi$. Let
+\[
+\Psi = U \Sigma V^\dagger,\qquad \Sigma = \mathrm{diag}(\sigma_1,\dots,\sigma_r),
+\]
+be the singular value decomposition (SVD), where $r\le \min(2^\ell,2^{L-\ell})$ is the rank, and $\sigma_i\ge 0$ are the singular values. Then
+\[
+\rho_A = \Psi\Psi^\dagger = U\Sigma^2 U^\dagger,
+\]
+so the eigenvalues of $\rho_A$ are
+\[
+\lambda_i = \sigma_i^2,\qquad i=1,\dots,r.
+\]
+The entanglement entropy is
+\[
+S_A(\psi) = -\sum_{i=1}^r \lambda_i \log \lambda_i
+= -\sum_{i=1}^r \sigma_i^2 \log \sigma_i^2.
+\]
+
+\medskip
+\noindent
+\textbf{Entanglement entropy for a given state}
+
+\begin{enumerate}
+    \item \textbf{Choose system size and bipartition.}
+    \begin{enumerate}
+        \item Fix $L$ and cut position $\ell$.
+        \item Define $A=\{1,\dots,\ell\}$ and $B=\{\ell+1,\dots,L\}$.
+    \end{enumerate}
+    \item \textbf{Represent the state.}
+    \begin{enumerate}
+        \item Store $\ket{\psi}$ as a length-$2^L$ complex vector in the computational basis, ordered such that the first $\ell$ bits correspond to subsystem $A$ and the remaining $L-\ell$ bits to $B$.
+    \end{enumerate}
+    \item \textbf{Reshape to a matrix.}
+    \begin{enumerate}
+        \item Reshape the vector into a $2^\ell\times 2^{L-\ell}$ matrix:
+        \[
+        \Psi_{\alpha\beta} = \psi(\mathbf{s}_A^{(\alpha)},\mathbf{s}_B^{(\beta)}),
+        \]
+        using a consistent mapping from bit strings to indices.
+    \end{enumerate}
+    \item \textbf{Compute singular values.}
+    \begin{enumerate}
+        \item Perform SVD: $\Psi=U\Sigma V^\dagger$.
+        \item Extract singular values $\{\sigma_i\}$ (non-negative).
+    \end{enumerate}
+    \item \textbf{Compute entropy.}
+    \begin{enumerate}
+        \item Form $\lambda_i := \sigma_i^2$.
+        \item Compute
+        \[
+        S_A(\psi) = -\sum_i \lambda_i \log \lambda_i.
+        \]
+    \end{enumerate}
+\end{enumerate}
+
+This algorithm is numerically stable and avoids explicitly building $\rho_A$, which would require a matrix-matrix product and additional storage. The complexity is dominated by the SVD of a $2^\ell\times 2^{L-\ell}$ matrix. We can now time-evolve the entanglement entropy.
+
+
+In a fully thermalising Floquet system, $S_A(nT)$ for a generic initial state in the full Hilbert space approaches the full Page value (up to finite-size corrections). In a fragmented or constrained system, $S_A(nT)$ saturates at a value corresponding to the effective dimension of the dynamically accessible subspace, which is strictly smaller than the full Hilbert-space dimension. 
+
+\chapter{Appendix E}
+\label{app:results-supp}
+
+In this appendix we collect detailed derivations and additional material that underlie the results of Chapter~\ref{chap: results} but were omitted from the main text for brevity. Section~\ref{app:single-flip-L3} works out the single-spin detunings explicitly for $L=3$ and $h_0=2J_0$ and summarises the resulting first-order connectivity for open and periodic boundary conditions. Section~\ref{app:EE-autocorr-details} provides an extended discussion of the entanglement and autocorrelation data, and Section~\ref{app:future-work-extended} expands on the future directions mentioned in Sec.~\ref{sec:results-conclusion}.
+
+\section{Single-spin flips and allowed detunings for $L=3$}
+\label{app:single-flip-L3}
+
+To illustrate the structure of $P_{nm}$ for single–spin flips in a minimal setting, consider $L=3$ and
+\[
+\mathcal{O}=J_0(\sigma_1^z\sigma_2^z+\sigma_2^z\sigma_3^z)
++h_0(\sigma_1^z+\sigma_2^z+\sigma_3^z).
+\]
+In the basis
+\[
+\{\ket{\uparrow\uparrow\uparrow},\ket{\uparrow\uparrow\downarrow},
+\ket{\uparrow\downarrow\uparrow},\ket{\uparrow\downarrow\downarrow},
+\ket{\downarrow\uparrow\uparrow},\ket{\downarrow\uparrow\downarrow},
+\ket{\downarrow\downarrow\uparrow},\ket{\downarrow\downarrow\downarrow}\},
+\]
+one finds
+\[
+P_m\in\{\,2J_0+3h_0,\ -2J_0+h_0,\ -h_0,\ h_0,\ -2J_0-h_0,\ 2J_0-3h_0\,\}.
+\]
+If $H_1\propto\sum_i\sigma_i^x$ flips exactly one spin, then the nonzero matrix elements $(H_1)_{nm}$ connect eigenstates with
+\[
+P_{nm}=P_n-P_m\in\{\pm2h_0, \pm(2J_0 + 2h_0), \pm(2J_0 - 2h_0),
+\pm(4J_0 + 2h_0), \pm(4J_0 - 2h_0)\}.
+\]
+At the special choice $h_0=2J_0$ this simplifies to
+\[
+P_{nm}\in\{\,0,\ \pm 4J_0,\ \pm 8J_0\,\},
+\]
+for middle-site flips in a periodic chain, while open boundary conditions also allow edge flips with $|P_{nm}|=2J_0$ and $|P_{nm}|=6J_0$.
+
+The first–order Floquet matrix elements are then given directly by the general expressions in Appendix C (Chapter~\ref{app:floquet-perturbation}), in particular Eqs.~\eqref{eq:U1I-final}–\eqref{eq:HF1_sinc_maintext}, evaluated on these discrete detunings.
+
+\subsection*{Geometric illustration of local processes}
+
+For clarity we include simple three-site cartoons illustrating the different local environments and the corresponding detunings at $h_0=2J_0$. Spin down is represented by \(\downarrow\) and spin up by \(\uparrow\).
+
+\begin{figure}[!htb]
+\centering
+\begin{tikzpicture}
+  \node[spin] (L) {$\downarrow$};
+  \node[spin, right=6mm of L, label=above:{\scriptsize flip $i=2$}] (M) {$\uparrow$};
+  \node[spin, right=6mm of M] (R) {$\downarrow$};
+  \draw[fliparrow] ($(R.east)+(4mm,0)$) -- ++(10mm,0)
+      node[midway, above] {\scriptsize $\sigma_2^x$};
+  \node[spin, right=30mm of R] (L2) {$\downarrow$};
+  \node[spin, right=6mm of L2] (M2) {$\downarrow$};
+  \node[spin, right=6mm of M2] (R2) {$\downarrow$};
+\end{tikzpicture}
+\caption{Three spins, middle flip with both neighbors down \((s_{1}+s_{3}=-2)\). At \(h_0=2J_0\): \(P=0\), valid for both OBC and PBC.}
+\end{figure}
+
+\begin{figure}[!htb]
+\centering
+\begin{tikzpicture}
+  \node[spin] (L) {$\uparrow$};
+  \node[spin, right=6mm of L, label=above:{\scriptsize flip $i=2$}] (M) {$\uparrow$};
+  \node[spin, right=6mm of M] (R) {$\downarrow$};
+  \draw[fliparrow] ($(R.east)+(4mm,0)$) -- ++(10mm,0)
+      node[midway, above] {\scriptsize $\sigma_2^x$};
+  \node[spin, right=30mm of R] (L2) {$\uparrow$};
+  \node[spin, right=6mm of L2] (M2) {$\downarrow$};
+  \node[spin, right=6mm of M2] (R2) {$\downarrow$};
+\end{tikzpicture}
+\caption{Three spins, middle flip with mixed neighbors \((s_{1}+s_{3}=0)\). Here \(P=-4J_0\) (magnitude \(4J_0\)), valid for both OBC and PBC.}
+\end{figure}
+
+\begin{figure}[!htb]
+\centering
+\begin{tikzpicture}
+  \node[spin] (L) {$\uparrow$};
+  \node[spin, right=6mm of L, label=above:{\scriptsize flip $i=2$}] (M) {$\uparrow$};
+  \node[spin, right=6mm of M] (R) {$\uparrow$};
+  \draw[fliparrow] ($(R.east)+(4mm,0)$) -- ++(10mm,0)
+      node[midway, above] {\scriptsize $\sigma_2^x$};
+  \node[spin, right=30mm of R] (L2) {$\uparrow$};
+  \node[spin, right=6mm of L2] (M2) {$\downarrow$};
+  \node[spin, right=6mm of M2] (R2) {$\uparrow$};
+\end{tikzpicture}
+\caption{Three spins, middle flip with both neighbors up \((s_{1}+s_{3}=+2)\). Here \(P=-8J_0\) (magnitude \(8J_0\)), valid for both OBC and PBC.}
+\end{figure}
+
+For open boundary conditions, additional edge processes occur:
+
+\begin{figure}[!htb]
+\centering
+\begin{tikzpicture}
+  \node[spin, label=above:{\scriptsize flip edge $i=1$}] (L) {$\uparrow$};
+  \node[spin, right=6mm of L] (M) {$\downarrow$};
+  \node[spin, right=6mm of M] (R) {$\downarrow$};
+  \draw[fliparrow] ($(R.east)+(4mm,0)$) -- ++(10mm,0)
+      node[midway, above] {\scriptsize $\sigma_1^x$};
+  \node[spin, right=30mm of R] (L2) {$\downarrow$};
+  \node[spin, right=6mm of L2] (M2) {$\downarrow$};
+  \node[spin, right=6mm of M2] (R2) {$\downarrow$};
+\end{tikzpicture}
+\caption{Open chain edge flip with a single neighbour down. Here \(P=-2J_0\) (magnitude \(2J_0\)).}
+\end{figure}
+
+\begin{figure}[!htb]
+\centering
+\begin{tikzpicture}
+  \node[spin, label=above:{\scriptsize flip edge $i=1$}] (L) {$\uparrow$};
+  \node[spin, right=6mm of L] (M) {$\uparrow$};
+  \node[spin, right=6mm of M] (R) {$\downarrow$};
+  \draw[fliparrow] ($(R.east)+(4mm,0)$) -- ++(10mm,0)
+      node[midway, above] {\scriptsize $\sigma_1^x$};
+  \node[spin, right=30mm of R] (L2) {$\downarrow$};
+  \node[spin, right=6mm of L2] (M2) {$\uparrow$};
+  \node[spin, right=6mm of M2] (R2) {$\downarrow$};
+\end{tikzpicture}
+\caption{Open chain edge flip with a single neighbour up. At \(h_0=2J_0\) the detuning is \(P=-6J_0\) (magnitude \(6J_0\)).}
+\end{figure}
+
+\subsection*{First-order connectivity tables}
+
+The discrete detunings enter the first-order Floquet matrix elements via Eq.~\eqref{eq:HF1_sinc_maintext}, so that a channel with detuning $P$ is active at first order whenever $\operatorname{sinc}(PT/4)\neq 0$. For periodic boundary conditions, only bulk processes appear and the relevant detunings are $P\in\{0,\pm4J_0,\pm8J_0\}$. For open boundary conditions, edge processes with $|P|=2J_0$ and $|P|=6J_0$ are also present.
+
+\begin{table}[!htb]
+\centering
+\caption{First-order (single flip) connectivity for PBC at $h_0 = 2J_0$. 
+Parentheses indicate $PT/4$.}
+\begin{tabular}{|c|c|c|c|}
+\hline
+$T$ & $P = 0$ & $P = 4J_0$ & $P = 8J_0$ \\
+\hline
+$\tfrac{\pi}{2J_0}$ & on $(0)$ 
+& on $(\tfrac{\pi}{2})$ 
+& off $(\pi)$ \\
+\hline
+$\tfrac{\pi}{J_0}$ & on $(0)$ 
+& off $(\pi)$ 
+& off $(2\pi)$ \\
+\hline
+\end{tabular}
+
+\vspace{0.6em}
+\small
+For PBC the middle-site detunings are $P\in\{0,\,\pm4J_0,\,\pm8J_0\}$. 
+Here, $T=\dfrac{\pi p}{J_0}$ kills all nonzero $P$ for integer $p\ge 1$, while $P=0$ remains ``on'' by definition.
+\label{Tab:PBC}
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\caption{First-order (single flip) connectivity for OBC at $h_0 = 2J_0$ (including edge flips). 
+Parentheses indicate $PT/4$.}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$T$ & $P=0$ & $P=2J_0$ (edge) & $P=4J_0$ & $P=6J_0$ (edge) & $P=8J_0$ & Summary \\
+\hline
+$\tfrac{\pi}{2J_0}$ 
+& on $(0)$ 
+& on $(\tfrac{\pi}{4})$ 
+& on $(\tfrac{\pi}{2})$ 
+& on $(\tfrac{3\pi}{4})$ 
+& off $(\pi)$ 
+& only $|P|=8J_0$ killed \\
+\hline
+$\tfrac{\pi}{J_0}$ 
+& on $(0)$ 
+& on $(\tfrac{\pi}{2})$ 
+& off $(\pi)$ 
+& on $(\tfrac{3\pi}{2})$ 
+& off $(2\pi)$ 
+& kills $|P|=4,8$ \\
+\hline
+$\tfrac{2\pi}{J_0}$ 
+& on $(0)$ 
+& off $(\pi)$ 
+& off $(2\pi)$ 
+& off $(3\pi)$ 
+& off $(4\pi)$ 
+& all nonzero $P$ killed \\
+\hline
+\end{tabular}
+
+\vspace{0.6em}
+\small
+Writing $P=2kJ_0$ with integer $k$, and $T=\dfrac{2\pi p}{J_0}$ with $p\in\mathbb{Z}^+$, one has $(PT/4)=k\,p\,\pi$, so all channels with $k\neq 0$ are at Sinc zeros and switch off. For OBC, $P=2J_0$ and $P=6J_0$ arise only from edge flips, whereas $P=0,4J_0,8J_0$ come from middle-site flips.
+\label{Tab:OBC}
+\end{table}
+
+\section{Extended discussion of entanglement and autocorrelations}
+\label{app:EE-autocorr-details}
+
+Here we collect a more detailed discussion of the numerical signatures summarised in Sec.~\ref{sec:results-numerics}.
+
+\subsection*{Prethermal entanglement growth and saturation}
+
+Figures~\ref{fig: EEopenTP} and \ref{fig: EEperiodicTP} display $S_A(t)/S_{\mathrm{Page}}$ for different $T$ and for both open and periodic boundary conditions. The key qualitative features can be summarised as follows.
+
+\begin{itemize}
+  \item After a short transient, $S_A(t)$ increases and then saturates to a plateau strictly below $S_{\mathrm{Page}}$ for all $T$ and both boundary conditions. This subthermal saturation indicates that the dynamically explored subspace has a smaller effective dimension than the full symmetry sector.
+  \item The saturation value is a decreasing function of the number of flip channels suppressed at first order: choices of $T$ that kill more detunings in Tables~\ref{Tab:PBC}–\ref{Tab:OBC} (e.g.\ $T=2\pi/J_0$) show slower entanglement growth and lower plateaus than choices with fewer constraints (e.g.\ $T=\pi/(2J_0)$).
+  \item Boundary conditions matter quantitatively: open chains exhibit slightly stronger suppression (lower plateaus) and more visible finite-size effects, consistent with their reduced connectivity and the presence of special edge processes.
+\end{itemize}
+
+In a fully ergodic Floquet system at infinite effective temperature, one expects mid-spectrum Floquet eigenstates to behave as Haar-random vectors within each symmetry sector, so that $S_A$ is very close to the corresponding Page value. Here the persistent deficit of $S_A$ relative to the full-system Page value is consistent with the idea that the dynamics are confined to dynamically invariant subspaces (fragments) whose Hilbert space dimension $D_{\mathrm{frag}}$ is much smaller than the full $2^L$.
+
+A complete entanglement-based diagnosis of Hilbert space fragmentation would proceed as follows. For a given initial product state, one would:
+
+\begin{enumerate}
+  \item Construct the graph of basis states connected by nonzero matrix elements of $H_F$ and identify the connected component containing the initial state as the fragment $\mathcal{H}_{\mathrm{frag}}$.
+  \item Compute the dimension $D_{\mathrm{frag}}$ of this component and the corresponding Page value $S_{\mathrm{Page}}^{\mathrm{frag}}$ for a half-chain bipartition.
+  \item Evolve the initial state under $H_F$ (or the exact Floquet unitary) and compare the long-time saturation value of $S_A(t)$ to $S_{\mathrm{Page}}^{\mathrm{frag}}$.
+\end{enumerate}
+
+Saturation to $S_{\mathrm{Page}}^{\mathrm{frag}}$ but below the full-system Page value would then provide a direct entanglement signature of Hilbert space fragmentation. In the present work we stop at the necessary condition (subthermal saturation relative to the full Hilbert space) and leave the full sector-resolved analysis to future work.
+
+\subsection*{Persistent local memory in autocorrelations}
+
+The local autocorrelation $C_j(t)$ provides a complementary dynamical probe of constrained behaviour. In the data shown in Figs.~\ref{fig: AutoopensiteTP1}–\ref{fig: AutoTPsitesperiodic} we observe:
+
+\begin{itemize}
+  \item For all parameter choices, $C_j(t)$ decays from its initial value but does not approach zero, instead saturating at a nonzero value that depends on $j$, $T$ and the boundary conditions. This nonzero late-time limit indicates that $\sigma_j^z$ has a finite projection onto conserved or quasi-conserved quantities of the dynamics.
+  \item In open chains, edge sites and bulk sites show visibly different dynamics and plateau heights, especially at periods where edge detunings differ from bulk ones in Table~\ref{Tab:OBC}. This suggests that the effective constraints experienced by edge and bulk degrees of freedom are distinct.
+  \item In periodic chains, bulk and edge are equivalent and $C_j(t)$ is essentially independent of $j$, consistent with translation invariance. The dependence on $T$ is still present but less dramatic than in the open case.
+\end{itemize}
+
+These observations are consistent with a decomposition of the Floquet operator into blocks associated with dynamically invariant subspaces, for which projectors $P_\alpha$ satisfy $[P_\alpha,U]=0$. If $\sigma_j^z$ has different overlaps with different fragments (e.g.\ edge-localised vs.\ bulk-dominated ones), this will produce a pattern of plateau values reflecting the structure of the emergent conserved quantities. A quantitative analysis along these lines would involve computing Mazur-type bounds for $C_j(t)$ in terms of such projectors and other quasi-local integrals of motion, a task that lies beyond the scope of the present thesis.
+
+\section{Extended future-work discussion}
+\label{app:future-work-extended}
+
+For completeness we spell out in a bit more detail the future directions outlined in Sec.~\ref{sec:results-conclusion}.
+
+\subsection*{Hilbert space connectivity and conserved quantities}
+
+A natural next step is to construct explicitly the graph whose vertices are computational-basis configurations and whose edges connect configurations related by nonzero matrix elements of $H_F$ (or $H_F^{(1)}$). The connected components of this graph are precisely the dynamically invariant subspaces (fragments) of the dynamics. One can then:
+
+\begin{itemize}
+  \item Study how the distribution of fragment sizes evolves with system size $L$ and drive parameters $(T,g/J_0)$.
+  \item Identify typical fragments (e.g.\ those containing random product states) and compute their internal spectral statistics and entanglement properties.
+  \item Attempt to express the projectors onto these fragments in terms of quasi-local operators, which would provide explicit emergent conserved quantities.
+\end{itemize}
+
+Such a program would turn the current phenomenological evidence into a direct, constructive demonstration of Hilbert space fragmentation.
+
+\subsection*{Symmetry-protected structure and edge physics}
+
+The marked difference between edge and bulk autocorrelations in open chains suggests that boundary degrees of freedom may enjoy additional protection or constraints. Future work could:
+
+\begin{itemize}
+  \item Classify exact and emergent symmetries of the Floquet operator for special values of $T$ (such as $T=\pi/J_0$ and $T=2\pi/J_0$).
+  \item Study the entanglement spectrum and possible edge-localised modes of Floquet eigenstates, including their robustness to parameter detuning.
+  \item Investigate connections with known Floquet symmetry-protected topological phases, where edge states are protected by a combination of symmetries and driving.
+\end{itemize}
+
+This would clarify whether the edge–bulk contrast observed in the present data is a finite-size artefact, a simple boundary effect, or a signature of more robust symmetry-protected structure.
+
+\subsection*{Higher-order corrections and larger systems}
+
+Finally, it is important to understand the fate of the constrained structure beyond first order and in larger systems.
+
+\begin{itemize}
+  \item Including $\mathcal{O}(g^2)$ and $\mathcal{O}(g^3)$ terms in the Floquet expansion will reveal whether the constraints identified at first order are stable or become gradually lifted, leading to slow prethermal heating rather than true fragmentation.
+  \item Simulations at larger $L$ using Krylov subspace methods or tensor networks would test how the subthermal entanglement plateaus and autocorrelation plateaus scale with system size and whether they are compatible with a genuine non-thermal phase in the thermodynamic limit.
+\end{itemize}
+
+Addressing these questions will help distinguish sharply between three possibilities: exact fragmentation with strictly disconnected sectors, approximate fragmentation with exponentially slow leakage, and purely prethermal regimes that eventually thermalise on very long time scales.
+
+
+
+
+
+\end{document}
