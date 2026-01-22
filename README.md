@@ -180,7 +180,7 @@ Unlike many-body localization, the system exhibits:
 - **Detuning analysis**: Spin-flip amplitudes scale as $\text{sinc}(\Delta P T/4)$ where $\Delta P$ is the energy mismatch in the classical diagonal basis
 
 ### Numerical
-- **Package**: [QuSpin](http://weinbe58.github.io/QuSpin/) for exact diagonalization
+- **Package**: [QuSpin](https://quspin.github.io/QuSpin/) for exact diagonalization
 - **System sizes**: Primarily $L=8$ (Hilbert dimension $2^8 = 256$)
 - **Diagnostics**:
   - Bipartite entanglement entropy via Schmidt decomposition
