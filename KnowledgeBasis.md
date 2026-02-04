@@ -137,7 +137,7 @@ The driving period controls which spin-flip channels are active through the sinc
 | $\pi/J_0$ | on | on | off | on | off | kills $\|P\| = 4J_0, 8J_0$ |
 | $2\pi/J_0$ | on | off | off | off | off | all nonzero $P$ killed |
 
-**Key**: "on/off" indicates whether $\operatorname{sinc}(PT/4)$ is nonzero/zero. For OBC, $P = 2J_0$ and $P = 6J_0$ arise only from edge flips (one neighbor), while $P = 0, 4J_0, 8J_0$ are from bulk flips (two neighbors).
+**Key**: "on/off" indicates whether $sinc(PT/4)$ is nonzero/zero. For OBC, $P = 2J_0$ and $P = 6J_0$ arise only from edge flips (one neighbor), while $P = 0, 4J_0, 8J_0$ are from bulk flips (two neighbors).
 
 ---
 
