@@ -33,7 +33,7 @@ $$
 The first-order Floquet Hamiltonian, computed via Floquet perturbation theory in the eigenbasis of $\mathcal{O} = J_0\sum_{i=1}^{L-1}\sigma_i^z\sigma_{i+1}^z + h_0\sum_{i=1}^{L}\sigma_i^z$, has matrix elements:
 
 $$
-(H_F^{(1)})_{nm} = -\langle n|g\sum_{i=1}^{L}\sigma_i^x|m\rangle \left[\delta_{P_{nm},0} + (1 - \delta_{P_{nm},0})\operatorname{sinc}\!\left(\frac{P_{nm}T}{4\hbar}\right)e^{-iP_{nm}T/(4\hbar)}\right]
+(H_F^{(1)})_{nm} = -\langle n|g\sum_{i=1}^{L}\sigma_i^x|m\rangle \left[\delta_{P_{nm},0} + (1 - \delta_{P_{nm},0})sinc\left(\frac{P_{nm}T}{4\hbar}\right)e^{-iP_{nm}T/(4\hbar)}\right]
 $$
 
 where $\mathcal{O}|m\rangle = P_m|m\rangle$ and $P_{nm} = P_n - P_m$.
