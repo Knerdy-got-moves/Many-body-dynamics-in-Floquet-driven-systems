@@ -16,7 +16,7 @@ This repository contains the work on my MSc thesis (part 1) on investigating **H
 
 The computational work in this repository extends significantly beyond the formal thesis document, particularly in the following areas:
 
-### 1. **Hilbert Space Fragmentation Analysis** ([`Autocorrelation,_HSF_and_edge_modes_in_open_Ising_chain.ipynb`](./Autocorrelation,_HSF_and_edge_modes_in_open_Ising_chain.ipynb))
+### 1. **Hilbert Space Fragmentation Analysis** ([`Autocorrelation,_HSF_and_edge_modes_in_open_Ising_chain.ipynb`](./Autocorrelation/Autocorrelation,_HSF_and_edge_modes_in_open_Ising_chain.ipynb))
 - **Fragment decomposition**: Performed detailed fragmentation analysis for specific system sizes (L=8), identifying the structure and connectivity of disconnected Krylov subspaces
 - **Fragment-specific statistics**: Analyzed the properties of individual fragments, including their dimensions and structure
 - **Connectivity graphs**: Constructed and visualized the fragmentation of the Hilbert space under the effective Floquet Hamiltonian
