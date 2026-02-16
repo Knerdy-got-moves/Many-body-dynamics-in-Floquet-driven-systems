@@ -14,27 +14,39 @@ This repository contains the work on my MSc thesis (part 1) on investigating **H
 
 ## Recent accomplishments
 
-The computational work in this repository extends significantly beyond the formal thesis document, particularly in the following areas:
+The computational work in this repository extends significantly beyond the formal thesis document. The latest developments include optimised large-system-size simulations (up to $L = 12$) and new analyses of entanglement entropy in both OBC and PBC geometries.
 
-### 1. **Hilbert Space Fragmentation Analysis** ([`Autocorrelation,_HSF_and_edge_modes_in_open_Ising_chain.ipynb`](./Autocorrelation/Autocorrelation,_HSF_and_edge_modes_in_open_Ising_chain.ipynb))
-- **Fragment decomposition**: Performed detailed fragmentation analysis for specific system sizes (L=8), identifying the structure and connectivity of disconnected Krylov subspaces
-- **Fragment-specific statistics**: Analyzed the properties of individual fragments, including their dimensions and structure
-- **Connectivity graphs**: Constructed and visualized the fragmentation of the Hilbert space under the effective Floquet Hamiltonian
+### 1. **Hilbert Space Fragmentation Analysis** ([`Autocorrelation/`](./Autocorrelation/))
+- **Fragment decomposition**: Performed detailed fragmentation analysis for system sizes up to $L = 12$ ($2^{12} = 4096$ states), identifying the structure and connectivity of disconnected Krylov subspaces
+- **Fibonacci dimension**: Verified that the largest fragment (no adjacent $\uparrow\uparrow$ bonds) has dimension $D = F_{L-1} + F_{L+1}$ where $F_n$ is the Fibonacci number (e.g., $D = 322$ at $L = 12$)
+- **Up-up bond analysis**: Characterized fragments by the number and pattern of adjacent $\uparrow\uparrow$ bonds ($N_{\text{defect}}$), which is conserved within each fragment at leading order
+- **Connectivity graphs**: Constructed and visualized the fragmentation of the Hilbert space under the effective Floquet Hamiltonian via BFS on the connectivity graph
 
-### 2. **Fragment page value analysis** ([`Periodic_Frag_and_EE_kicked_Ising_chain.ipynb`](./Periodic_Frag_and_EE_kicked_Ising_chain.ipynb))
-- **Key finding**: Demonstrated that entanglement entropy saturates at the **fragment-specific Page value** rather than the full system Page value
-- **Monte Carlo sampling**: Used random sampling within fragments to compute fragment Page values
-- **ETH within fragments**: Showed that states thermalize only within their respective fragments, not the entire Hilbert space
-- **Quantitative verification**: Numerically confirmed that $S_A^{\text{sat}} \approx S_{\text{Page}}^{\text{fragment}} < S_{\text{Page}}^{\text{system}}$
+### 2. **Dynamical Freezing** ([`Autocorrelation/Optimised_Autocorrelation_in_large_system_sizes.ipynb`](./Autocorrelation/Optimised_Autocorrelation_in_large_system_sizes.ipynb))
+- **Bulk freezing with oscillating edges**: For $h_0/J_0 = 2n$ ($n > 2$) at driving periods $T = m\pi/J_0$, the bulk of the chain is dynamically frozen while edge sites exhibit oscillatory behavior
+- **Complete freezing**: At $T = 2\pi/J_0$, the entire system—both bulk and edges—is frozen; autocorrelation saturates at a finite value across all sites
+- **Sinc filter mechanism**: Systematically mapped which spin-flip channels are active/suppressed for each driving period via the sinc selection rules
 
-### 3. **Edge mode characterization** ([`Autocorrelation,_HSF_and_edge_modes_in_open_Ising_chain.ipynb`](./Autocorrelation,_HSF_and_edge_modes_in_open_Ising_chain.ipynb))
+### 3. **Fragment-Resolved Entanglement Entropy** ([`Entanglement_entropy/`](./Entanglement_entropy/))
+- **Fragment Page value saturation**: Demonstrated that entanglement entropy saturates at the **fragment-specific Page value** $S_{\text{Page}}^{(\text{frag})} < S_{\text{Page}}^{(\text{full})}$, confirming fragmentation-confined thermalization
+- **Monte Carlo sampling**: Estimated fragment Page values via Haar-random states within each fragment subspace ($N_{\text{MC}} = 1000$–$10000$ samples)
+- **Multi-fragment comparison**: Showed that fragments of different dimensions $D$ each saturate to their own $S_{\text{Page}}^{(\mathcal{D})}$, systematically verifying that the thermalization ceiling scales with fragment dimension
+- **OBC and PBC geometries**: Extended entanglement entropy analysis to both open and periodic boundary conditions with optimised Krylov-based time evolution
+
+### 4. **Many-Body Scar-Type Eigenstates** ([`Entanglement_entropy/OBC_Optimised_entanglement_entropy_in_large_systems.ipynb`](./Entanglement_entropy/OBC_Optimised_entanglement_entropy_in_large_systems.ipynb))
+- **$S_A$ vs. quasi-energy scatter**: Computed entanglement entropy for all Floquet eigenstates within the largest fragment, revealing a broad distribution rather than the narrow band predicted by ETH
+- **Low-entropy outliers**: Identified eigenstates with anomalously low $S_A$ (well below $S_{\text{Page}}^{(\text{frag})}$), reminiscent of quantum many-body scars
+- **Fragment-projected Floquet operator**: Constructed the $D \times D$ fragment operator via batched Krylov embedding, avoiding the full $N_s \times N_s$ dense unitary
+- **Leakage diagnostics**: Quantified inter-fragment leakage ($\sim g^2/J_0^2$), confirming the prethermal validity of the fragment decomposition
+
+### 5. **Edge Mode Characterization** ([`Autocorrelation/Autocorrelation,_HSF_and_edge_modes_in_open_Ising_chain.ipynb`](./Autocorrelation/Autocorrelation,_HSF_and_edge_modes_in_open_Ising_chain.ipynb))
 - **Prethermal edge memory**: Demonstrated that edge modes persist for hundreds of Floquet cycles at resonant frequencies ($T = 2\pi/J_0$)
+- **Frozen edge entropy**: Single-site edge entanglement entropy $S_{\{0\}}(nT) \approx 0$ throughout Floquet evolution, while bulk sites thermalize within the fragment
 - **Magnetization profiles**: Generated contour plots showing spatial and temporal evolution of local magnetization, revealing edge-bulk contrast
-- **Symmetry analysis**: Investigated inversion and chiral symmetries and their connection to edge mode protection
-- **System size dependence**: Studied edge memory conservation across different chain lengths, finding no systematic size-dependent decay
-- **Non-SPT nature**: Established that edge modes arise from the structure of the effective Floquet Hamiltonian rather than conventional symmetry-protected topological (SPT) mechanisms
+- **Symmetry analysis**: Investigated inversion and chiral symmetries; established that edge modes are **not** symmetry-protected topological (SPT) but arise purely from the structure of the effective Floquet Hamiltonian
+- **System size independence**: Edge memory lifetime shows no systematic dependence on chain length $L$
 
-These results provide concrete numerical evidence for prethermal Hilbert space fragmentation and demonstrate phenomena not fully covered in the written thesis.
+These results provide concrete numerical evidence for prethermal Hilbert space fragmentation, dynamical freezing, many-body scar-type states, and Floquet edge modes in non-integrable systems without disorder.
 
 ---
 
@@ -42,43 +54,85 @@ These results provide concrete numerical evidence for prethermal Hilbert space f
 
 ### 📊 Computational notebooks (main results)
 
-#### 1. **Entanglement entropy & fragmentation (periodic boundaries)**
-**File**: [`Periodic_Frag_and_EE_kicked_Ising_chain.ipynb`](./Periodic_Frag_and_EE_kicked_Ising_chain.ipynb)
-**Open in Colab**: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Knerdy-got-moves/Many-body-dynamics-in-Floquet-driven-systems/blob/main/Periodic_Frag_and_EE_kicked_Ising_chain.ipynb)
+#### 1. **Autocorrelation, fragmentation & edge modes** ([`Autocorrelation/`](./Autocorrelation/))
 
-**Key features**:
-- Bipartite entanglement entropy dynamics in kicked Ising chains (PBC)
-- Violation of ETH: saturation below thermal Page value at resonant frequencies
-- **Fragment-specific Page value calculations via Monte Carlo sampling**
-- Construction and analysis of Hilbert space connectivity graphs
-- Identification of largest fragments and their properties
-- Demonstrates that entanglement thermalization is fragment-limited
+```
+Autocorrelation/
+├── Autocorrelation,_HSF_and_edge_modes_in_open_Ising_chain.ipynb
+├── Optimised_Autocorrelation_in_large_system_sizes.ipynb
+├── optimised_autocorrelation_in_large_system_sizes.py
+└── KnowledgeBasis.md
+```
 
-**Main results**:
-- At $T = n\pi/J_0$, entanglement entropy plateaus at $S_A^{\text{sat}} < S_{\text{Page}}^{\text{system}}$
-- Fragmentation quantitatively explains reduced thermalization
-- States thermalize only to fragment-specific ensembles
-
----
-
-#### 2. **Autocorrelation, fragmentation & edge modes (open boundaries)**
-**File**: [`Autocorrelation,_HSF_and_edge_modes_in_open_Ising_chain.ipynb`](./Autocorrelation,_HSF_and_edge_modes_in_open_Ising_chain.ipynb)
-**Open in Colab**: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Knerdy-got-moves/Many-body-dynamics-in-Floquet-driven-systems/blob/main/Autocorrelation,_HSF_and_edge_modes_in_open_Ising_chain.ipynb)
+**Notebook**: [`Autocorrelation,_HSF_and_edge_modes_in_open_Ising_chain.ipynb`](./Autocorrelation/Autocorrelation,_HSF_and_edge_modes_in_open_Ising_chain.ipynb)
+**Open in Colab**: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Knerdy-got-moves/Many-body-dynamics-in-Floquet-driven-systems/blob/main/Autocorrelation/Autocorrelation%2C_HSF_and_edge_modes_in_open_Ising_chain.ipynb)
 
 **Key features**:
 - Infinite-temperature autocorrelation functions $C_j(nT) = \langle \sigma_j^z(nT) \sigma_j^z(0) \rangle_\infty$
-- **Detailed fragmentation analysis**: decomposition into disconnected sectors
+- **Detailed fragmentation analysis**: decomposition into disconnected Krylov sectors via BFS on the connectivity graph
 - **Prethermal edge memory**: long-lived magnetization at boundary sites
 - Magnetization contour plots revealing edge-bulk dynamics
 - Symmetry analysis (inversion, chiral) and edge mode mechanisms
-- System size dependence of edge memory lifetime
+
+**Notebook**: [`Optimised_Autocorrelation_in_large_system_sizes.ipynb`](./Autocorrelation/Optimised_Autocorrelation_in_large_system_sizes.ipynb)
+**Open in Colab**: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Knerdy-got-moves/Many-body-dynamics-in-Floquet-driven-systems/blob/main/Autocorrelation/Optimised_Autocorrelation_in_large_system_sizes.ipynb)
+
+**Key features**:
+- Optimised sparse Hamiltonian construction and Krylov-based time evolution for system sizes up to $L = 12$
+- **Dynamical freezing**: bulk freezing at $h_0/J_0 = 2n$ ($n > 2$) with oscillating edges; complete freezing at $T = 2\pi/J_0$
+- **Sinc filter selection rules**: systematic mapping of active/suppressed spin-flip channels for each driving period
+- Up to 500 Floquet steps with ensemble-averaged autocorrelation
 
 **Main results**:
 - Non-zero autocorrelation plateaus signal ETH violation
 - Edge sites retain memory for $\sim 300$ Floquet steps at $T = 2\pi/J_0$
 - Edge modes emerge from effective Floquet Hamiltonian structure: $H_F^{(1)} \sim -g\sum_{i=2}^{L-1}\pi_{i-1}\sigma_i^x\pi_{i+1}$ (lacks edge flip terms)
+- Dynamical freezing at large $h_0/J_0$ with complete system freeze at $T = 2\pi/J_0$
 - Edge memory shows no systematic system-size dependence
-- Fragmentation explains both bulk thermalization failure and edge persistence
+
+**Knowledge basis**: [`KnowledgeBasis.md`](./Autocorrelation/KnowledgeBasis.md) — detailed analytical and numerical documentation
+
+---
+
+#### 2. **Entanglement entropy & fragmentation** ([`Entanglement_entropy/`](./Entanglement_entropy/))
+
+```
+Entanglement_entropy/
+├── PBC_Optimised_entanglement_entropy_in_large_systems.ipynb
+├── OBC_Optimised_entanglement_entropy_in_large_systems.ipynb
+├── pbc_optimised_entanglement_entropy_in_large_systems.py
+├── obc_optimised_entanglement_entropy_in_large_systems.py
+└── KnowledgeBasis_EE.md
+```
+
+**Notebook**: [`PBC_Optimised_entanglement_entropy_in_large_systems.ipynb`](./Entanglement_entropy/PBC_Optimised_entanglement_entropy_in_large_systems.ipynb)
+**Open in Colab**: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Knerdy-got-moves/Many-body-dynamics-in-Floquet-driven-systems/blob/main/Entanglement_entropy/PBC_Optimised_entanglement_entropy_in_large_systems.ipynb)
+
+**Key features**:
+- Bipartite entanglement entropy dynamics in kicked Ising chains with **periodic boundary conditions (PBC)**
+- Violation of ETH: saturation below thermal Page value at resonant frequencies
+- Optimised Krylov-based stroboscopic evolution for large system sizes ($L = 10$–$12$)
+
+**Notebook**: [`OBC_Optimised_entanglement_entropy_in_large_systems.ipynb`](./Entanglement_entropy/OBC_Optimised_entanglement_entropy_in_large_systems.ipynb)
+**Open in Colab**: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Knerdy-got-moves/Many-body-dynamics-in-Floquet-driven-systems/blob/main/Entanglement_entropy/OBC_Optimised_entanglement_entropy_in_large_systems.ipynb)
+
+**Key features**:
+- Entanglement entropy dynamics with **open boundary conditions (OBC)**
+- **Fragment-specific Page value calculations via Monte Carlo sampling** ($N_{\text{MC}} = 1000$–$10000$)
+- **Multi-fragment comparison**: different fragments saturate to their own $S_{\text{Page}}^{(\mathcal{D})}$
+- **$S_A$ vs. quasi-energy scatter**: identification of many-body scar-type eigenstates within fragments
+- **Fragment-projected Floquet operator** via batched Krylov embedding ($D \times D$ instead of $N_s \times N_s$)
+- **Frozen edge mode confirmation**: edge-site entanglement entropy remains $\approx 0$ while bulk thermalizes
+- Leakage diagnostics quantifying inter-fragment coupling ($\sim g^2/J_0^2$)
+
+**Main results**:
+- At $T = n\pi/J_0$, entanglement entropy plateaus at $S_A^{\text{sat}} = S_{\text{Page}}^{(\text{frag})} < S_{\text{Page}}^{(\text{full})}$
+- Fragmentation quantitatively explains reduced thermalization; states thermalize only within their respective fragments
+- Largest fragment dimension follows $D = F_{L-1} + F_{L+1}$ (Fibonacci identity)
+- Floquet eigenstates show broad $S_A$ distribution with low-entropy outliers (scar-type states)
+- Edge entanglement $S_{\{0\}} \approx 0$ confirms frozen boundary modes
+
+**Knowledge basis**: [`KnowledgeBasis_EE.md`](./Entanglement_entropy/KnowledgeBasis_EE.md) — detailed analytical and numerical documentation
 
 ---
 
@@ -95,7 +149,7 @@ These results provide concrete numerical evidence for prethermal Hilbert space f
 1. **Introduction**: Floquet systems, ETH, Hilbert space fragmentation
 2. **Model**: Kicked Ising chain Hamiltonian $H(t) = -J(t)\sum_i \sigma_i^z\sigma_{i+1}^z - h(t)\sum_i \sigma_i^z - g\sum_i \sigma_i^x$
 3. **Analytical results**: First-order Floquet Hamiltonian, spin-flip suppression via sinc filters
-4. **Numerical results**: Entanglement entropy saturation, autocorrelation plateaus (L=8)
+4. **Numerical results**: Entanglement entropy saturation, autocorrelation plateaus (L=8–12)
 5. **Conclusions**: Prethermal fragmentation without disorder or integrability
 
 **Quick navigation**: See [`Rishi_Paresh_Joshi_report/9th_sem_README.md`](./Rishi_Paresh_Joshi_report/9th_sem_README.md) for detailed overview.
@@ -166,10 +220,22 @@ Unlike many-body localization, the system exhibits:
 - Observables converge to fragment microcanonical averages
 - Entanglement entropy: $S_A^{\text{sat}} = S_{\text{Page}}^{\text{fragment}} < S_{\text{Page}}^{\text{system}}$
 
-### 4. Prethermal edge memory (OBC)
+### 4. Dynamical freezing
+At $h_0/J_0 = 2n$ ($n > 2$) and driving periods $T = m\pi/J_0$:
+- **Bulk freezing**: The sinc filter suppresses essentially all bulk spin-flip channels; autocorrelation remains near unity
+- **Edge oscillations**: Edge sites retain residual dynamics due to different energy mismatches ($P = 2J_0, 6J_0$)
+- **Complete freezing at $T = 2\pi/J_0$**: All channels shut off; the entire system is dynamically frozen
+
+### 5. Prethermal edge memory (OBC)
 - Edge sites retain initial magnetization for $\sim 10^2$ Floquet cycles
+- Edge entanglement entropy $S_{\{0\}} \approx 0$ throughout Floquet evolution (frozen site)
 - Mechanism: effective Hamiltonian lacks edge flip terms ($H_F^{(1)}$ sums from $i=2$ to $L-1$)
 - Not protected by conventional symmetries (non-SPT)
+
+### 6. Many-body scar-type eigenstates
+- Floquet eigenstates within individual fragments show a **broad distribution** of entanglement entropy
+- Low-$S_A$ outlier states violate strong ETH even within the fragment
+- Mechanism specific to the Floquet-fragmented structure
 
 ---
 
@@ -180,12 +246,16 @@ Unlike many-body localization, the system exhibits:
 - **Detuning analysis**: Spin-flip amplitudes scale as $\text{sinc}(\Delta P T/4)$ where $\Delta P$ is the energy mismatch in the classical diagonal basis
 
 ### Numerical
-- **Package**: [QuSpin](https://quspin.github.io/QuSpin/) for exact diagonalization
-- **System sizes**: Primarily $L=8$ (Hilbert dimension $2^8 = 256$)
+- **Exact diagonalization** using SciPy/NumPy sparse matrix methods and [QuSpin](https://quspin.github.io/QuSpin/)
+- **System sizes**: Up to $L = 12$ (Hilbert space dimension $2^{12} = 4096$)
+- **Krylov time evolution**: Matrix-free stroboscopic evolution via `scipy.sparse.linalg.expm_multiply` with adaptive subdivision
 - **Diagnostics**:
-  - Bipartite entanglement entropy via Schmidt decomposition
-  - Infinite-temperature autocorrelations from Haar-random initial states
-  - Fragmentation via connectivity graph analysis
+  - Bipartite entanglement entropy via Schmidt decomposition (SVD)
+  - Infinite-temperature autocorrelations from Haar-random initial states (up to 500 Floquet steps)
+  - Fragmentation via connectivity graph analysis (BFS on $\mathcal{O}$-eigenvalue graph)
+  - Fragment Page values via Monte Carlo sampling within fragment subspaces
+  - $S_A$ vs. quasi-energy scatter for Floquet eigenstates (scar identification)
+  - Inter-fragment leakage quantification
 
 ---
 
@@ -194,9 +264,11 @@ Unlike many-body localization, the system exhibits:
 | **Observable** | **Diagnostic** | **ETH prediction** | **Our result** | **Interpretation** |
 |----------------|----------------|--------------------|-----------------|--------------------|
 | Entanglement $S_A(t)$ | Time evolution | $S_A^{\text{sat}} = S_{\text{Page}}^{\text{system}}$ | $S_A^{\text{sat}} = S_{\text{Page}}^{\text{fragment}} < S_{\text{Page}}^{\text{system}}$ | Fragment-limited thermalization |
-| Autocorrelation $C_j(t)$ | Infinite-T ensemble | $C_j(t) = 0$ rapidly | $T_{decay} \tilde  \quad e^{J_0}$ | Memory of initial conditions |
-| Edge magnetization | Open boundaries | Decays rapidly | Persists $\sim 300$ steps | Prethermal edge modes |
-| Hilbert space | Connectivity | Fully connected | Exponentially many fragments | HSF |
+| Autocorrelation $C_j(t)$ | Infinite-T ensemble | $C_j(t) = 0$ rapidly | Non-zero plateaus; $\tau^* \sim e^{J_0/g}$ | Memory of initial conditions |
+| Edge magnetization | Open boundaries | Decays rapidly | Persists $\sim 300$ steps; $S_{\{0\}} \approx 0$ | Prethermal edge modes |
+| Hilbert space | Connectivity | Fully connected | Exponentially many fragments; $D_{\max} = F_{L-1} + F_{L+1}$ | HSF |
+| Floquet eigenstates | $S_A(\varepsilon)$ scatter | Narrow band near $S_{\text{Page}}$ | Broad distribution with low-$S_A$ outliers | Many-body scar-type states |
+| Bulk dynamics | $h_0/J_0 = 2n$, $n > 2$ | Thermalizes | Dynamically frozen; edges oscillate | Sinc-filter suppression |
 
 ---
 
@@ -208,10 +280,11 @@ All computational notebooks require:
 pip install quspin numpy scipy matplotlib numba
 ```
 
-QuSpin handles:
-- Hamiltonian construction in spin bases
-- Sparse matrix exponentiation for time evolution
-- Eigenvalue decomposition for Floquet operators
+- **QuSpin**: Hamiltonian construction in spin bases, sparse matrix exponentiation, Floquet operator eigendecomposition
+- **SciPy**: Sparse matrix construction (`scipy.sparse`), Krylov time evolution (`scipy.sparse.linalg.expm_multiply`), graph analysis
+- **NumPy**: Linear algebra, random state generation, SVD-based entropy computation
+- **Matplotlib**: Visualization (time series, contour plots, scatter plots)
+- **Numba**: JIT compilation for performance-critical loops
 
 ---
 
@@ -277,4 +350,4 @@ This project is available for academic and educational purposes. Please cite app
 
 ---
 
-**Keywords**: Floquet systems, Hilbert space fragmentation, eigenstate thermalization hypothesis, entanglement entropy, autocorrelation, Ising model, prethermal dynamics, non-ergodic behavior, quantum many-body physics, QuSpin
+**Keywords**: Floquet systems, Hilbert space fragmentation, eigenstate thermalization hypothesis, entanglement entropy, autocorrelation, Ising model, prethermal dynamics, non-ergodic behavior, quantum many-body physics, dynamical freezing, many-body scars, edge modes, QuSpin
