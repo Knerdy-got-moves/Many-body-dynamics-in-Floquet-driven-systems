@@ -23,7 +23,7 @@ The computational work in this repository extends significantly beyond the forma
 - **Connectivity graphs**: Constructed and visualized the fragmentation of the Hilbert space under the effective Floquet Hamiltonian via BFS on the connectivity graph
 
 ### 2. **Dynamical Freezing** ([`Autocorrelation/Optimised_Autocorrelation_in_large_system_sizes.ipynb`](./Autocorrelation/Optimised_Autocorrelation_in_large_system_sizes.ipynb))
-- **Bulk freezing with oscillating edges**: For $h_0/J_0 = 2n$ ($n > 2$) at driving periods $T = m\pi/J_0$, the bulk of the chain is dynamically frozen while edge sites exhibit oscillatory behavior
+- **Bulk freezing with oscillating edges**: For $h_0/J_0 = 2n$ ($n \geq 2$) at driving periods $T = m\pi/J_0$, the bulk of the chain is dynamically frozen while edge sites exhibit oscillatory behavior
 - **Complete freezing**: At $T = 2\pi/J_0$, the entire system—both bulk and edges—is frozen; autocorrelation saturates at a finite value across all sites
 - **Sinc filter mechanism**: Systematically mapped which spin-flip channels are active/suppressed for each driving period via the sinc selection rules
 
@@ -39,7 +39,7 @@ The computational work in this repository extends significantly beyond the forma
 - **Fragment-projected Floquet operator**: Constructed the $D \times D$ fragment operator via batched Krylov embedding, avoiding the full $N_s \times N_s$ dense unitary
 - **Leakage diagnostics**: Quantified inter-fragment leakage ($\sim g^2/J_0^2$), confirming the prethermal validity of the fragment decomposition
 
-### 5. **Edge Mode Characterization** ([`Autocorrelation/Autocorrelation,_HSF_and_edge_modes_in_open_Ising_chain.ipynb`](./Autocorrelation/Autocorrelation,_HSF_and_edge_modes_in_open_Ising_chain.ipynb))
+### 5. **Edge Mode Characterization** ([`Autocorrelation/`](./Autocorrelation/), [`Entanglement_entropy/`](./Entanglement_entropy/))
 - **Prethermal edge memory**: Demonstrated that edge modes persist for hundreds of Floquet cycles at resonant frequencies ($T = 2\pi/J_0$)
 - **Frozen edge entropy**: Single-site edge entanglement entropy $S_{\{0\}}(nT) \approx 0$ throughout Floquet evolution, while bulk sites thermalize within the fragment
 - **Magnetization profiles**: Generated contour plots showing spatial and temporal evolution of local magnetization, revealing edge-bulk contrast
@@ -58,28 +58,17 @@ These results provide concrete numerical evidence for prethermal Hilbert space f
 
 ```
 Autocorrelation/
-├── Autocorrelation,_HSF_and_edge_modes_in_open_Ising_chain.ipynb
 ├── Optimised_Autocorrelation_in_large_system_sizes.ipynb
 ├── optimised_autocorrelation_in_large_system_sizes.py
 └── KnowledgeBasis.md
 ```
-
-**Notebook**: [`Autocorrelation,_HSF_and_edge_modes_in_open_Ising_chain.ipynb`](./Autocorrelation/Autocorrelation,_HSF_and_edge_modes_in_open_Ising_chain.ipynb)
-**Open in Colab**: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Knerdy-got-moves/Many-body-dynamics-in-Floquet-driven-systems/blob/main/Autocorrelation/Autocorrelation%2C_HSF_and_edge_modes_in_open_Ising_chain.ipynb)
-
-**Key features**:
-- Infinite-temperature autocorrelation functions $C_j(nT) = \langle \sigma_j^z(nT) \sigma_j^z(0) \rangle_\infty$
-- **Detailed fragmentation analysis**: decomposition into disconnected Krylov sectors via BFS on the connectivity graph
-- **Prethermal edge memory**: long-lived magnetization at boundary sites
-- Magnetization contour plots revealing edge-bulk dynamics
-- Symmetry analysis (inversion, chiral) and edge mode mechanisms
 
 **Notebook**: [`Optimised_Autocorrelation_in_large_system_sizes.ipynb`](./Autocorrelation/Optimised_Autocorrelation_in_large_system_sizes.ipynb)
 **Open in Colab**: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Knerdy-got-moves/Many-body-dynamics-in-Floquet-driven-systems/blob/main/Autocorrelation/Optimised_Autocorrelation_in_large_system_sizes.ipynb)
 
 **Key features**:
 - Optimised sparse Hamiltonian construction and Krylov-based time evolution for system sizes up to $L = 12$
-- **Dynamical freezing**: bulk freezing at $h_0/J_0 = 2n$ ($n > 2$) with oscillating edges; complete freezing at $T = 2\pi/J_0$
+- **Dynamical freezing**: bulk freezing at $h_0/J_0 = 2n$ ($n \geq 2$) with oscillating edges; complete freezing at $T = 2\pi/J_0$
 - **Sinc filter selection rules**: systematic mapping of active/suppressed spin-flip channels for each driving period
 - Up to 500 Floquet steps with ensemble-averaged autocorrelation
 
@@ -221,7 +210,7 @@ Unlike many-body localization, the system exhibits:
 - Entanglement entropy: $S_A^{\text{sat}} = S_{\text{Page}}^{\text{fragment}} < S_{\text{Page}}^{\text{system}}$
 
 ### 4. Dynamical freezing
-At $h_0/J_0 = 2n$ ($n > 2$) and driving periods $T = m\pi/J_0$:
+At $h_0/J_0 = 2n$ ($n \geq 2$) and driving periods $T = m\pi/J_0$:
 - **Bulk freezing**: The sinc filter suppresses essentially all bulk spin-flip channels; autocorrelation remains near unity
 - **Edge oscillations**: Edge sites retain residual dynamics due to different energy mismatches ($P = 2J_0, 6J_0$)
 - **Complete freezing at $T = 2\pi/J_0$**: All channels shut off; the entire system is dynamically frozen
@@ -246,7 +235,7 @@ At $h_0/J_0 = 2n$ ($n > 2$) and driving periods $T = m\pi/J_0$:
 - **Detuning analysis**: Spin-flip amplitudes scale as $\text{sinc}(\Delta P T/4)$ where $\Delta P$ is the energy mismatch in the classical diagonal basis
 
 ### Numerical
-- **Exact diagonalization** using SciPy/NumPy sparse matrix methods and [QuSpin](https://quspin.github.io/QuSpin/)
+- **Exact diagonalization** using SciPy/NumPy sparse matrix methods
 - **System sizes**: Up to $L = 12$ (Hilbert space dimension $2^{12} = 4096$)
 - **Krylov time evolution**: Matrix-free stroboscopic evolution via `scipy.sparse.linalg.expm_multiply` with adaptive subdivision
 - **Diagnostics**:
@@ -268,7 +257,7 @@ At $h_0/J_0 = 2n$ ($n > 2$) and driving periods $T = m\pi/J_0$:
 | Edge magnetization | Open boundaries | Decays rapidly | Persists $\sim 300$ steps; $S_{\{0\}} \approx 0$ | Prethermal edge modes |
 | Hilbert space | Connectivity | Fully connected | Exponentially many fragments; $D_{\max} = F_{L-1} + F_{L+1}$ | HSF |
 | Floquet eigenstates | $S_A(\varepsilon)$ scatter | Narrow band near $S_{\text{Page}}$ | Broad distribution with low-$S_A$ outliers | Many-body scar-type states |
-| Bulk dynamics | $h_0/J_0 = 2n$, $n > 2$ | Thermalizes | Dynamically frozen; edges oscillate | Sinc-filter suppression |
+| Bulk dynamics | $h_0/J_0 = 2n$, $n \geq 2$ | Thermalizes | Dynamically frozen; edges oscillate | Sinc-filter suppression |
 
 ---
 
@@ -277,10 +266,9 @@ At $h_0/J_0 = 2n$ ($n > 2$) and driving periods $T = m\pi/J_0$:
 All computational notebooks require:
 
 ```bash
-pip install quspin numpy scipy matplotlib numba
+pip install numpy scipy matplotlib numba
 ```
 
-- **QuSpin**: Hamiltonian construction in spin bases, sparse matrix exponentiation, Floquet operator eigendecomposition
 - **SciPy**: Sparse matrix construction (`scipy.sparse`), Krylov time evolution (`scipy.sparse.linalg.expm_multiply`), graph analysis
 - **NumPy**: Linear algebra, random state generation, SVD-based entropy computation
 - **Matplotlib**: Visualization (time series, contour plots, scatter plots)
@@ -291,14 +279,14 @@ pip install quspin numpy scipy matplotlib numba
 ## Running the notebooks
 
 ### Option 1: Google Colab (recommended)
-Click the "Open in Colab" badges in the notebook sections above. QuSpin will be installed automatically.
+Click the "Open in Colab" badges in the notebook sections above.
 
 ### Option 2: Local Jupyter
 
 ```bash
 git clone https://github.com/Knerdy-got-moves/Many-body-dynamics-in-Floquet-driven-systems.git
 cd Many-body-dynamics-in-Floquet-driven-systems
-pip install quspin numpy scipy matplotlib
+pip install numpy scipy matplotlib numba
 jupyter notebook
 ```
 
@@ -327,9 +315,6 @@ This work builds upon foundational studies in Floquet physics and Hilbert space 
 ### Page entropy
 8. D. N. Page, "Average entropy of a subsystem," *Phys. Rev. Lett.* **71**, 1291 (1993). [doi:10.1103/PhysRevLett.71.1291](https://doi.org/10.1103/PhysRevLett.71.1291)
 
-### Computational tools
-9. P. Weinberg and M. Bukov, "QuSpin: a Python package for dynamics and exact diagonalization of quantum many body systems," *SciPost Phys.* **2**, 003 (2017). [doi:10.21468/SciPostPhys.2.1.003](https://doi.org/10.21468/SciPostPhys.2.1.003)
-
 ---
 
 ## Contact & acknowledgments
@@ -350,4 +335,4 @@ This project is available for academic and educational purposes. Please cite app
 
 ---
 
-**Keywords**: Floquet systems, Hilbert space fragmentation, eigenstate thermalization hypothesis, entanglement entropy, autocorrelation, Ising model, prethermal dynamics, non-ergodic behavior, quantum many-body physics, dynamical freezing, many-body scars, edge modes, QuSpin
+**Keywords**: Floquet systems, Hilbert space fragmentation, eigenstate thermalization hypothesis, entanglement entropy, autocorrelation, Ising model, prethermal dynamics, non-ergodic behavior, quantum many-body physics, dynamical freezing, many-body scars, edge modes
