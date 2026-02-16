@@ -223,7 +223,7 @@ This edge-vs-bulk contrast is presented as a two-panel plot and constitutes dire
 
 The Hamiltonians $H_\pm$ are built as `scipy.sparse.csr_matrix` with exactly $N_s \times (L+1)$ nonzero entries per matrix ($1$ diagonal + $L$ off-diagonal $\sigma^x$ flips per row). Memory scales as $\mathcal{O}(L \cdot 2^L)$, far below the dense $\mathcal{O}(4^L)$.
 
-**Bit convention:** Site $j \to$ bit position $p(j) = L - 1 - j$. The spin eigenvalue is $\sigma_j^z = 1 - 2c_j$ where $c_j = (s \gg p(j)) \; \& \; 1$.
+**Bit convention:** Site $j \to$ bit position $p(j) = L - 1 - j$. The spin eigenvalue is $\sigma_j^z = 1 - 2c_j$ where $c_j = (s >> p(j)) \& 1$.
 
 ### 6.2 Krylov Time Evolution (Matrix-Free)
 
