@@ -85,15 +85,15 @@ This constrained Hamiltonian only allows bulk spin flips when both neighbors are
 **Observation**: Dynamical freezing is observed when
 
 $$
-\frac{h_0}{J_0} = 2n, \qquad n \in \mathbb{Z},\; n > 2
+\frac{h_0}{J_0} = 2n, \qquad n \in \mathbb{Z},\; n \ge 2
 $$
 
 at driving time periods $T = m\pi/J_0$ ($m \in \mathbb{N}$).
 
-- **Bulk freezing with oscillating edges**: For $h_0/J_0 = 2n$ with $n > 2$, the bulk of the chain is dynamically frozen (the autocorrelation remains near unity), while the edge sites exhibit oscillatory behavior.
-- **Complete freezing at $T = 2\pi/J_0$**: At this specific driving period, the entire system—both bulk and edges—is frozen. The autocorrelation saturates at a finite value across all sites, indicating a complete absence of thermalization.
+- **Bulk freezing with oscillating edges**: For odd $m$, at $h_0/J_0 = 2n$ with $n\ge 2$, the bulk of the chain is dynamically frozen (the autocorrelation remains near unity), while the edge sites exhibit oscillatory behavior.
+- **Complete freezing at even $m$**: At this specific driving period, the entire system—both bulk and edges—is frozen. The autocorrelation saturates at a finite value across all sites, indicating a complete absence of thermalization.
 
-**Mechanism**: For larger values of $h_0/J_0$, the energy mismatches $P_{nm}$ grow, and more spin-flip channels are suppressed by the sinc filter. At sufficiently large $h_0/J_0 = 2n$ ($n > 2$), essentially all channels that could cause bulk spin flips are deactivated at $T = m\pi/J_0$. The edge sites, having only one neighbor, have different energy mismatches and may retain residual dynamics (oscillations) except at the fully resonant period $T = 2\pi/J_0$ where all channels shut off.
+**Mechanism**: For larger values of $h_0/J_0$, the energy mismatches $P_{nm}$ grow, and more spin-flip channels are suppressed by the sinc filter. At sufficiently large $h_0/J_0 = 2n$ ($n \ge 2$), essentially all channels that could cause bulk spin flips are deactivated at $T = m\pi/J_0$. The edge sites, having only one neighbor, have different energy mismatches and may retain residual dynamics (oscillations) except at the fully resonant period $T = 2m\pi/J_0$ where all channels shut off.
 
 ### 3.3 Edge Modes
 
