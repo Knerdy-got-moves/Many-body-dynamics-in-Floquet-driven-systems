@@ -23,13 +23,13 @@ The computational work in this repository extends significantly beyond the forma
 - **Connectivity graphs**: Constructed and visualized the fragmentation of the Hilbert space under the effective Floquet Hamiltonian via BFS on the connectivity graph
 
 ### 2. **Dynamical Freezing** ([`Autocorrelation/Optimised_Autocorrelation_in_large_system_sizes.ipynb`](./Autocorrelation/Optimised_Autocorrelation_in_large_system_sizes.ipynb))
-- **Bulk freezing with oscillating edges**: For $h_0/J_0 = 2n$ ($n \geq 2$) at driving periods $T = m\pi/J_0$, the bulk of the chain is dynamically frozen while edge sites exhibit oscillatory behavior
-- **Complete freezing**: At $T = 2\pi/J_0$, the entire system—both bulk and edges—is frozen; autocorrelation saturates at a finite value across all sites
+- **Bulk freezing with oscillating edges**: For $h_0/J_0 = 2n$ ($n \geq 2$) at driving periods $T = (2m+1)\pi/J_0$, the bulk of the chain is dynamically frozen while edge sites exhibit oscillatory behavior
+- **Complete freezing**: At $T = 2m\pi/J_0$, the entire system—both bulk and edges—is frozen; autocorrelation saturates at a finite value across all sites
 - **Sinc filter mechanism**: Systematically mapped which spin-flip channels are active/suppressed for each driving period via the sinc selection rules
 
 ### 3. **Fragment-Resolved Entanglement Entropy** ([`Entanglement_entropy/`](./Entanglement_entropy/))
 - **Fragment Page value saturation**: Demonstrated that entanglement entropy saturates at the **fragment-specific Page value** $S_{\text{Page}}^{(\text{frag})} < S_{\text{Page}}^{(\text{full})}$, confirming fragmentation-confined thermalization
-- **Monte Carlo sampling**: Estimated fragment Page values via Haar-random states within each fragment subspace ($N_{\text{MC}} = 1000$–$10000$ samples)
+- **Monte Carlo sampling**: Estimated fragment Page values via Haar-random states within each fragment subspace ($N_{\text{MC}} = 1000~to~10000$ samples)
 - **Multi-fragment comparison**: Showed that fragments of different dimensions $D$ each saturate to their own $S_{\text{Page}}^{(\mathcal{D})}$, systematically verifying that the thermalization ceiling scales with fragment dimension
 - **OBC and PBC geometries**: Extended entanglement entropy analysis to both open and periodic boundary conditions with optimised Krylov-based time evolution
 
@@ -254,7 +254,7 @@ At $h_0/J_0 = 2n$ ($n \geq 2$) and driving periods $T = m\pi/J_0$:
 |----------------|----------------|--------------------|-----------------|--------------------|
 | Entanglement $S_A(t)$ | Time evolution | $S_A^{\text{sat}} = S_{\text{Page}}^{\text{system}}$ | $S_A^{\text{sat}} = S_{\text{Page}}^{\text{fragment}} < S_{\text{Page}}^{\text{system}}$ | Fragment-limited thermalization |
 | Autocorrelation $C_j(t)$ | Infinite-T ensemble | $C_j(t) = 0$ rapidly | Non-zero plateaus; $\tau^* \sim e^{J_0/g}$ | Memory of initial conditions |
-| Edge magnetization | Open boundaries | Decays rapidly | Persists $\sim 300$ steps; $S_{\{0\}} \approx 0$ | Prethermal edge modes |
+| Edge magnetization | Open boundaries | Decays rapidly | Persists $\sim 200$ steps; $S_{\{0\}} \approx 0$ | Prethermal edge modes |
 | Hilbert space | Connectivity | Fully connected | Exponentially many fragments; $D_{\max} = F_{L-1} + F_{L+1}$ | HSF |
 | Floquet eigenstates | $S_A(\varepsilon)$ scatter | Narrow band near $S_{\text{Page}}$ | Broad distribution with low-$S_A$ outliers | Many-body scar-type states |
 | Bulk dynamics | $h_0/J_0 = 2n$, $n \geq 2$ | Thermalizes | Dynamically frozen; edges oscillate | Sinc-filter suppression |
