@@ -16,7 +16,7 @@ This repository contains the work on my MSc thesis (part 1) on investigating **H
 
 Throughout this document, the following notation is used:
 
-- $L$: number of spin-$1/2$ sites in the chain.
+- $L$: number of spin-1/2 sites in the chain.
 - $\sigma_i^{x,y,z}$: Pauli spin operators acting on site $i$ ($i = 1, 2, \ldots, L$).
 - $J_0, h_0, g$: Ising coupling strength, longitudinal field amplitude, and transverse field strength, respectively.
 - $T$: driving period of the symmetric square-wave protocol.
