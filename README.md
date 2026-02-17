@@ -56,7 +56,7 @@ The computational work in this repository extends significantly beyond the forma
 
 ### 3. **Fragment-Resolved Entanglement Entropy** ([`Entanglement_entropy/`](./Entanglement_entropy/))
 - **Fragment Page value saturation**: Demonstrated that the entanglement entropy $S_A(nT)$ saturates at the **fragment-specific Page value** $S_{\text{Page}}^{(\text{frag})} < S_{\text{Page}}^{(\text{full})}$, confirming fragmentation-confined thermalization.
-- **Monte Carlo sampling**: Estimated fragment Page values via Haar-random states within each fragment subspace ($N_{\text{MC}} = 1000$ to $10000$ samples).
+- **Monte Carlo sampling**: Estimated fragment Page values via Haar-random states within each fragment subspace ($N_{\text{MC}} = 1000$ to 10000 samples).
 - **Multi-fragment comparison**: Showed that fragments of different dimensions $D$ each saturate to their own $S_{\text{Page}}^{(\mathcal{D})}$ (the Page value for a fragment of dimension $D$), systematically verifying that the thermalization ceiling scales with fragment dimension.
 - **OBC and PBC geometries**: Extended entanglement entropy analysis to both open and periodic boundary conditions with optimised Krylov-based time evolution.
 
@@ -127,17 +127,17 @@ Entanglement_entropy/
 **Key features**:
 - Bipartite entanglement entropy $S_A(nT)$ dynamics in kicked Ising chains with **periodic boundary conditions (PBC)**
 - Violation of ETH: saturation below thermal Page value $S_{\text{Page}}^{(\text{full})}$ at resonant frequencies
-- Optimised Krylov-based stroboscopic evolution for large system sizes ($L = 10$–$12$)
+- Optimised Krylov-based stroboscopic evolution for large system sizes ($L = 10$–12)
 
 **Notebook**: [`OBC_Optimised_entanglement_entropy_in_large_systems.ipynb`](./Entanglement_entropy/OBC_Optimised_entanglement_entropy_in_large_systems.ipynb)
 **Open in Colab**: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Knerdy-got-moves/Many-body-dynamics-in-Floquet-driven-systems/blob/main/Entanglement_entropy/OBC_Optimised_entanglement_entropy_in_large_systems.ipynb)
 
 **Key features**:
 - Entanglement entropy dynamics with **open boundary conditions (OBC)**
-- **Fragment-specific Page value calculations via Monte Carlo sampling** ($N_{\text{MC}} = 1000$–$10000$ samples)
+- **Fragment-specific Page value calculations via Monte Carlo sampling** ($N_{\text{MC}} = 1000$–10000 samples)
 - **Multi-fragment comparison**: different fragments saturate to their own $S_{\text{Page}}^{(\mathcal{D})}$
 - **$S_A$ vs. quasi-energy $\varepsilon_\alpha$ scatter**: identification of many-body scar-type eigenstates within fragments
-- **Fragment-projected Floquet operator** via batched Krylov embedding ($D \times D$ instead of $N_s \times N_s$)
+- **Fragment-projected Floquet operator** via batched Krylov embedding (smaller subspace instead of $N_s \times N_s$)
 - **Frozen edge mode confirmation**: edge-site entanglement entropy $S_{\{0\}}(nT)$ remains $\approx 0$ while bulk thermalizes
 - Leakage diagnostics quantifying inter-fragment coupling ($\sim g^2/J_0^2$)
 
@@ -145,7 +145,7 @@ Entanglement_entropy/
 - At resonant driving periods $T = n\pi/J_0$ ($n \in \mathbb{Z}$), entanglement entropy plateaus at $S_A^{\text{sat}} = S_{\text{Page}}^{(\text{frag})} < S_{\text{Page}}^{(\text{full})}$
 - Fragmentation quantitatively explains reduced thermalization; states thermalize only within their respective fragments
 - Largest fragment dimension follows $D = F_{L-1} + F_{L+1}$ (Lucas number identity for Fibonacci numbers $F_n$ with $F_0=0, F_1=1$)
-- Floquet eigenstates show broad $S_A(\varepsilon_\alpha)$ distribution with low-entropy outliers (scar-type states)
+- Floquet eigenstates show broad $S_A(\epsilon_\alpha)$ distribution with low-entropy outliers (scar-type states)
 - Edge entanglement $S_{\{0\}} \approx 0$ confirms frozen boundary modes
 
 **Knowledge basis**: [`KnowledgeBasis_EE.md`](./Entanglement_entropy/KnowledgeBasis_EE.md) — detailed analytical and numerical documentation
