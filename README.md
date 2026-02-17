@@ -63,7 +63,7 @@ The computational work in this repository extends significantly beyond the forma
 ### 4. **Many-Body Scar-Type Eigenstates** ([`Entanglement_entropy/OBC_Optimised_entanglement_entropy_in_large_systems.ipynb`](./Entanglement_entropy/OBC_Optimised_entanglement_entropy_in_large_systems.ipynb))
 - **$S_A$ vs. quasi-energy scatter**: Computed entanglement entropy $S_A$ for all Floquet eigenstates within the largest fragment, revealing a broad distribution of $S_A(\varepsilon_\alpha)$ rather than the narrow band predicted by ETH.
 - **Low-entropy outliers**: Identified eigenstates with anomalously low $S_A$ (well below $S_{\text{Page}}^{(\text{frag})}$), reminiscent of quantum many-body scars.
-- **Fragment-projected Floquet operator**: Constructed a smaller size Floquet operator via batched Krylov embedding, avoiding the full $N_s \times N_s$ dense unitary. Cost (in time for construction): $\mathcal{O}((K_+ + K_-) \cdot \text{nnz}(H_\pm) \cdot N_s)$ where $K_\pm = \[ |A_\pm|1/5]$ are the Krylov subdivision counts for each half-period generator $A_\pm = -iH_\pm T/2$, and $\text{nnz}(H_\pm)$ denotes the number of nonzero entries in the sparse Hamiltonian matrices $H_\pm$.
+- **Fragment-projected Floquet operator**: Constructed a smaller size Floquet operator via batched Krylov embedding, avoiding the full $N_s \times N_s$ dense unitary. Cost (in time for construction): $\mathcal{O}((K_+ + K_-) \cdot \text{nnz}(H_\pm) \cdot N_s)$ where $K_\pm = \[\frac{|A_\pm|<sub>1</sub>}{5}\]$ are the Krylov subdivision counts for each half-period generator $A_\pm = -iH_\pm T/2$, and $\text{nnz}(H_\pm)$ denotes the number of nonzero entries in the sparse Hamiltonian matrices $H_\pm$.
 - **Leakage diagnostics**: Quantified inter-fragment leakage ($\sim g^3/J_0^2$), confirming the prethermal validity of the fragment decomposition.
 
 ### 5. **Edge Mode Characterization** ([`Autocorrelation/`](./Autocorrelation/), [`Entanglement_entropy/`](./Entanglement_entropy/))
@@ -264,7 +264,7 @@ At $h_0/J_0 = 2n$ ($n \geq 2$, $n \in \mathbb{Z}$) and driving periods $T = m\pi
 ### Numerical
 - **Exact diagonalization** using SciPy/NumPy sparse matrix methods
 - **System sizes**: Up to $L = 12$ (Hilbert space dimension $N_s = 2^{12} = 4096$)
-- **Krylov time evolution**: Matrix-free stroboscopic evolution via `scipy.sparse.linalg.expm_multiply` with adaptive subdivision (each half-period generator $A_\pm = -iH_\pm T/2$ is subdivided into $K_\pm = \[ |A_\pm|1/5\]$ substeps, where $\|A_\pm\|_1$ denotes the matrix 1-norm)
+- **Krylov time evolution**: Matrix-free stroboscopic evolution via `scipy.sparse.linalg.expm_multiply` with adaptive subdivision (each half-period generator $A_\pm = -iH_\pm T/2$ is subdivided into $K_\pm = \[\frac{|A_\pm|<sub>1</sub>}{5}\]$ substeps, where $\|A_\pm\|_1$ denotes the matrix 1-norm)
 - **Diagnostics**:
   - Bipartite entanglement entropy $S_A$ via Schmidt decomposition (SVD)
   - Infinite-temperature autocorrelations $C_j(nT)$ from Haar-random initial states (up to 500 Floquet steps)
@@ -283,7 +283,7 @@ At $h_0/J_0 = 2n$ ($n \geq 2$, $n \in \mathbb{Z}$) and driving periods $T = m\pi
 | Autocorrelation $C_j(nT)$ | Infinite-$T$ ensemble | $C_j(nT) \to 0$ rapidly | Non-zero plateaus; prethermal lifetime $\tau^* \sim e^{J_0/g}$ | Memory of initial conditions |
 | Edge magnetization | Open boundaries | Decays rapidly | Persists $\sim 200$ steps; $S_{\{0\}} \approx 0$ | Prethermal edge modes |
 | Hilbert space | Connectivity | Fully connected | Exponentially many fragments; $D_{\max} = F_{L-1} + F_{L+1}$ | HSF |
-| Floquet eigenstates | $S_A(\varepsilon_\alpha)$ scatter | Narrow band near $S_{\text{Page}}$ | Broad distribution with low-$S_A$ outliers | Many-body scar-type states |
+| Floquet eigenstates | $S_A(\epsilon_\alpha)$ scatter | Narrow band near $S_{\text{Page}}$ | Broad distribution with low-$S_A$ outliers | Many-body scar-type states |
 | Bulk dynamics | $h_0/J_0 = 2n$, $n \geq 2$ | Thermalizes | Dynamically frozen; edges oscillate | Sinc-filter suppression |
 
 ---
