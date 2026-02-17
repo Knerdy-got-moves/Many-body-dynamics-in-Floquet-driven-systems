@@ -166,9 +166,9 @@ The driving period controls which spin-flip channels are active through the sinc
 | Phenomenon | Conditions | Driving Period | Observation |
 |------------|-----------|----------------|-------------|
 | **Hilbert space fragmentation** | $h_0 = 2J_0$, OBC | $T = 2m\pi/J_0$, $m \in \mathbb{N}$ | Exponentially many disconnected Krylov sectors; sub-thermal autocorrelation plateaus |
-| **Dynamical freezing (bulk)** | $h_0/J_0 = 2n$, $n > 2$, OBC | $T = m\pi/J_0$ | Bulk frozen, edges oscillate |
-| **Dynamical freezing (complete)** | $h_0/J_0 = 2n$, $n > 2$, OBC | $T = 2\pi/J_0$ | Entire system frozen |
-| **Edge modes** | $h_0 = 2nJ_0$, $n \in \mathbb{Z}^+$, OBC | $T = 2\pi/J_0$ | Edge magnetization persists $\sim 300$ Floquet steps; not SPT-protected |
+| **Dynamical freezing (bulk)** | $h_0/J_0 = 2n$, $n \ge 2$, OBC | $T = (2m+1)\pi/J_0$ | Bulk frozen, edges oscillate |
+| **Dynamical freezing (complete)** | $h_0/J_0 = 2n$, $n \ge 2$, OBC | $T = 2m\pi/J_0$ | Entire system frozen |
+| **Edge modes** | $h_0 = 2nJ_0$, $n \in \mathbb{Z}$, OBC | $T = 2m\pi/J_0$ | Edge magnetization persists $\sim 200$ Floquet steps; not SPT-protected |
 
 ---
 
