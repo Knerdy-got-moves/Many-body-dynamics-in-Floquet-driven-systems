@@ -264,7 +264,7 @@ At $h_0/J_0 = 2n$ ($n \geq 2$, $n \in \mathbb{Z}$) and driving periods $T = m\pi
 ### Numerical
 - **Exact diagonalization** using SciPy/NumPy sparse matrix methods
 - **System sizes**: Up to $L = 12$ (Hilbert space dimension $N_s = 2^{12} = 4096$)
-- **Krylov time evolution**: Matrix-free stroboscopic evolution via `scipy.sparse.linalg.expm_multiply` with adaptive subdivision (each half-period generator $A_\pm = -iH_\pm T/2$ is subdivided into $K_\pm = \lceil \|A_\pm\|_1 / 5 \rceil$ substeps, where $\|A_\pm\|_1$ denotes the matrix 1-norm)
+- **Krylov time evolution**: Matrix-free stroboscopic evolution via `scipy.sparse.linalg.expm_multiply` with adaptive subdivision (each half-period generator $A_\pm = -iH_\pm T/2$ is subdivided into $K_\pm = \[ |A_\pm|1/5\]$ substeps, where $\|A_\pm\|_1$ denotes the matrix 1-norm)
 - **Diagnostics**:
   - Bipartite entanglement entropy $S_A$ via Schmidt decomposition (SVD)
   - Infinite-temperature autocorrelations $C_j(nT)$ from Haar-random initial states (up to 500 Floquet steps)
