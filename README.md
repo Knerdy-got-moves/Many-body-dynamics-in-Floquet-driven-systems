@@ -101,7 +101,7 @@ Autocorrelation/
 
 **Main results**:
 - Non-zero autocorrelation plateaus signal ETH violation
-- Edge sites retain memory for $\sim 300$ Floquet steps at $T = 2\pi/J_0$
+- Edge sites retain memory for $\sim 200$ Floquet steps at $T = 2\pi/J_0$ with $J_0=10=h_0/2=10g$.
 - Edge modes emerge from the structure of the effective Floquet Hamiltonian: $H_F^{(1)} = -g\sum_{i=2}^{L-1}\pi_{i-1}\sigma_i^x\pi_{i+1}$, where $\pi_i = (\mathbb{I} - \sigma_i^z)/2$ is the spin-down projector at site $i$. This Hamiltonian lacks edge flip terms (the sum runs from $i=2$ to $L-1$, excluding the boundary sites).
 - Dynamical freezing at large $h_0/J_0$ with complete system freeze at $T = 2\pi/J_0$
 - Edge memory shows no systematic system-size dependence
