@@ -280,10 +280,10 @@ At $h_0/J_0 = 2n$ ($n \geq 2$, $n \in \mathbb{Z}$) and driving periods $T = m\pi
 | **Observable** | **Diagnostic** | **ETH prediction** | **Our result** | **Interpretation** |
 |----------------|----------------|--------------------|-----------------|--------------------|
 | Entanglement $S_A(nT)$ | Time evolution | $S_A^{\text{sat}} = S_{\text{Page}}^{\text{system}}$ | $S_A^{\text{sat}} = S_{\text{Page}}^{\text{fragment}} < S_{\text{Page}}^{\text{system}}$ | Fragment-limited thermalization |
-| Autocorrelation $C_j(nT)$ | Infinite-$T$ ensemble | $C_j(nT) \to 0$ rapidly | Non-zero plateaus; prethermal lifetime $\tau^* \sim e^{J_0/g}$ | Memory of initial conditions |
+| Autocorrelation $C_j(nT)$ | Infinite-T ensemble | $C_j(nT) \to 0$ rapidly | Non-zero plateaus; prethermal lifetime $\tau^* \sim e^{J_0/g}$ | Memory of initial conditions |
 | Edge magnetization | Open boundaries | Decays rapidly | Persists $\sim 200$ steps; $S_{\{0\}} \approx 0$ | Prethermal edge modes |
 | Hilbert space | Connectivity | Fully connected | Exponentially many fragments; $D_{\max} = F_{L-1} + F_{L+1}$ | HSF |
-| Floquet eigenstates | $S_A(\epsilon_\alpha)$ scatter | Narrow band near $S_{\text{Page}}$ | Broad distribution with low-$S_A$ outliers | Many-body scar-type states |
+| Floquet eigenstates | $S_A(\epsilon_\alpha)$ scatter | Narrow band near $S_{\text{Page}}$ | Broad distribution with low-S<sub>A</sub> outliers | Many-body scar-type states |
 | Bulk dynamics | $h_0/J_0 = 2n$, $n \geq 2$ | Thermalizes | Dynamically frozen; edges oscillate | Sinc-filter suppression |
 
 ---
