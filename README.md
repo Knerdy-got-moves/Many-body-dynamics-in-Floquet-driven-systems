@@ -165,7 +165,7 @@ Entanglement_entropy/
 1. **Introduction**: Floquet systems, ETH, Hilbert space fragmentation
 2. **Model**: Kicked Ising chain Hamiltonian $H(t) = -J(t)\sum_i \sigma_i^z\sigma_{i+1}^z - h(t)\sum_i \sigma_i^z - g\sum_i \sigma_i^x$, where $J(t)$ and $h(t)$ are the square-wave-driven Ising coupling and longitudinal field, and $g$ is the static transverse field strength
 3. **Analytical results**: First-order Floquet Hamiltonian $H_F^{(1)}$, spin-flip suppression via sinc filters
-4. **Numerical results**: Entanglement entropy saturation, autocorrelation plateaus ($L=8$–$12$)
+4. **Numerical results**: Entanglement entropy saturation, autocorrelation plateaus ($L=8$)
 5. **Conclusions**: Prethermal fragmentation without disorder or integrability
 
 **Quick navigation**: See [`Rishi_Paresh_Joshi_report/9th_sem_README.md`](./Rishi_Paresh_Joshi_report/9th_sem_README.md) for detailed overview.
