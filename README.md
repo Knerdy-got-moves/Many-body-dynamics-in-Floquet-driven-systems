@@ -1,6 +1,6 @@
 # Many-Body dynamics in Floquet-driven systems
 
-**MSc thesis repository (9th semester progress)**
+**MSc thesis & research paper repository**
 
 **Student**: Rishi Paresh Joshi (5th Year Integrated M.Sc., NISER Bhubaneswar)
 
@@ -11,6 +11,8 @@
 ## Overview
 
 This repository contains the work on my MSc thesis (part 1) on investigating **Hilbert space fragmentation (HSF)** and **eigenstate thermalization hypothesis (ETH) violation** in periodically driven (Floquet) quantum Ising chains. The research combines analytical Floquet perturbation theory with numerical probes like entanglement entropy and autocorrelation evolution to demonstrate prethermal non-ergodic dynamics in non-integrable many-body systems without disorder.
+
+> **Paper**: R. P. Joshi, S. Banerjee, S. N. Moorthy, and T. Mishra, "Tunable Floquet selection rules in a driven Ising chain," [arXiv:2603.23493](https://arxiv.org/abs/2603.23493) (2025).
 
 ### Notation and conventions
 
@@ -41,18 +43,20 @@ Throughout this document, the following notation is used:
 
 ## Recent accomplishments
 
-The computational work in this repository extends significantly beyond the formal thesis document. The latest developments include optimised large-system-size simulations (up to $L = 12$, corresponding to $N_s = 2^{12} = 4096$ states) and new analyses of entanglement entropy in both OBC and PBC geometries.
+The computational work in this repository extends significantly beyond the formal thesis document and forms the basis for the paper [arXiv:2603.23493](https://arxiv.org/abs/2603.23493). The latest developments include optimised large-system-size simulations (up to $L = 12$, corresponding to $N_s = 2^{12} = 4096$ states), new analyses of entanglement entropy in both OBC and PBC geometries, and analytical results on Mazur bounds, perturbative edge leakage, and Floquet freezing.
 
 ### 1. **Hilbert Space Fragmentation Analysis** ([`Autocorrelation/`](./Autocorrelation/))
 - **Fragment decomposition**: Performed detailed fragmentation analysis for system sizes up to $L = 12$ ($N_s = 4096$), identifying the structure and connectivity of disconnected Krylov subspaces under the first-order Floquet Hamiltonian $H_F^{(1)}$.
 - **Fibonacci dimension**: Verified that the largest fragment (containing all configurations with no adjacent $\uparrow\uparrow$ bonds, i.e., $N_{\text{defect}} = 0$) has dimension $D = F_{L-1} + F_{L+1}$ (e.g., $D = F_{11} + F_{13} = 89 + 233 = 322$ at $L = 12$).
 - **Up-up bond analysis**: Characterized fragments by $N_{\text{defect}}$, which is conserved within each fragment at leading order in $g/J_0$.
 - **Connectivity graphs**: Constructed and visualized the fragmentation of the Hilbert space under $H_F^{(1)}$ via breadth-first search (BFS) on the connectivity graph of $\mathcal{O}$-eigenvalue sectors.
+- **Mazur bound on bulk autocorrelation**: Using three traceless conserved operators built from frozen local patterns around a bulk site, the Mazur inequality yields a parameter-independent lower bound $M_{\sigma_j^z} = 3/5$ on the infinite-temperature bulk autocorrelation at resonance.
 
 ### 2. **Dynamical Freezing** ([`Autocorrelation/Optimised_Autocorrelation_in_large_system_sizes.ipynb`](./Autocorrelation/Optimised_Autocorrelation_in_large_system_sizes.ipynb))
 - **Bulk freezing with oscillating edges**: For $h_0/J_0 = 2n$ ($n \geq 2$, $n \in \mathbb{Z}$) at driving periods $T = (2m+1)\pi/J_0$ ($m \in \mathbb{Z}_{\geq 0}$), the bulk of the chain is dynamically frozen while edge sites exhibit oscillatory behavior.
 - **Complete freezing**: At $T = 2m\pi/J_0$ ($m \in \mathbb{N}$), the entire system—both bulk and edges—is frozen; the autocorrelation $C_j(nT)$ saturates at a finite value across all sites $j$.
 - **Sinc filter mechanism**: Systematically mapped which spin-flip channels are active/suppressed for each driving period via the sinc selection rules: a matrix element connecting states with energy mismatch $P_{nm}$ (the difference of $\mathcal{O}$-eigenvalues $P_n - P_m$) is proportional to $\text{sinc}(P_{nm}T/4)$.
+- **Fragmentation vs. freezing distinction**: At $h_0 = 2J_0$, zero-gap channels ($\Delta P = 0$) survive and generate PXP-constrained dynamics (fragmentation with active intra-fragment dynamics). At $h_0 = 2nJ_0$ ($n > 1$), all first-order channels land on sinc zeros, yielding $H_F^{(1)} = 0$ (complete Floquet freezing). This sharp distinction is a central result of the [paper](https://arxiv.org/abs/2603.23493).
 
 ### 3. **Fragment-Resolved Entanglement Entropy** ([`Entanglement_entropy/`](./Entanglement_entropy/))
 - **Fragment Page value saturation**: Demonstrated that the entanglement entropy $S_A(nT)$ saturates at the **fragment-specific Page value** $S_{\text{Page}}^{(\text{frag})} < S_{\text{Page}}^{(\text{full})}$, confirming fragmentation-confined thermalization.
@@ -67,13 +71,23 @@ The computational work in this repository extends significantly beyond the forma
 - **Leakage diagnostics**: Quantified inter-fragment leakage ($\sim g^3/J_0^2$), confirming the prethermal validity of the fragment decomposition.
 
 ### 5. **Edge Mode Characterization** ([`Autocorrelation/`](./Autocorrelation/), [`Entanglement_entropy/`](./Entanglement_entropy/))
-- **Prethermal edge memory**: Demonstrated that edge modes persist for hundreds of Floquet cycles at resonant frequencies ($T = 2\pi/J_0$), with the prethermal timescale $\tau^* \sim e^{J_0/g}$.
+- **Prethermal edge memory**: Demonstrated that edge modes persist for hundreds of Floquet cycles at resonant frequencies ($T = 2\pi/J_0$). The edge is frozen through second order ($H_{F,\text{edge}}^{(2)} = 0$ by temporal symmetry of the drive), with leakage entering only at third order, giving $\tau_{\text{edge}} \sim J_0^2/g^3$.
 - **Frozen edge entropy**: Single-site edge entanglement entropy $S_{\{0\}}(nT) \approx 0$ throughout Floquet evolution (where $\{0\}$ denotes subsystem $A$ consisting of the first site only), while bulk sites thermalize within the fragment.
 - **Magnetization profiles**: Generated contour plots showing spatial and temporal evolution of local magnetization $\langle\psi(nT)|\sigma_j^z|\psi(nT)\rangle$, revealing edge-bulk contrast.
+- **Third-order leakage formula**: The leading edge-flip contribution is $H_{F,\text{edge}}^{(3)} = -\frac{g^3}{2J_0^2}\left(\Pi_2^{\downarrow} + \frac{1}{9}\Pi_2^{\uparrow}\right)\sigma_1^x$, confirming the $\tau_{\text{edge}} \sim J_0^2/g^3$ scaling and the $L$-independent lifetime.
 - **Symmetry analysis**: Investigated inversion and chiral symmetries; established that edge modes are **not** symmetry-protected topological (SPT) but arise purely from the structure of the effective Floquet Hamiltonian.
 - **System size independence**: Edge memory lifetime shows no systematic dependence on chain length $L$.
 
-These results provide concrete numerical evidence for prethermal Hilbert space fragmentation, dynamical freezing, many-body scar-type states, and Floquet edge modes in non-integrable systems without disorder.
+### 7. **PXP Scar Phenomenology in PBC** ([`Tunable_Floquet_selection_rules_in_a_driven_Ising_chain/`](./Tunable_Floquet_selection_rules_in_a_driven_Ising_chain/))
+- **PXP mapping**: Under PBC at $T = \pi/J_0$, the largest fragment maps exactly to the PXP Hilbert space, $H_{\text{eff}}|_{\mathcal{H}^{\text{PBC}}_{\max}} = H_{\text{PXP}}$, inheriting standard scar phenomenology from the Floquet-engineered constraint.
+- **$\mathbb{Z}_2$ CDW overlap**: Floquet eigenstates with anomalously large overlap $|c_\alpha|^2 = |\langle \mathbb{Z}_2|\phi_\alpha\rangle|^2 \gg 1/D_{\text{frag}}$ identified within the largest fragment, where $|\mathbb{Z}_2\rangle = |\uparrow\downarrow\uparrow\downarrow\cdots\rangle$.
+- **Return fidelity revivals**: $F(n) = |\langle \mathbb{Z}_2|U_F^n|\mathbb{Z}_2\rangle|^2$ shows pronounced revivals above the ergodic floor $1/D_{\text{frag}}$.
+
+### 8. **Graph Generalization to Higher Dimensions** ([`Tunable_Floquet_selection_rules_in_a_driven_Ising_chain/`](./Tunable_Floquet_selection_rules_in_a_driven_Ising_chain/))
+- **Higher-dimensional extension**: The sinc selection rule mechanism extends to a driven Ising model on any finite induced subgraph of a $z$-regular graph: at $h = zJ$ and $T_\star = 2\pi/J$, the first-order Floquet Hamiltonian is the graph-PXP generator $H_F^{(1)} = -g\sum_{i:\,d_i=z}(\prod_{j\in\partial i}\pi_j)X_i$, acting only on full-coordination (bulk) sites.
+- **Coordination-selective hierarchy**: Boundary sites ($d_i < z$) are frozen by the same mechanism as OBC edges in 1D; the Floquet filter isolates the full-coordination core of any finite piece of a regular Ising graph.
+
+These results provide concrete numerical and analytical evidence for prethermal Hilbert space fragmentation, dynamical freezing, many-body scar-type states, Floquet edge modes, and their higher-dimensional generalization in non-integrable systems without disorder.
 
 ---
 
@@ -189,6 +203,50 @@ Entanglement_entropy/
 
 ---
 
+### 📝 Research paper
+
+#### 3. **Tunable Floquet selection rules in a driven Ising chain** ([`Tunable_Floquet_selection_rules_in_a_driven_Ising_chain/`](./Tunable_Floquet_selection_rules_in_a_driven_Ising_chain/))
+
+> **arXiv**: [2603.23493](https://arxiv.org/abs/2603.23493)
+
+```
+Tunable_Floquet_selection_rules_in_a_driven_Ising_chain/
+├── Tunable_Floquet_selection_rules_in_a_driven_Ising_chain.pdf
+├── Draft_2.tex
+├── Draft_2.bbl
+├── references.bib
+├── KnowledgeBasis_paper.md
+└── Figures/
+    ├── fig1.pdf
+    ├── fig2.pdf
+    ├── fig3.pdf
+    ├── fig4.pdf
+    ├── fig5.pdf
+    ├── fig6.pdf
+    ├── fig7.pdf
+    └── fig8.pdf
+```
+
+**Main document**: [`Tunable_Floquet_selection_rules_in_a_driven_Ising_chain.pdf`](./Tunable_Floquet_selection_rules_in_a_driven_Ising_chain/Tunable_Floquet_selection_rules_in_a_driven_Ising_chain.pdf)
+
+**Authors**: Rishi Paresh Joshi, Sanchayan Banerjee, Sneha Narasimha Moorthy, Tapan Mishra (NISER / HBNI)
+
+**Key contributions**:
+- Sinc selection rule: analytic derivation of the finite-time destructive-interference filter governing spin-flip channels
+- Complete OBC and PBC channel classification tables (see [KnowledgeBasis_paper.md §3](./Tunable_Floquet_selection_rules_in_a_driven_Ising_chain/KnowledgeBasis_paper.md))
+- Hilbert space fragmentation via PXP-type constrained generator (not imposed by hand)
+- Prethermal edge memory: second-order cancellation, third-order leakage with $\tau_{\text{edge}} \sim J_0^2/g^3$
+- Mazur bound $M_{\sigma_j^z} = 3/5$ on bulk autocorrelation
+- PXP scar phenomenology in PBC largest fragment ($\mathbb{Z}_2$ revivals, low-$S_A$ outliers)
+- Floquet freezing at $h_0 = 2nJ_0$ ($n > 1$): $H_F^{(1)} = 0$
+- Graph-PXP generalization to $z$-regular graphs in higher dimensions
+
+**Figures**: Individual figure PDFs available in [`Figures/`](./Tunable_Floquet_selection_rules_in_a_driven_Ising_chain/Figures/) — [fig1](./Tunable_Floquet_selection_rules_in_a_driven_Ising_chain/Figures/fig1.pdf), [fig2](./Tunable_Floquet_selection_rules_in_a_driven_Ising_chain/Figures/fig2.pdf), [fig3](./Tunable_Floquet_selection_rules_in_a_driven_Ising_chain/Figures/fig3.pdf), [fig4](./Tunable_Floquet_selection_rules_in_a_driven_Ising_chain/Figures/fig4.pdf), [fig5](./Tunable_Floquet_selection_rules_in_a_driven_Ising_chain/Figures/fig5.pdf), [fig6](./Tunable_Floquet_selection_rules_in_a_driven_Ising_chain/Figures/fig6.pdf), [fig7](./Tunable_Floquet_selection_rules_in_a_driven_Ising_chain/Figures/fig7.pdf), [fig8](./Tunable_Floquet_selection_rules_in_a_driven_Ising_chain/Figures/fig8.pdf)
+
+**Knowledge basis**: [`KnowledgeBasis_paper.md`](./Tunable_Floquet_selection_rules_in_a_driven_Ising_chain/KnowledgeBasis_paper.md) — detailed analytical documentation
+
+---
+
 ## Physical system
 
 The system under investigation is a **periodically driven spin-1/2 Ising chain** of $L$ sites with symmetric square-wave driving of period $T$. Here $\sigma_i^{x,y,z}$ denote the Pauli spin operators on site $i$, and we work in natural units ($\hbar = 1$). The full Hamiltonian is:
@@ -253,6 +311,16 @@ At $h_0/J_0 = 2n$ ($n \geq 2$, $n \in \mathbb{Z}$) and driving periods $T = m\pi
 - Low-$S_A$ outlier states violate strong ETH even within the fragment
 - Mechanism specific to the Floquet-fragmented structure
 
+### 7. Mazur bound on bulk memory
+- Three traceless conserved operators built from frozen local patterns yield the Mazur inequality $M_{\sigma_j^z} = 3/5$
+- This provides a parameter-independent, rigorous lower bound on the infinite-temperature bulk autocorrelation at resonance
+- Increasing $J_0/g$ pushes the system deeper into the prethermal fragmented regime, but the bound itself is independent of the ratio
+
+### 8. Graph-PXP generalization
+- The Floquet selection rule mechanism extends to a driven Ising model on any finite induced subgraph of a $z$-regular graph
+- At $h = zJ$ and $T_\star = 2\pi/J$, the first-order Floquet Hamiltonian is a graph-PXP generator acting only on full-coordination sites
+- Boundary sites ($d_i < z$) are frozen by the same coordination-selective mechanism as 1D OBC edges
+
 ---
 
 ## Methodology
@@ -285,6 +353,9 @@ At $h_0/J_0 = 2n$ ($n \geq 2$, $n \in \mathbb{Z}$) and driving periods $T = m\pi
 | Hilbert space | Connectivity | Fully connected | Exponentially many fragments; $D_{\max} = F_{L-1} + F_{L+1}$ | HSF |
 | Floquet eigenstates | $S_A(\epsilon_\alpha)$ scatter | Narrow band near $S_{\text{Page}}$ | Broad distribution with low-S<sub>A</sub> outliers | Many-body scar-type states |
 | Bulk dynamics | $h_0/J_0 = 2n$, $n \geq 2$ | Thermalizes | Dynamically frozen; edges oscillate | Sinc-filter suppression |
+| Mazur bound $M_{\sigma_j^z}$ | Conserved-operator construction | No lower bound | $M = 3/5$; parameter-independent | Rigorous memory guarantee from fragmentation |
+| Floquet freezing ($n>1$) | $h_0 = 2nJ_0$, $n > 1$ | First-order dynamics present | $H_F^{(1)} = 0$; all channels on sinc zeros | Distinct from fragmentation; complete suppression |
+| Graph-PXP | $z$-regular graph, $h = zJ$ | N/A | Coordination-selective graph-PXP generator | Higher-dimensional generalization |
 
 ---
 
@@ -323,6 +394,9 @@ jupyter notebook
 
 This work builds upon foundational studies in Floquet physics and Hilbert space fragmentation:
 
+### This work
+0. **R. P. Joshi, S. Banerjee, S. N. Moorthy, and T. Mishra**, "Tunable Floquet selection rules in a driven Ising chain," [arXiv:2603.23493](https://arxiv.org/abs/2603.23493) (2025).
+
 ### Floquet systems & ETH
 1. L. D'Alessio and M. Rigol, "Long-time behavior of isolated periodically driven interacting lattice systems," *Phys. Rev. X* **4**, 041048 (2014). [doi:10.1103/PhysRevX.4.041048](https://doi.org/10.1103/PhysRevX.4.041048)
 2. A. Lazarides, A. Das, and R. Moessner, "Fate of many-body localization under periodic driving," *Phys. Rev. Lett.* **115**, 030402 (2015). [doi:10.1103/PhysRevLett.115.030402](https://doi.org/10.1103/PhysRevLett.115.030402)
@@ -352,7 +426,7 @@ This work builds upon foundational studies in Floquet physics and Hilbert space 
 
 **Supervisor**: Dr. Tapan Mishra, Associate Professor, NISER
 
-**Acknowledgments**: Special thanks to Biswajit Paul for valuable discussions.
+**Acknowledgments**: Special thanks to Biswajit Paul for valuable discussions, and to co-authors Sanchayan Banerjee and Sneha Narasimha Moorthy for collaboration on the paper.
 
 ---
 
@@ -362,4 +436,4 @@ This project is available for academic and educational purposes. Please cite app
 
 ---
 
-**Keywords**: Floquet systems, Hilbert space fragmentation, eigenstate thermalization hypothesis, entanglement entropy, autocorrelation, Ising model, prethermal dynamics, non-ergodic behavior, quantum many-body physics, dynamical freezing, many-body scars, edge modes
+**Keywords**: Floquet systems, Hilbert space fragmentation, eigenstate thermalization hypothesis, entanglement entropy, autocorrelation, Ising model, prethermal dynamics, non-ergodic behavior, quantum many-body physics, dynamical freezing, many-body scars, edge modes, sinc selection rules, Mazur bound, PXP model, Floquet freezing, graph-PXP
