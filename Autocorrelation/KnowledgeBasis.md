@@ -148,7 +148,7 @@ The driving period controls which spin-flip channels are active through the sinc
 - **Sinc-filter analysis**: Identification of resonant driving periods where specific spin-flip channels vanish.
 
 ### Numerical
-- **Exact diagonalization** using SciPy/NumPy sparse matrix methods.
+- **4th-order Yoshida–Suzuki split-operator Trotterisation** for time evolution, implemented via Numba-JIT-compiled kernels with precomputed trigonometric lookup tables. The Hamiltonian is split as $H = H_{\text{diag}} + H_{\text{transverse}}$, and each half-period is evolved using $n_{\text{sub}}$ fourth-order Suzuki–Trotter (S4) substeps, auto-calibrated via Richardson extrapolation to a target tolerance of $10^{-6}$.
 - **System sizes**: Up to $L = 12$ sites (Hilbert space dimension $2^{12} = 4096$).
 - **Autocorrelation**: Ensemble-averaged over random initial states at infinite temperature.
 - **Fragmentation analysis**: Construction of connectivity graphs from the effective Floquet Hamiltonian; identification of connected components (Krylov sectors).
