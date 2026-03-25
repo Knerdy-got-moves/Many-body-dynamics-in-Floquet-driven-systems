@@ -353,7 +353,7 @@ At $h_0/J_0 = 2n$ ($n \geq 2$, $n \in \mathbb{Z}$) and driving periods $T = m\pi
 | Hilbert space | Connectivity | Fully connected | Exponentially many fragments; $D_{\max} = F_{L-1} + F_{L+1}$ | HSF |
 | Floquet eigenstates | $S_A(\epsilon_\alpha)$ scatter | Narrow band near $S_{\text{Page}}$ | Broad distribution with low-S<sub>A</sub> outliers | Many-body scar-type states |
 | Bulk dynamics | $h_0/J_0 = 2n$, $n \geq 2$ | Thermalizes | Dynamically frozen; edges oscillate | Sinc-filter suppression |
-| Mazur bound $M_{\sigma_j^z}$ | Conserved-operator construction | No lower bound | $M = 3/5$; parameter-independent | Rigorous memory guarantee from fragmentation |
+| Mazur bound $M_{\sigma_j^z}$ | Conserved-operator construction | 0 | $M = 3/5$; parameter-independent | Rigorous memory guarantee from fragmentation |
 | Floquet freezing ($n>1$) | $h_0 = 2nJ_0$, $n > 1$ | First-order dynamics present | $H_F^{(1)} = 0$; all channels on sinc zeros | Distinct from fragmentation; complete suppression |
 | Graph-PXP | $z$-regular graph, $h = zJ$ | N/A | Coordination-selective graph-PXP generator | Higher-dimensional generalization |
 
