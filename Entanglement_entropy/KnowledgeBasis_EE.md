@@ -226,24 +226,75 @@ The Hamiltonians $H_\pm$ are built as `scipy.sparse.csr_matrix` with exactly $N_
 **Bit convention:** Each computational basis state $|s\rangle$ is labelled by an integer $s \in \{0, 1, \ldots, 2^L - 1\}$ whose binary representation encodes all $L$ spin values. Site $j \to$ bit position $p(j) = L - 1 - j$. The spin eigenvalue is $\sigma_j^z = 1 - 2c_j$ where $c_j = (s \gg p(j)) \land 1$
 .
 
-### 6.2 Krylov Time Evolution (Matrix-Free)
+### 6.2 Yoshida-Suzuki Split-Operator Trotterisation
 
-Instead of forming the dense $N_s \times N_s$ Floquet unitary, one Floquet period is applied via `scipy.sparse.linalg.expm_multiply`:
+Instead of forming the dense $N_s \times N_s$ Floquet unitary or using Krylov methods, one Floquet period is applied via a **4th-order Yoshida-Suzuki symplectic integrator** (Ref: Yoshida, Phys. Lett. A **150**, 262, 1990) operating in a fully matrix-free split-operator scheme.
+
+**Split-operator structure.** The half-period Hamiltonians decompose as
 
 $$
-|\psi'\rangle = e^{A_-}\, e^{A_+}\, |\psi\rangle, \qquad A_\pm = -i H_\pm T / (2\hbar).
+H_\pm = \pm D - g\sum_{j=0}^{L-1}\sigma_j^x,
 $$
 
-**Adaptive subdivision:** When $\|A_\pm\|_1 > 5$, the generator is split as $e^A = (e^{A/K})^K$ with $K = \lceil \|A\|_1 / 5 \rceil$, so each Krylov call sees a spectral norm $\le 5$ and completes in a single Lanczos pass.
+where $D$ is diagonal in the computational basis:
 
-**Batched evolution:** All $B$ initial states are stored as columns of an $N_s \times B$ matrix. The Krylov basis is reused across columns, giving near-linear speedup in $B$.
+$$
+D(s) = \begin{cases}
+J_0\sum_{i=0}^{L-1} z_i(s)\,z_{(i+1)\bmod L}(s) + h_0\sum_{i=0}^{L-1} z_i(s), & \text{PBC ($L$ bonds)}, \\[4pt]
+J_0\sum_{i=0}^{L-2} z_i(s)\,z_{i+1}(s) + h_0\sum_{i=0}^{L-1} z_i(s), & \text{OBC ($L{-}1$ bonds)},
+\end{cases}
+$$
+
+with $z_i(s) = 1 - 2\,\text{bit}_i(s)$, computed directly from the integer label $s$ via bit arithmetic. The transverse-field exponential factorises into $L$ independent single-site $\sigma^x$ rotations:
+
+$$
+e^{i\theta\sum_j \sigma_j^x} = \prod_{j=0}^{L-1} e^{i\theta\,\sigma_j^x},
+$$
+
+each acting on pairs of amplitudes $(s,\; s \oplus 2^{L-1-j})$ as a $2 \times 2$ rotation with angle $\theta$.
+
+**4th-order Yoshida integrator (S4).** Each S4 step is constructed from 5 symmetric Strang (S2) substeps with coefficients
+
+$$
+p = \frac{1}{4 - 4^{1/3}}, \qquad q = 1 - 4p.
+$$
+
+Adjacent diagonal phases are merged, yielding **6 diagonal phase applications + 5 transverse kick applications** per S4 step. The scheme is applied $n_{\text{sub}}$ times per half-period (total of $2\,n_{\text{sub}}$ S4 steps per Floquet period).
+
+**Adaptive calibration of $n_{\text{sub}}$.** The number of substeps is auto-calibrated via Richardson extrapolation: for each candidate $n$, the code compares evolution with $n$ vs $2n$ substeps. For a 4th-order integrator the error ratio is $2^4 = 16$, so $\|\psi_n - \psi_{2n}\| \approx (15/16) \times \text{true error of } \psi_n$. The smallest $n$ achieving per-period error below a tolerance (default $10^{-6}$) is selected. Empirical scaling at $J_0 = 10$, $h_0 = 20$, $g = 1$, $T = \pi/J_0$:
+
+| $n_{\text{sub}}$ | Richardson error |
+|:-:|:-:|
+| 4 | $\sim 10^{-3}$ |
+| 8 | $\sim 3 \times 10^{-5}$ |
+| 16 | $\sim 2 \times 10^{-6}$ |
+| 32 | $\sim 10^{-7}$ |
+
+This scaling is $L$-independent (tested $L = 6$–$12$).
+
+**Matrix-free operation.** No sparse matrices, Krylov bases, CSR storage, or Lanczos iterations are required. The diagonal $D(s)$ is precomputed once from bit arithmetic; all evolution consists of element-wise phase multiplications and pairwise $2 \times 2$ rotations, implemented via Numba JIT-compiled kernels.
+
+**PBC table-driven variant.** The PBC code (`pbc_optimised_entanglement_entropy_in_large_systems.py`) uses a table-driven optimisation: after $n_{\text{sub}}$ is frozen, all trigonometric values are precomputed once:
+
+$$
+\text{phase\_cos}[k, s] = \cos(d_k \cdot h \cdot D(s)), \quad \text{phase\_sin}[k, s] = \sin(d_k \cdot h \cdot D(s)), \quad k = 0, \ldots, 5,
+$$
+$$
+\text{kick\_cos}[k] = \cos(x_k \cdot h \cdot g), \quad \text{kick\_sin}[k] = \sin(x_k \cdot h \cdot g), \quad k = 0, \ldots, 4,
+$$
+
+where $h = T/(2\hbar \cdot n_{\text{sub}})$ is the frozen substep size, and $d_k$, $x_k$ are the S4 diagonal and kick coefficients respectively. This eliminates **all** runtime trigonometric evaluations. The sign flip for $H_-$ ($\text{dsign} = -1$) is handled via $\cos(-\theta) = \cos(\theta)$, $\sin(-\theta) = -\sin(\theta)$.
+
+**OBC variant.** The OBC code (`obc_optimised_entanglement_entropy_in_large_systems.py`) computes trigonometric values on-the-fly during evolution and supports both PBC and OBC diagonals via a `bc` parameter with auto-detection (checks `.bc` attribute, diagonal fingerprint, or defaults).
+
+**Batched evolution:** All $B$ initial states are stored as columns of an $N_s \times B$ matrix. The element-wise operations vectorise across columns, giving near-linear speedup in $B$.
 
 ### 6.3 Complexity Summary
 
 | Operation | Time | Memory | Applicable $L$ |
 |-----------|------|--------|-----------------|
 | Build $H_\pm$ (sparse) | $\mathcal{O}(L \cdot 2^L)$ | $\mathcal{O}(L \cdot 2^L)$ | $L \le 20+$ |
-| One Floquet step (Krylov, $B$ states) | $\mathcal{O}(K \cdot L \cdot 2^L \cdot B)$ | $\mathcal{O}(2^L \cdot B)$ | $L \le 18$ |
+| One Floquet step (Yoshida-Suzuki S4, $B$ states) | $\mathcal{O}(n_{\text{sub}} \cdot L \cdot 2^L \cdot B)$ | $\mathcal{O}(2^L \cdot B)$ | $L \le 18$ |
 | Bipartite entropy (SVD per state) | $\mathcal{O}(2^L \cdot \min(d_A, d_B))$ | $\mathcal{O}(2^L)$ | $L \le 20$ |
 | Fragment identification (BFS) | $\mathcal{O}(L \cdot 2^L)$ | $\mathcal{O}(L \cdot 2^L)$ | $L \le 20$ |
 | Fragment $U_F$ ($D \times D$ via embed+Krylov) | $\mathcal{O}(K \cdot L \cdot 2^L \cdot D)$ | $\mathcal{O}(2^L \cdot D)$ | $D \lesssim 10^3$ |
@@ -313,3 +364,4 @@ The **prethermal condition** requires $h_0 = 2J_0$ and the fragmentation driving
 7. S. Ghosh, I. Paul, and K. Sengupta, Phys. Rev. Lett. **130**, 120401 (2023). — *Prethermal fragmentation in a periodically driven fermionic chain.*
 8. P. Sala et al., Phys. Rev. X **10**, 011047 (2020). — *Ergodicity breaking from Hilbert space fragmentation.*
 9. A. Sen, D. Sen, and K. Sengupta, J. Phys.: Condens. Matter **33**, 443003 (2021). — *Analytic approaches to periodically driven closed quantum systems.*
+10. H. Yoshida, Phys. Lett. A **150**, 262 (1990). — *Construction of higher order symplectic integrators.*
