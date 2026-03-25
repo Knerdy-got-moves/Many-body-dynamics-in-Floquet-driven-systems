@@ -17,8 +17,9 @@ $$
 where the diagonal (driven) part and the static transverse perturbation are
 
 $$
-H_0(t) = \Lambda(t)\left(-J_0\sum_{i=1}^{L_b}\sigma_i^z\sigma_{i+1}^z - h_0\sum_{i=1}^{L}\sigma_i^z\right), \qquad H_1 = -g\sum_{i=1}^{L}\sigma_i^x,
+H_0(t) = -J(t)\sum_{i=1}^{L-1}\sigma_i^z\sigma_{i+1}^z - h(t)\sum_{i=1}^{L}\sigma_i^z, \qquad H_1 = -g\sum_{i=1}^{L}\sigma_i^x
 $$
+
 
 with $|g| \ll \{|J_0|, |h_0|\}$ a weak transverse field that induces single-spin flips. Here $L_b = L - 1$ for open boundary conditions (OBC) and $L_b = L$ for periodic boundary conditions (PBC), with $\sigma_{L+1}^z \equiv \sigma_1^z$ in the periodic case. Units are $\hbar = 1$.
 
