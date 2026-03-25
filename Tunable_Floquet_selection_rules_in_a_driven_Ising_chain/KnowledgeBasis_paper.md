@@ -63,7 +63,7 @@ $$
 Because the symmetric sign-flip protocol causes the second half-cycle to retrace the first in the interaction picture, the integral doubles into a single half-cycle contribution. Evaluating in the eigenbasis of $\mathcal{O}$ ($\mathcal{O}|m\rangle = P_m|m\rangle$):
 
 $$
-\left(H_F^{(1)}\right)_{nm} = (H_1)_{nm}\;\operatorname{sinc}\!\left(\frac{P_{nm}T}{4}\right) e^{-iP_{nm}T/4}, \qquad P_{nm} := P_n - P_m.
+\left(H_F^{(1)}\right)_{nm} = (H_1)_{nm}sinc\left(\frac{P_{nm}T}{4}\right) e^{-iP_{nm}T/4}, \qquad P_{nm} := P_n - P_m.
 $$
 
 > **Key result**: The sinc factor is a finite-time destructive-interference filter. Channels with $P_{nm} = 0$ survive with full first-order weight. Channels with $P_{nm}T/4 = \pi k$ ($k \neq 0$ integer) are deleted. The drive removes selected channels altogether, not merely renormalizing them.
