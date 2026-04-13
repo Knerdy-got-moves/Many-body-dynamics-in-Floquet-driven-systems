@@ -62,7 +62,7 @@ The computational work in this repository extends significantly beyond the forma
 - **Fragment Page value saturation**: Demonstrated that the entanglement entropy $S_A(nT)$ saturates at the **fragment-specific Page value** $S_{\text{Page}}^{(\text{frag})} < S_{\text{Page}}^{(\text{full})}$, confirming fragmentation-confined thermalization.
 - **Monte Carlo sampling**: Estimated fragment Page values via Haar-random states within each fragment subspace ($N_{\text{MC}} = 1000$ to 10000 samples).
 - **Multi-fragment comparison**: Showed that fragments of different dimensions $D$ each saturate to their own $S_{\text{Page}}^{(\mathcal{D})}$ (the Page value for a fragment of dimension $D$), systematically verifying that the thermalization ceiling scales with fragment dimension.
-- **OBC and PBC geometries**: Extended entanglement entropy analysis to both open and periodic boundary conditions with optimised Krylov-based time evolution.
+- **OBC and PBC geometries**: Extended entanglement entropy analysis to both open and periodic boundary conditions with 4th-order Yoshida–Suzuki split-operator time evolution.
 
 ### 4. **Many-Body Scar-Type Eigenstates** ([`Entanglement_entropy/OBC_Optimised_entanglement_entropy_in_large_systems.ipynb`](./Entanglement_entropy/OBC_Optimised_entanglement_entropy_in_large_systems.ipynb))
 - **$S_A$ vs. quasi-energy scatter**: Computed entanglement entropy $S_A$ for all Floquet eigenstates within the largest fragment, revealing a broad distribution of $S_A(\varepsilon_\alpha)$ rather than the narrow band predicted by ETH.
@@ -108,7 +108,7 @@ Autocorrelation/
 **Open in Colab**: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Knerdy-got-moves/Many-body-dynamics-in-Floquet-driven-systems/blob/main/Autocorrelation/Optimised_Autocorrelation_in_large_system_sizes.ipynb)
 
 **Key features**:
-- Optimised sparse Hamiltonian construction and Krylov-based time evolution for system sizes up to $L = 12$
+- 4th-order Yoshida–Suzuki split-operator Trotterisation with Numba-JIT-compiled kernels for system sizes up to $L = 12$
 - **Dynamical freezing**: bulk freezing at $h_0/J_0 = 2n$ ($n \geq 2$, $n \in \mathbb{Z}$) with oscillating edges; complete freezing at $T = 2\pi/J_0$
 - **Sinc filter selection rules**: systematic mapping of active/suppressed spin-flip channels for each driving period
 - Up to 500 Floquet steps with ensemble-averaged autocorrelation $C_j(nT)$
@@ -141,7 +141,7 @@ Entanglement_entropy/
 **Key features**:
 - Bipartite entanglement entropy $S_A(nT)$ dynamics in kicked Ising chains with **periodic boundary conditions (PBC)**
 - Violation of ETH: saturation below thermal Page value $S_{\text{Page}}^{(\text{full})}$ at resonant frequencies
-- Optimised Krylov-based stroboscopic evolution for large system sizes ($L = 10$–12)
+- 4th-order Yoshida–Suzuki split-operator stroboscopic evolution for large system sizes ($L = 10$–12)
 
 **Notebook**: [`OBC_Optimised_entanglement_entropy_in_large_systems.ipynb`](./Entanglement_entropy/OBC_Optimised_entanglement_entropy_in_large_systems.ipynb)
 **Open in Colab**: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Knerdy-got-moves/Many-body-dynamics-in-Floquet-driven-systems/blob/main/Entanglement_entropy/OBC_Optimised_entanglement_entropy_in_large_systems.ipynb)
@@ -332,7 +332,7 @@ At $h_0/J_0 = 2n$ ($n \geq 2$, $n \in \mathbb{Z}$) and driving periods $T = m\pi
 ### Numerical
 - **Exact diagonalization** using SciPy/NumPy sparse matrix methods
 - **System sizes**: Up to $L = 12$ (Hilbert space dimension $N_s = 2^{12} = 4096$)
-- **Krylov time evolution**: Matrix-free stroboscopic evolution via `scipy.sparse.linalg.expm_multiply` with adaptive subdivision (each half-period generator $A_\pm = -iH_\pm T/2$ is subdivided into $K_\pm = \[\frac{|A_\pm|^1}{5}\]$ substeps, where $|A_\pm\|^1$ denotes the matrix 1-norm)
+- **4th-order Yoshida–Suzuki split-operator Trotterisation**: Matrix-free time evolution implemented via Numba-JIT-compiled kernels with precomputed trigonometric lookup tables. The Hamiltonian is split as $H = H_{\text{diag}} + H_{\text{transverse}}$, and each half-period is evolved using $n_{\text{sub}}$ fourth-order Suzuki–Trotter (S4) substeps, auto-calibrated via Richardson extrapolation to a target tolerance of $10^{-6}$
 - **Diagnostics**:
   - Bipartite entanglement entropy $S_A$ via Schmidt decomposition (SVD)
   - Infinite-temperature autocorrelations $C_j(nT)$ from Haar-random initial states (up to 500 Floquet steps)
@@ -367,7 +367,7 @@ All computational notebooks require:
 pip install numpy scipy matplotlib numba
 ```
 
-- **SciPy**: Sparse matrix construction (`scipy.sparse`), Krylov time evolution (`scipy.sparse.linalg.expm_multiply`), graph analysis
+- **SciPy**: Sparse matrix construction (`scipy.sparse`), graph analysis, eigenvalue computations
 - **NumPy**: Linear algebra, random state generation, SVD-based entropy computation
 - **Matplotlib**: Visualization (time series, contour plots, scatter plots)
 - **Numba**: JIT compilation for performance-critical loops
