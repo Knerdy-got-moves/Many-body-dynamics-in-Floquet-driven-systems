@@ -43,7 +43,7 @@ Throughout this document, the following notation is used:
 
 ## Recent accomplishments
 
-The computational work in this repository extends significantly beyond the formal thesis document and forms the basis for the paper [arXiv:2603.23493](https://arxiv.org/abs/2603.23493). The latest developments include optimised large-system-size simulations easily on a Laptop (up to $L = 12$, corresponding to $N_s = 2^{12} = 4096$ states), new analyses of entanglement entropy in both OBC and PBC geometries, and analytical results on Mazur bounds, perturbative edge leakage, and Floquet freezing.
+The computational work in this repository extends significantly beyond the formal thesis document and forms the basis for the paper [arXiv:2603.23493](https://arxiv.org/abs/2603.23493). The latest developments include optimised large-system-size simulations easily on a Laptop (quick for $L = 12$, corresponding to $N_s = 2^{12} = 4096$ states), new analyses of entanglement entropy in both OBC and PBC geometries, and analytical results on Mazur bounds, perturbative edge leakage, and Floquet freezing.
 
 ### 1. **Hilbert Space Fragmentation Analysis** ([`Autocorrelation/`](./Autocorrelation/))
 - **Fragment decomposition**: Performed detailed fragmentation analysis for system sizes up to $L = 12$ ($N_s = 4096$), identifying the structure and connectivity of disconnected Krylov subspaces under the first-order Floquet Hamiltonian $H_F^{(1)}$.
